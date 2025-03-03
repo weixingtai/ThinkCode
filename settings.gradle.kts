@@ -5,9 +5,12 @@ pluginManagement {
                 includeGroupByRegex("com\\.android.*")
                 includeGroupByRegex("com\\.google.*")
                 includeGroupByRegex("androidx.*")
+                maven { url 'https://maven.aliyun.com/repository/google' }
+                maven { url 'https://maven.aliyun.com/repository/public' }
             }
         }
-        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
         gradlePluginPortal()
     }
 }
@@ -15,7 +18,8 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
-        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
     }
 }
 
