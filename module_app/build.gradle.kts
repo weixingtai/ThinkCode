@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    namespace = "com.core.think"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    namespace = "com.code.think"
+    compileSdk = properties["compileSdk"].toString().toInt()
 
     defaultConfig {
-        applicationId = "com.core.think"
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.compileSdk.get().toInt()
+        applicationId = "com.code.think"
+        minSdk = properties["minSdk"].toString().toInt()
+        targetSdk = properties["compileSdk"].toString().toInt()
         versionCode = properties["versionCode"].toString().toInt()
         versionName = properties["versionName"].toString()
 
@@ -28,24 +28,34 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    dataBinding {
+        enable = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_18
         targetCompatibility = JavaVersion.VERSION_18
     }
+
     kotlin {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_18)
         }
     }
+
 }
 
 dependencies {
+    implementation(project(":module_base"))
     implementation(project(":module_common"))
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
+    compileOnly(libs.hilt.compiler)
+    compileOnly(libs.room.compiler)
+    compileOnly(libs.glide.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

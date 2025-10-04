@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.core.base"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    namespace = "com.code.base"
+    compileSdk = properties["compileSdk"].toString().toInt()
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = properties["minSdk"].toString().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -25,22 +25,33 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    dataBinding {
+        enable
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_18
         targetCompatibility = JavaVersion.VERSION_18
     }
+
     kotlin {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_18)
         }
     }
+
 }
 
 dependencies {
     implementation(project(":module_common"))
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    compileOnly(libs.hilt.compiler)
+    compileOnly(libs.room.compiler)
+    compileOnly(libs.glide.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
