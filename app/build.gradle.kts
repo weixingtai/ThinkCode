@@ -47,5 +47,4 @@ android {
 
 dependencies {
     implementation(project(":base"))
-    implementation(project(":common"))
 }
