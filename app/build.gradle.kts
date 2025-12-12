@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,16 +7,14 @@ plugins {
 
 android {
     namespace = "com.think.code"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = properties["compileSdk"].toString().toInt()
 
     defaultConfig {
         applicationId = "com.think.code"
-        minSdk = 30
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = properties["minSdk"].toString().toInt()
+        targetSdk = properties["compileSdk"].toString().toInt()
+        versionCode = properties["versionCode"].toString().toInt()
+        versionName = properties["versionName"].toString()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,12 +28,20 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    buildFeatures {
+        buildConfig = true
     }
-    kotlinOptions {
-        jvmTarget = "11"
+    dataBinding {
+        enable = true
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
     }
 }
 
