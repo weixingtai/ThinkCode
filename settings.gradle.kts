@@ -27,4 +27,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ThinkCode"
 include(":app")
- 
+include(":common")
+include(":base")
