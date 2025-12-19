@@ -3,7 +3,7 @@ package com.think.code
 import android.content.Context
 import com.think.base.BaseApplication
 import com.think.base.logger.Logger
-import com.think.base.logger.env.THINK_MAIN
+import com.think.base.logger.env.HOME_MAIN
 import dagger.hilt.android.HiltAndroidApp
 
 /**
@@ -21,7 +21,7 @@ class MainApplication: BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        Logger.i(THINK_MAIN, "$SUB_TAG onCreate")
+        Logger.i(HOME_MAIN, "$SUB_TAG onCreate")
     }
 
     companion object {

@@ -6,7 +6,9 @@ package com.think.base.logger.env
  * time   : 2025/12/12 16:33
  * desc   : 日志标签
  */
-const val THINK_CODE = "think_code"
 
 // 通用
-const val THINK_MAIN = "think_main"
+const val THINK_CODE = "think_code"
+
+// 主页
+const val HOME_MAIN = "home_main"

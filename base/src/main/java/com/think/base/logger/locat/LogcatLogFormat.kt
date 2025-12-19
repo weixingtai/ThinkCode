@@ -18,7 +18,7 @@ class LogcatLogFormat(builder: Builder) : ILogFormat {
     private val methodOffset = builder.methodOffset
     private val showThreadInfo = builder.showThreadInfo
     private val logDestination = builder.logDestination!!
-    private val tag = builder.tag
+//    private val tag = builder.tag
 
     override fun log(priority: Int, tag: String, message: String) {
         val methodTag = formatTag(tag)
@@ -101,34 +101,35 @@ class LogcatLogFormat(builder: Builder) : ILogFormat {
     }
 
     private fun formatTag(tag: String): String {
-        if (isEquals(this.tag, tag)) {
-            return this.tag + "-" + tag
-        }
-        return this.tag
+        return tag
+//        if (!isEquals(this.tag, tag)) {
+//            return this.tag + "-" + tag
+//        }
+//        return this.tag
     }
 
-    private fun isEquals(a: CharSequence, b: CharSequence): Boolean {
-        if (a === b) return true
-        val length = a.length
-        if (length == b.length) {
-            if (a is String && b is String) {
-                return a == b
-            } else {
-                for (i in 0 until length) {
-                    if (a[i] != b[i]) return false
-                }
-                return true
-            }
-        }
-        return false
-    }
+//    private fun isEquals(a: CharSequence, b: CharSequence): Boolean {
+//        if (a === b) return true
+//        val length = a.length
+//        if (length == b.length) {
+//            if (a is String && b is String) {
+//                return a == b
+//            } else {
+//                for (i in 0 until length) {
+//                    if (a[i] != b[i]) return false
+//                }
+//                return true
+//            }
+//        }
+//        return false
+//    }
 
     class Builder {
         var methodCount: Int = 1
         var methodOffset: Int = 0
         var showThreadInfo: Boolean = true
         var logDestination: ILogDestination? = null
-        var tag: String = THINK_CODE
+        var tag = THINK_CODE
 
 //        fun methodCount(count: Int): Builder {
 //            methodCount = count

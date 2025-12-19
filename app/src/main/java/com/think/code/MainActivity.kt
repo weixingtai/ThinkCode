@@ -6,7 +6,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.think.base.BaseActivity
 import com.think.base.logger.Logger
-import com.think.base.logger.env.THINK_MAIN
+import com.think.base.logger.env.HOME_MAIN
 import com.think.code.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +23,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Logger.i(THINK_MAIN, "$SUB_TAG onCreate")
+        Logger.i(HOME_MAIN, "$SUB_TAG onCreate")
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
