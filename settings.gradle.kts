@@ -11,6 +11,7 @@ pluginManagement {
         mavenCentral()
         maven("https://maven.aliyun.com/repository/google")
         maven("https://maven.aliyun.com/repository/public")
+        maven("https://jitpack.io")
     }
 }
 dependencyResolutionManagement {
@@ -22,6 +23,7 @@ dependencyResolutionManagement {
         mavenCentral()
         maven("https://maven.aliyun.com/repository/google")
         maven("https://maven.aliyun.com/repository/public")
+        maven("https://jitpack.io")
     }
 }
 

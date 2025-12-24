@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- theme color -->
+    <color name="fd_sys_color_primary">#5CDF82</color>
+    <color name="fd_sys_color_onPrimary">#003917</color>
+    <color name="fd_sys_color_primaryContainer">#005224</color>
+    <color name="fd_sys_color_onPrimaryContainer">#7AFC9B</color>
+    <color name="fd_sys_color_secondary">#B7CCB7</color>
+    <color name="fd_sys_color_onSecondary">#233425</color>
+    <color name="fd_sys_color_secondaryContainer">#394B3B</color>
+    <color name="fd_sys_color_onSecondaryContainer">#D3E8D2</color>
+    <color name="fd_sys_color_tertiary">#A1CED8</color>
+    <color name="fd_sys_color_onTertiary">#00363E</color>
+    <color name="fd_sys_color_tertiaryContainer">#204D55</color>
+    <color name="fd_sys_color_onTertiaryContainer">#BDEAF4</color>
+    <color name="fd_sys_color_error">#FFB4AB</color>
+    <color name="fd_sys_color_errorContainer">#93000A</color>
+    <color name="fd_sys_color_onError">#690005</color>
+    <color name="fd_sys_color_onErrorContainer">#FFDAD6</color>
+    <color name="fd_sys_color_background">#1A1C19</color>
+    <color name="fd_sys_color_onBackground">#E2E3DE</color>
+    <color name="fd_sys_color_surface">#1A1C19</color>
+    <color name="fd_sys_color_onSurface">#E2E3DE</color>
+    <color name="fd_sys_color_surfaceVariant">#414941</color>
+    <color name="fd_sys_color_onSurfaceVariant">#C1C9BE</color>
+    <color name="fd_sys_color_outline">#8B9389</color>
+    <color name="fd_sys_color_inverseOnSurface">#1A1C19</color>
+    <color name="fd_sys_color_inverseSurface">#E2E3DE</color>
+    <color name="fd_sys_color_inversePrimary">#006D32</color>
+    <color name="fd_sys_color_shadow">#000000</color>
+    <color name="fd_sys_color_surfaceTint">#5CDF82</color>
+    <color name="fd_sys_color_outlineVariant">#414941</color>
+    <color name="fd_sys_color_scrim">#000000</color>
+
+</resources>

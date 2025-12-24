@@ -1,0 +1,33 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ThinkCode" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/fd_sys_color_primary</item>
+        <item name="colorOnPrimary">@color/fd_sys_color_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/fd_sys_color_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/fd_sys_color_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/fd_sys_color_secondary</item>
+        <item name="colorOnSecondary">@color/fd_sys_color_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/fd_sys_color_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/fd_sys_color_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/fd_sys_color_tertiary</item>
+        <item name="colorOnTertiary">@color/fd_sys_color_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/fd_sys_color_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/fd_sys_color_onTertiaryContainer</item>
+        <item name="colorError">@color/fd_sys_color_error</item>
+        <item name="colorErrorContainer">@color/fd_sys_color_errorContainer</item>
+        <item name="colorOnError">@color/fd_sys_color_onError</item>
+        <item name="colorOnErrorContainer">@color/fd_sys_color_onErrorContainer</item>
+        <item name="android:colorBackground">@color/fd_sys_color_background</item>
+        <item name="colorOnBackground">@color/fd_sys_color_onBackground</item>
+        <item name="colorSurface">@color/fd_sys_color_surface</item>
+        <item name="colorOnSurface">@color/fd_sys_color_onSurface</item>
+        <item name="colorSurfaceVariant">@color/fd_sys_color_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/fd_sys_color_onSurfaceVariant</item>
+        <item name="colorOutline">@color/fd_sys_color_outline</item>
+        <item name="colorOnSurfaceInverse">@color/fd_sys_color_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/fd_sys_color_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/fd_sys_color_inversePrimary</item>
+    </style>
+
+    <style name="Theme.ThinkCode" parent="Base.Theme.ThinkCode" />
+</resources>
