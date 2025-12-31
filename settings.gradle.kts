@@ -30,3 +30,5 @@ dependencyResolutionManagement {
 rootProject.name = "ThinkCode"
 include(":app")
 include(":base")
+include(":design")
+include(":theme")
