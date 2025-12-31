@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!-- theme color -->
+    <color name="md_sys_color_primary">#35C44F</color>
+    <color name="md_sys_color_inverse">#206CFF</color>
+    <color name="md_sys_color_primary_dark">#000000</color>
+    <color name="md_sys_color_primary_variant">#206CFF</color>
+    <color name="md_sys_color_on_primary">#FFFFFF</color>
+    <color name="md_sys_color_primary_container">#7AFC9B</color>
+    <color name="md_sys_color_on_primary_container">#00210B</color>
+    <color name="md_sys_color_secondary">#506352</color>
+    <color name="md_sys_color_secondary_variant">#506352</color>
+    <color name="md_sys_color_on_secondary">#FFFFFF</color>
+    <color name="md_sys_color_secondary_container">#D3E8D2</color>
+    <color name="md_sys_color_on_secondary_container">#0E1F12</color>
+    <color name="md_sys_color_tertiary">#39656D</color>
+    <color name="md_sys_color_on_tertiary">#FFFFFF</color>
+    <color name="md_sys_color_tertiary_container">#BDEAF4</color>
+    <color name="md_sys_color_on_tertiary_container">#001F25</color>
+    <color name="md_sys_color_error">#BA1A1A</color>
+    <color name="md_sys_color_error_container">#FFDAD6</color>
+    <color name="md_sys_color_on_error">#FFFFFF</color>
+    <color name="md_sys_color_on_error_container">#410002</color>
+    <color name="md_sys_color_background">#FCFDF7</color>
+    <color name="md_sys_color_on_background">#1A1C19</color>
+    <color name="md_sys_color_surface">#FCFDF7</color>
+    <color name="md_sys_color_on_surface">#1A1C19</color>
+    <color name="md_sys_color_surface_variant">#DDE5DA</color>
+    <color name="md_sys_color_surface_inverse">#DDE5DA</color>
+    <color name="md_sys_color_on_surface_inverse">#DDE5DA</color>
+    <color name="md_sys_color_on_surface_variant">#414941</color>
+    <color name="md_sys_color_outline">#D9D9D9</color>
+    <color name="md_sys_color_inverse_on_surface">#F0F1EC</color>
+    <color name="md_sys_color_inverse_surface">#2E312E</color>
+    <color name="md_sys_color_inverse_primary">#5CDF82</color>
+    <color name="md_sys_color_shadow">#000000</color>
+    <color name="md_sys_color_surface_tint">#006D32</color>
+    <color name="md_sys_color_outline_variant">#0D000000</color>
+    <color name="md_sys_color_scrim">#1A000000</color>
+    <color name="md_sys_color_scrim_background">#000000</color>
 </resources>

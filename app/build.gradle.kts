@@ -47,6 +47,7 @@ android {
 
 dependencies {
     implementation(project(":base"))
+    implementation(project(":theme"))
     implementation(project(":language"))
     implementation(project(":design"))
 }
