@@ -1,22 +1,19 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = "com.think.code"
+    namespace = "com.think.language"
     compileSdk = properties["compileSdk"].toString().toInt()
 
     defaultConfig {
-        applicationId = "com.think.code"
         minSdk = properties["minSdk"].toString().toInt()
-        targetSdk = properties["compileSdk"].toString().toInt()
-        versionCode = properties["versionCode"].toString().toInt()
-        versionName = properties["versionName"].toString()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -47,6 +44,4 @@ android {
 
 dependencies {
     implementation(project(":base"))
-    implementation(project(":language"))
-    implementation(project(":design"))
 }
