@@ -3,7 +3,6 @@
     <style name="Base.Theme.ThinkCode" parent="Theme.MaterialComponents">
 
         <!-- Original AppCompat attributes. -->
-        <item name="colorPrimary">@color/md_sys_color_primary</item>
         <item name="colorPrimaryDark">@color/md_sys_color_primary</item>
         <item name="colorSecondary">@color/md_sys_color_secondary</item>
         <item name="android:colorBackground">@color/md_sys_color_background</item>
@@ -13,7 +12,6 @@
         <item name="colorPrimaryVariant">@color/md_sys_color_primary_variant</item>
         <item name="colorSecondaryVariant">@color/md_sys_color_secondary_variant</item>
         <item name="colorSurface">@color/md_sys_color_surface</item>
-        <item name="colorOnPrimary">@color/md_sys_color_on_surface</item>
         <item name="colorOnSecondary">@color/md_sys_color_on_secondary</item>
         <item name="colorOnBackground">@color/md_sys_color_on_background</item>
         <item name="colorOnError">@color/md_sys_color_on_error</item>
@@ -36,8 +34,6 @@
 
         <!-- Material3 attributes (needed if parent="Theme.MaterialComponents"). -->
         <item name="colorPrimaryInverse">@color/md_sys_color_inverse</item>
-        <item name="colorPrimaryContainer">@color/md_sys_color_primary_container</item>
-        <item name="colorOnPrimaryContainer">@color/md_sys_color_on_primary_container</item>
         <item name="colorSecondaryContainer">@color/md_sys_color_secondary_container</item>
         <item name="colorOnSecondaryContainer">@color/md_sys_color_on_secondary_container</item>
         <item name="colorTertiary">@color/md_sys_color_tertiary</item>
@@ -67,10 +63,34 @@
         <item name="textAppearanceLabelLarge">@style/TextAppearance.Material3.LabelLarge</item>
         <item name="textAppearanceLabelMedium">@style/TextAppearance.Material3.LabelMedium</item>
         <item name="textAppearanceLabelSmall">@style/TextAppearance.Material3.LabelSmall</item>
+
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Material3.LargeComponent</item>
     </style>
 
-    <style name="Theme.ThinkCode" parent="Base.Theme.ThinkCode" />
+    <style name="Green.Theme.ThinkCode" parent="Base.Theme.ThinkCode">
+        <!-- Original AppCompat attributes. -->
+        <item name="colorPrimary">@color/md_sys_color_primary_green</item>
+        <!-- MaterialComponents attributes (needed if parent="Theme.AppCompat"). -->
+        <item name="colorOnPrimary">@color/md_sys_color_on_primary_green</item>
+        <!-- Material3 attributes (needed if parent="Theme.MaterialComponents"). -->
+        <item name="colorPrimaryContainer">@color/md_sys_color_primary_container_green</item>
+        <item name="colorOnPrimaryContainer">@color/md_sys_color_on_primary_container_green</item>
+    </style>
+    
+    <style name="Orange.Theme.ThinkCode" parent="Base.Theme.ThinkCode">
+        <!-- Original AppCompat attributes. -->
+        <item name="colorPrimary">@color/md_sys_color_primary_orange</item>
+        <!-- MaterialComponents attributes (needed if parent="Theme.AppCompat"). -->
+        <item name="colorOnPrimary">@color/md_sys_color_on_primary_orange</item>
+        <!-- Material3 attributes (needed if parent="Theme.MaterialComponents"). -->
+        <item name="colorPrimaryContainer">@color/md_sys_color_primary_container_orange</item>
+        <item name="colorOnPrimaryContainer">@color/md_sys_color_on_primary_container_orange</item>
+    </style>
+    
+    
+    
+    
+    
 </resources>
