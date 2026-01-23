@@ -3,6 +3,7 @@ package com.think.base
 import android.app.Application
 import android.content.Context
 import com.think.base.logger.Logger
+import com.think.base.storer.Storer
 
 /**
  * author : Samuel
@@ -15,6 +16,7 @@ open class BaseApplication : Application() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         Logger.initLogcatConfig(BuildConfig.DEBUG)
+        Storer.init(this)
     }
 
 }
