@@ -15,6 +15,10 @@ open class BaseApplication : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
+    }
+
+    override fun onCreate() {
+        super.onCreate()
         Logger.initLogcatConfig(BuildConfig.DEBUG)
         Storer.init(this)
     }
