@@ -3,7 +3,7 @@ package com.think.code.user
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.think.base.BaseFragment
-import com.think.code.databinding.FragmentMineBinding
+import com.think.code.databinding.FragmentUserBinding
 
 /**
  * author : Samuel
@@ -11,13 +11,13 @@ import com.think.code.databinding.FragmentMineBinding
  * time   : 2025/12/22 18:20
  * desc   :
  */
-class UserFragment : BaseFragment<FragmentMineBinding>() {
+class UserFragment : BaseFragment<FragmentUserBinding>() {
 
     override fun initViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentMineBinding {
-        return FragmentMineBinding.inflate(inflater)
+    ): FragmentUserBinding {
+        return FragmentUserBinding.inflate(inflater)
     }
 
 }

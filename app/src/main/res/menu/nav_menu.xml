@@ -19,6 +19,6 @@
     <item
         android:id="@+id/navigation_user"
         android:icon="@drawable/selector_ic_user"
-        android:title="@string/mine" />
+        android:title="@string/user" />
 
 </menu>
