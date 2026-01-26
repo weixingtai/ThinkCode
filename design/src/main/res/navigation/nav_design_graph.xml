@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_design_graph"
+    app:startDestination="@+id/navigation_design">
+
+    <fragment
+        android:id="@+id/navigation_design"
+        android:name="com.think.design.DesignFragment"
+        android:label="设计"
+        tools:layout="@layout/fragment_design">
+        <action android:id="@+id/action_design_to_loading_indicator"
+            app:destination="@id/navigation_loading_indicator"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_loading_indicator"
+        android:name="com.think.design.widget.loadingindicator.LoadingIndicatorFragment"
+        android:label="进度加载器"
+        tools:layout="@layout/fragment_loading_indicator">
+
+    </fragment>
+
+</navigation>

@@ -12,3 +12,4 @@ const val THINK_CODE = "think_code"
 
 // 主页
 const val HOME_MAIN = "home_main"
+const val DESIGN_MAIN = "design_main"

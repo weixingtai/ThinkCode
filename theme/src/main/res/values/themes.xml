@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.ThinkCode" parent="Theme.MaterialComponents">
+    <style name="Base.Theme.ThinkCode" parent="Theme.Material3.DayNight.NoActionBar">
 
         <!-- Original AppCompat attributes. -->
         <item name="colorPrimaryDark">@color/md_sys_color_primary</item>
