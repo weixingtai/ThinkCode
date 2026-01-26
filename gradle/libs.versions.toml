@@ -16,8 +16,10 @@ window = "1.5.1"
 coroutines = "1.10.2"
 lifecycle-extensions = "2.2.0"
 lifecycle = "2.10.0"
+material-icons-core = "1.7.8"
+material-icons-extended = "1.7.8"
 material = "1.13.0"
-hilt = "2.58"
+hilt = "2.59"
 datastore = "1.2.0"
 room = "2.8.4"
 navigation = "2.9.6"
@@ -63,6 +65,8 @@ lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtim
 lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
 
 #material
+material-icons-core = { group = "androidx.compose.material", name = "material-icons-core", version.ref = "material-icons-core" }
+material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "material-icons-extended" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 #hilt

@@ -54,6 +54,8 @@ dependencies {
     api(libs.lifecycle.viewmodel.savedstate)
     api(libs.lifecycle.runtime.ktx)
     api(libs.lifecycle.common.java8)
+    api(libs.material.icons.core)
+    api(libs.material.icons.extended)
     api(libs.material)
     api(libs.hilt.android)
     api(libs.datastore)
