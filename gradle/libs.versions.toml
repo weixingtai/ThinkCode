@@ -7,7 +7,6 @@ core-ktx = "1.17.0"
 appcompat = "1.7.1"
 activity = "1.12.2"
 viewbinding = "9.0.0"
-constraintlayout = "2.2.1"
 activity-ktx = "1.12.2"
 fragment-ktx = "1.8.9"
 multidex = "2.0.1"
@@ -16,15 +15,18 @@ window = "1.5.1"
 coroutines = "1.10.2"
 lifecycle-extensions = "2.2.0"
 lifecycle = "2.10.0"
+
 material-icons-core = "1.7.8"
 material-icons-extended = "1.7.8"
 material = "1.14.0-alpha08"
+constraintlayout = "2.2.1"
 viewpager2 = "1.1.0"
+paging = "3.3.6"
+navigation = "2.9.6"
+
 hilt = "2.59"
 datastore = "1.2.0"
 room = "2.8.4"
-navigation = "2.9.6"
-paging = "3.3.6"
 
 retrofit = "3.0.0"
 okhttp = "5.3.2"
@@ -44,7 +46,6 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-viewbinding = { group = "androidx.databinding", name = "viewbinding", version.ref = "viewbinding" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity-ktx" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment-ktx" }
 androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
@@ -69,8 +70,14 @@ lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-commo
 material-icons-core = { group = "androidx.compose.material", name = "material-icons-core", version.ref = "material-icons-core" }
 material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "material-icons-extended" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 #viewpager2
 viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
+#navigation
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+#paging
+paging = { group = "androidx.paging", name = "paging-common", version.ref = "paging" }
 
 #hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
@@ -83,13 +90,6 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-rxjava2 = { group = "androidx.room", name = "room-rxjava2", version.ref = "room" }
 room-guava = { group = "androidx.room", name = "room-guava", version.ref = "room" }
-
-#navigation
-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
-
-#paging
-paging = { group = "androidx.paging", name = "paging-common", version.ref = "paging" }
 
 #retrofit
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
