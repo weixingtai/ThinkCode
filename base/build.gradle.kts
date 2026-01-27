@@ -57,6 +57,7 @@ dependencies {
     api(libs.material.icons.core)
     api(libs.material.icons.extended)
     api(libs.material)
+    api(libs.viewpager2)
     api(libs.hilt.android)
     api(libs.datastore)
     api(libs.room.runtime)

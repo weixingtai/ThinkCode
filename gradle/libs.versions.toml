@@ -18,7 +18,8 @@ lifecycle-extensions = "2.2.0"
 lifecycle = "2.10.0"
 material-icons-core = "1.7.8"
 material-icons-extended = "1.7.8"
-material = "1.13.0"
+material = "1.14.0-alpha08"
+viewpager2 = "1.1.0"
 hilt = "2.59"
 datastore = "1.2.0"
 room = "2.8.4"
@@ -68,6 +69,8 @@ lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-commo
 material-icons-core = { group = "androidx.compose.material", name = "material-icons-core", version.ref = "material-icons-core" }
 material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "material-icons-extended" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+#viewpager2
+viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
 
 #hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }

@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.ThinkCode" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.ThinkCode" parent="Theme.Material3Expressive.DayNight.NoActionBar">
         <item name="colorTertiary">@color/md_theme_tertiary</item>
         <item name="colorOnTertiary">@color/md_theme_on_tertiary</item>
         <item name="colorTertiaryContainer">@color/md_theme_tertiary_container</item>
