@@ -27,6 +27,7 @@ class DesignFragment : BaseFragment<FragmentDesignBinding>(), View.OnClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.llLoadingIndicator.setOnClickListener(this)
+        binding.llButton.setOnClickListener(this)
         requireActivity().findViewById<Toolbar>(R.id.toolbar).title = "设计"
     }
 
@@ -37,6 +38,9 @@ class DesignFragment : BaseFragment<FragmentDesignBinding>(), View.OnClickListen
         when(v.id) {
             R.id.ll_loading_indicator-> {
                 findNavController().navigate(R.id.action_design_to_loading_indicator)
+            }
+            R.id.ll_button-> {
+                findNavController().navigate(R.id.action_design_to_button)
             }
         }
     }
