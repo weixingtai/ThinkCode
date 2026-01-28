@@ -39,7 +39,7 @@ android {
 
 dependencies {
     implementation(project(":base"))
+    implementation(project(":common"))
     implementation(project(":theme"))
     implementation(project(":language"))
-    implementation(project(":design"))
 }

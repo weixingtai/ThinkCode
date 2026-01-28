@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.application)
 }
 
 android {
@@ -7,10 +7,13 @@ android {
     compileSdk = properties["compileSdk"].toString().toInt()
 
     defaultConfig {
+        applicationId = "com.think.design"
         minSdk = properties["minSdk"].toString().toInt()
+        targetSdk = properties["compileSdk"].toString().toInt()
+        versionCode = properties["versionCode"].toString().toInt()
+        versionName = properties["versionName"].toString()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -36,4 +39,6 @@ android {
 
 dependencies {
     implementation(project(":base"))
+    implementation(project(":common"))
+    implementation(project(":theme"))
 }
