@@ -13,7 +13,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textColor="@color/md_theme_on_surface"
-            android:text="首页"/>
+            android:text="@string/home"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
