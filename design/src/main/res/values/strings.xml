@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="divider">分割线</string>
     <string name="cat_toc_buttons">按钮</string>
     <string name="cat_buttons_group">按钮组</string>
     <string name="cat_buttons_group_distribution">按钮组分布方式</string>

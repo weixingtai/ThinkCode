@@ -26,7 +26,6 @@ class LoadingIndicatorFragment : BaseFragment<FragmentLoadingIndicatorBinding>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().findViewById<Toolbar>(R.id.toolbar).title = "进度加载器"
     }
 
 }

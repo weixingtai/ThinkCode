@@ -1,4 +1,4 @@
-package com.think.design.widget.button
+package com.think.design.ui.divider
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import com.think.base.BaseFragment
 import com.think.design.R
-import com.think.design.databinding.FragmentButtonBinding
+import com.think.design.databinding.FragmentDividerBinding
 
 /**
  * author : Samuel
@@ -15,13 +15,13 @@ import com.think.design.databinding.FragmentButtonBinding
  * time   : 2025/12/22 18:20
  * desc   :
  */
-class ButtonFragment : BaseFragment<FragmentButtonBinding>() {
+class DividerFragment : BaseFragment<FragmentDividerBinding>() {
 
     override fun initViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentButtonBinding {
-        return FragmentButtonBinding.inflate(inflater)
+    ): FragmentDividerBinding {
+        return FragmentDividerBinding.inflate(inflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

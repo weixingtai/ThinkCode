@@ -15,6 +15,8 @@
 
         <action android:id="@+id/action_design_to_button"
             app:destination="@id/navigation_button"/>
+        <action android:id="@+id/action_design_to_divider"
+            app:destination="@id/navigation_divider"/>
     </fragment>
 
     <fragment
@@ -30,6 +32,14 @@
         android:name="com.think.design.widget.button.ButtonFragment"
         android:label="按钮"
         tools:layout="@layout/fragment_button">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_divider"
+        android:name="com.think.design.ui.divider.DividerFragment"
+        android:label="分割线"
+        tools:layout="@layout/fragment_divider">
 
     </fragment>
 
