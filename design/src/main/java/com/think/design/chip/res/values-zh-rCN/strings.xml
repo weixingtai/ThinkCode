@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2017 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+
+  <string name="cat_chip_title">芯片</string>
+  <string name="cat_chip_description">
+    芯片用于在同一区域集中展示多个交互元素，例如可选的电影场次列表、
+    邮件联系人列表，甚至是跨应用的智能快捷操作。
+  </string>
+
+  <string name="cat_chip_text_all">全部显示</string>
+  <string name="cat_chip_text">你好，世界！</string>
+  <string name="cat_chip_text_to_truncate">你好，这个超级超级超级超级超级长的世界！</string>
+  <string name="cat_chip_long_text_switch_label">长文本</string>
+  <string name="cat_chip_enabled_switch_label">已启用</string>
+
+  <string name="cat_chip_group_demo_title">芯片组演示</string>
+  <string name="cat_chip_group_single_selection_text">单选模式</string>
+  <string name="cat_chip_group_selection_required_text">强制选择</string>
+
+  <string name="cat_chip_reflow_group">自动换行芯片组</string>
+  <string name="cat_chip_scroll_group">可滚动芯片组</string>
+
+  <string name="cat_chip_recyclerview_demo_title">芯片列表视图演示</string>
+
+  <string name="cat_chip_input_label">输入型</string>
+  <string name="cat_chip_filter_label">筛选型</string>
+  <string name="cat_chip_input_icon_label">带图标输入型</string>
+  <string name="cat_chip_input_no_icon_label">无图标输入型</string>
+  <string name="m3_chip_suggestion_label">推荐型</string>
+  <string name="m3_chip_suggestion_elevated_label">凸起推荐型</string>
+  <string name="m3_chip_assist_label">辅助型</string>
+  <string name="m3_chip_assist_elevated_label">凸起辅助型</string>
+  <string name="m3_chip_assist_no_icon_label">无图标辅助型</string>
+  <string name="m3_chip_filter_elevated_label">凸起筛选型</string>
+
+  <string name="cat_chip_edit_text">独立展示：[芯片]</string>
+  <string name="cat_chip_edit_text_token">[芯片]</string>
+
+  <string-array name="cat_chip_group_text_array">
+    <item>纽约</item>
+    <item>洛杉矶</item>
+    <item>芝加哥</item>
+    <item>休斯顿</item>
+    <item>费城</item>
+    <item>菲尼克斯</item>
+    <item>圣安东尼奥</item>
+    <item>圣迭戈</item>
+    <item>达拉斯</item>
+    <item>圣何塞</item>
+    <item>奥斯汀</item>
+    <item>杰克逊维尔</item>
+    <item>旧金山</item>
+  </string-array>
+
+  <string name="cat_chip_group_refresh_content_description">刷新芯片组</string>
+
+</resources>

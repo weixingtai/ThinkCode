@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2019 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~   See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  -->
+
+<resources>
+
+  <string name="cat_imageview_title" description="展示图片视图组件的碎片页面标题 [字符限制=20]">图片视图</string>
+  <string name="cat_imageview_square" description="将图片形状改为正方形的按钮标签 [字符限制=20]">正方形</string>
+  <string name="cat_imageview_diamond" description="将图片形状改为菱形的按钮标签 [字符限制=20]">菱形</string>
+  <string name="cat_imageview_circle" description="将图片形状改为圆形的按钮标签 [字符限制=20]">圆形</string>
+  <string name="cat_imageview_description" description="图片视图组件的简要说明 [字符限制=无]">
+    ShapeableImageView 组件支持为图片设置自定义形状。</string>
+
+</resources>

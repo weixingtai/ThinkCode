@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2020 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+  <string name="cat_progress_indicator_title"
+    description="展示进度指示器组件演示用法的页面标题 [字符限制=无]">
+    进度指示器
+  </string>
+  <string name="cat_progress_indicator_visibility_demo_title"
+    description="展示不同可见性变化行为的进度指示器演示范例标题 [字符限制=无]">
+    进度指示器可见性演示
+  </string>
+  <string name="cat_progress_indicator_multi_color_demo_title"
+    description="展示多色进度指示器的演示范例标题 [字符限制=无]">
+    多色进度指示器演示
+  </string>
+  <string name="cat_progress_indicator_demo_standalone_title"
+    description="展示其他组件使用独立Drawable进度指示器的演示范例标题 [字符限制=无]">
+    独立Drawable进度指示器演示
+  </string>
+  <string name="cat_progress_indicator_wave_demo_title"
+    description="展示为进度指示器应用波浪效果的演示范例标题 [字符限制=无]">
+    波浪形进度指示器演示
+  </string>
+  <string name="cat_progress_indicator_description"
+    description="设计系统中描述MaterialProgressIndicator组件的正文文本 [字符限制=无]">
+    进度指示器用于展示正在执行过程的进度状态。
+    它可通过线性或圆形样式呈现确定进度或不确定进度的过程。
+  </string>
+
+  <!-- 控制演示范例的字符串 -->
+
+  <string name="cat_progress_indicator_track_thickness"
+    description="用于调整指示器轨道厚度的滑块上方文本标签 [字符限制=无]">
+    轨道厚度 (1 - 15) dp
+  </string>
+  <string name="cat_progress_indicator_corner_size"
+    description="用于调整指示器边角尺寸的滑块上方文本标签 [字符限制=无]">
+    边角尺寸 (0 - 5) dp
+  </string>
+  <string name="cat_progress_indicator_gap_size"
+    description="用于调整指示器间隙尺寸的滑块上方文本标签 [字符限制=无]">
+    间隙尺寸 (0 - 10) dp
+  </string>
+  <string name="cat_progress_indicator_reverse_direction"
+    description="用于反转指示器方向的开关标签 [字符限制=无]">
+    反转方向
+  </string>
+  <string name="cat_progress_indicator_linear_stop_indicator_size"
+    description="用于调整线性进度指示器停止标记尺寸的滑块上方文本标签 [字符限制=无]">
+    线性停止标记尺寸 (0 - 10) dp
+  </string>
+  <string name="cat_progress_indicator_circular_indicator_size"
+    description="用于调整圆形进度指示器尺寸的滑块上方文本标签 [字符限制=无]">
+    圆形指示器尺寸 (20 - 200) dp
+  </string>
+  <string name="cat_progress_indicator_indeterminate_animator_duration_scale"
+    description="用于调整不确定进度指示器动画时长缩放比例的滑块上方文本标签 [字符限制=无]">
+    不确定动画时长缩放 (x0.1 - x10.0)
+  </string>
+  <string name="cat_progress_indicator_hide_behavior"
+    description="用于选择隐藏行为的下拉菜单提示标签 [字符限制=无]">
+    隐藏行为
+  </string>
+  <string name="cat_progress_indicator_show_behavior"
+    description="用于选择显示行为的下拉菜单提示标签 [字符限制=无]">
+    显示行为
+  </string>
+  <string name="cat_progress_indicator_initial_behavior"
+    description="下拉菜单中预设的显示/隐藏行为选项 [字符限制=无]">
+    无
+  </string>
+  <string name="cat_progress_indicator_hide"
+    description="隐藏进度指示器的按钮标签 [字符限制=无]">
+    隐藏
+  </string>
+  <string name="cat_progress_indicator_show"
+    description="显示进度指示器的按钮标签 [字符限制=无]">
+    显示
+  </string>
+  <string name="cat_progress_indicator_determinate_progress"
+    description="用于调整指示器进度值的滑块上方文本标签 [字符限制=无]">
+    进度值 (0 - 100)
+  </string>
+  <string name="cat_progress_indicator_set_to_determinate_mode"
+    description="将显示的进度指示器设置为确定进度模式 [字符限制=无]">
+    确定进度模式
+  </string>
+  <string name="cat_progress_indicator_wave_amplitude"
+    description="用于调整指示器波浪振幅的滑块上方文本标签 [字符限制=无]">
+    振幅 (0 - 30) dp
+  </string>
+  <string name="cat_progress_indicator_wave_length"
+    description="用于调整指示器波长的滑块上方文本标签 [字符限制=无]">
+    波长 (0 - 100) dp
+  </string>
+  <string name="cat_progress_indicator_wave_speed"
+    description="用于调整指示器波浪速度的滑块上方文本标签 [字符限制=无]">
+    波浪速度 (-50 - 50) dp/s
+  </string>
+  <string name="cat_progress_indicator_circular_animation_mode"
+    description="右侧用于选择圆形不确定动画模式的按钮组标签 [字符限制=无]">
+    圆形不确定动画模式
+  </string>
+  <string name="cat_progress_indicator_circular_advance_animation_label"
+    description="为圆形进度指示器选择前进式不确定动画效果 [字符限制=无]">
+    前进
+  </string>
+  <string name="cat_progress_indicator_circular_retreat_animation_label"
+    description="为圆形进度指示器选择后退式不确定动画效果 [字符限制=无]">
+    后退
+  </string>
+
+  <!-- 各类进度指示器示例的描述 -->
+
+  <string name="cat_progress_indicator_linear"
+    description="线性进度指示器 [字符限制=无]">
+    线性样式
+  </string>
+  <string name="cat_progress_indicator_circular"
+    description="圆形进度指示器 [字符限制=无]">
+    圆形样式
+  </string>
+  <string name="cat_progress_indicator_linear_multicolor_disjoint"
+    description="带有多色指示器和不连续不确定动画的线性进度指示器 [字符限制=无]">
+    线性样式（多色+不连续动画）
+  </string>
+  <string name="cat_progress_indicator_linear_multicolor_contiguous"
+    description="带有多色指示器和连续不确定动画的线性进度指示器 [字符限制=无]">
+    线性样式（多色+连续动画）
+  </string>
+  <string name="cat_progress_indicator_circular_multicolor"
+    description="带有多色指示器的圆形进度指示器 [字符限制=无]">
+    圆形样式（多色）
+  </string>
+  <string name="cat_progress_indicator_standalone_indeterminate_chip"
+    description="将进度指示器Drawable用作Chip图标示例 [字符限制=无]">
+    不确定状态Chip
+  </string>
+  <string name="cat_progress_indicator_standalone_indeterminate_button"
+    description="将进度指示器Drawable用作按钮图标示例 [字符限制=无]">
+    不确定状态按钮
+  </string>
+  <string name="cat_progress_indicator_standalone_switch_label"
+    description="用于切换Chip上进度指示器Drawable显示状态的Material开关 [字符限制=无]">
+    显示图标
+  </string>
+
+  <string-array name="show_behaviors_array">
+    <item>向内</item>
+    <item>向外</item>
+    <item>无</item>
+  </string-array>
+  <string-array name="hide_behaviors_array">
+    <item>向内</item>
+    <item>向外</item>
+    <item>退出</item>
+    <item>无</item>
+  </string-array>
+</resources>

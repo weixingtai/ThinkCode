@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2021 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<resources>
+  <string name="cat_navigation_rail_title"
+    description="导航导轨演示范例的标题 [字符限制=100]">导航导轨</string>
+  <string name="cat_navigation_rail_description"
+    description="导航导轨组件演示范例的简要概述 [字符限制=500]">
+          导航导轨可让用户通过单次点击轻松浏览和切换应用顶层视图。
+          它可在折叠或展开状态间切换，以显示更少或更多导航项。
+          建议在折叠状态的导航导轨中仅显示 3 至 7 个元素，且导航导轨
+          适用于中等尺寸或更大尺寸的设备。
+  </string>
+
+  <string name="cat_navigation_rail_additional_controls_demo_title"
+    description="展示导航导轨外观和行为配置方式的演示范例标签 [字符限制=100]">扩展控制项演示</string>
+  <string name="cat_navigation_rail_animated_demo_title"
+    description="展示带动画图标导航导轨的演示范例标签 [字符限制=100]">动画效果演示</string>
+  <string name="cat_navigation_rail_compact_demo_title"
+    description="展示紧凑样式导航导轨的演示范例标签 [字符限制=100]">紧凑样式演示</string>
+  <string name="cat_navigation_rail_submenus_demo_title"
+    description="展示子菜单示例的导航导轨演示范例标签 [字符限制=100]">子菜单演示</string>
+
+
+  <string name="cat_navigation_rail_page_1_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 1</string>
+  <string name="cat_navigation_rail_page_2_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 2</string>
+  <string name="cat_navigation_rail_page_3_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 3</string>
+  <string name="cat_navigation_rail_page_4_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 4</string>
+  <string name="cat_navigation_rail_page_5_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 5</string>
+  <string name="cat_navigation_rail_page_6_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 6</string>
+  <string name="cat_navigation_rail_page_7_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 7</string>
+  <string name="cat_navigation_rail_page_8_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 8</string>
+  <string name="cat_navigation_rail_page_9_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 9</string>
+  <string name="cat_navigation_rail_page_10_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 10</string>
+
+  <string name="cat_navigation_rail_page_11_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 11</string>
+  <string name="cat_navigation_rail_page_12_name"
+    description="导航导轨演示范例中页面的标题 [字符限制=50]">页面 12</string>
+  <string name="cat_navigation_rail_subheader_1_name"
+    description="导航导轨演示范例中子标题的标题 [字符限制=50]">子标题 1</string>
+  <string name="cat_navigation_rail_subheader_2_name"
+    description="导航导轨演示范例中子标题的标题 [字符限制=50]">子标题 2</string>
+  <string name="cat_navigation_rail_subheader_3_name"
+    description="导航导轨演示范例中子标题的标题 [字符限制=50]">子标题 3</string>
+
+  <string name="cat_navigation_rail_add_nav_item"
+    description="向导航导轨添加目标页面的按钮标签 [字符限制=50]">添加导航项</string>
+  <string name="cat_navigation_rail_remove_nav_item"
+    description="从导航导轨移除最后一个目标页面的按钮标签 [字符限制=50]">移除导航项</string>
+  <string name="cat_navigation_rail_increment_badge_number"
+    description="增加通知数字的按钮标题 [字符限制=20]">增加角标数字</string>
+
+  <string name="cat_navigation_rail_add_header_view"
+    description="向导航导轨添加头部视图的按钮标签 [字符限制=50]">添加头部视图</string>
+  <string name="cat_navigation_rail_remove_header_view"
+    description="从导航导轨移除头部视图的按钮标签 [字符限制=50]">移除头部视图</string>
+
+  <string name="cat_navigation_rail_icon_size_slider_title"
+    description="当前图标尺寸显示的标签 [字符限制=50]">图标尺寸：</string>
+  <string name="cat_navigation_rail_slider_max" translatable="false">48dp</string>
+  <string name="cat_navigation_rail_slider_min" translatable="false">0dp</string>
+
+  <string name="cat_navigation_rail_menu_gravity_control_title"
+    description="控制导航导轨中目标页面分组方式的选项组标签 [字符限制=100]">菜单对齐方式：</string>
+  <string name="cat_navigation_rail_menu_gravity_top"
+    description="将目标页面分组到导航导轨顶部的选项标签 [字符限制=50]">顶部</string>
+  <string name="cat_navigation_rail_menu_gravity_center"
+    description="将目标页面分组到导航导轨中部的选项标签 [字符限制=50]">中部</string>
+  <string name="cat_navigation_rail_menu_gravity_bottom"
+    description="将目标页面分组到导航导轨底部的选项标签 [字符限制=50]">底部</string>
+
+  <string name="cat_navigation_rail_label_visibility_mode_title"
+    description="控制导航导轨中目标页面标签显示时机的选项组标签 [字符限制=100]">标签显示模式：</string>
+  <string name="cat_navigation_rail_label_visibility_mode_auto"
+    description="根据导航导轨中目标页面总数自动显示标签的选项标签 [字符限制=50]">自动</string>
+  <string name="cat_navigation_rail_label_visibility_mode_selected"
+    description="仅显示当前选中目标页面标签的选项标签 [字符限制=50]">仅选中项</string>
+  <string name="cat_navigation_rail_label_visibility_mode_labeled"
+    description="始终显示所有目标页面标签的选项标签 [字符限制=50]">始终显示</string>
+  <string name="cat_navigation_rail_label_visibility_mode_unlabeled"
+    description="始终隐藏所有目标页面标签的选项标签 [字符限制=50]">始终隐藏</string>
+
+  <string name="cat_navigation_rail_badge_gravity_spinner_label"
+    description="控制角标相对于图标位置的下拉菜单标签 [字符限制=50]">角标对齐方式</string>
+  <string name="cat_navigation_rail_badge_gravity_top_end"
+    description="将角标置于图标上方末端位置的选项标签 [字符限制=50]">顶部末端</string>
+  <string name="cat_navigation_rail_badge_gravity_top_start"
+    description="将角标置于图标上方起始端位置的选项标签 [字符限制=50]">顶部起始端</string>
+  <string name="cat_navigation_rail_label_active_bold"
+    description="控制选中项标签是否加粗的标签 [字符限制=50]">选中项标签加粗</string>
+
+  <string name="cat_navigation_rail_alarm"
+    description="闹钟图标的标签 [字符限制=50]">闹钟</string>
+  <string name="cat_navigation_rail_clock"
+    description="时钟图标的标签 [字符限制=50]">时钟</string>
+  <string name="cat_navigation_rail_timer"
+    description="计时器图标的标签 [字符限制=50]">计时器</string>
+  <string name="cat_navigation_rail_stopwatch"
+    description="秒表图标的标签 [字符限制=50]">秒表</string>
+
+  <string name="cat_navigation_rail_fab_content_desc"
+    description="导航导轨中悬浮操作按钮的内容描述 [字符限制=50]">导航导轨悬浮操作按钮</string>
+
+  <string name="cat_navigation_rail_compact_message" description="导航导轨的使用指引，建议在紧凑屏幕上改用底部导航栏 [字符限制=无]">此导航导轨演示已锁定为竖屏模式，因为该设备在横屏模式下高度会变为紧凑尺寸。对于任何紧凑屏幕尺寸，建议改用底部导航栏。</string>
+
+  <string name="cat_navigation_rail_efab_text" description="展开导航导轨的按钮文本 [字符限制=无]">标签</string>
+  <string name="cat_navigation_rail_center_text" description="导航导轨旁剩余空间中居中显示的内容文本 [字符限制=无]">居中</string>
+  <string name="cat_navigation_rail_efab_message" description="点击扩展型悬浮操作按钮时显示的提示信息 [字符限制=无]">按钮已点击</string>
+  <string name="cat_navigation_rail_expand_button_description" description="展开导航导轨的按钮内容描述 [字符限制=无]">展开导航导轨</string>
+  <string name="cat_navigation_rail_collapse_button_description" description="折叠导航导轨的按钮内容描述 [字符限制=无]">折叠导航导轨</string>
+
+</resources>

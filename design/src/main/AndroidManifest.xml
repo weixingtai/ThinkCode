@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".MainApplication"
+        android:name=".application.CatalogApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,15 +11,89 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Green.Theme.ThinkCode">
+        <meta-data
+            android:name=".application.componentOverride"
+            android:value=".application.DaggerCatalogApplicationComponent"/>
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".main.MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".elevation.ElevationOverlayDemoActivity"
+            android:exported="true"
+            android:label="@string/cat_elevation_overlay_title" />
+        <activity
+            android:name=".navigationdrawer.NavigationDrawerDemoActivity"
+            android:exported="true"
+            android:label="@string/cat_navigationdrawer_title" />
+        <activity
+            android:name=".navigationdrawer.CustomNavigationDrawerDemoActivity"
+            android:exported="true"
+            android:label="@string/cat_navigationdrawer_custom_title" />
+        <activity
+            android:name=".topappbar.TopAppBarActionBarDemoActivity"
+            android:exported="true"
+            android:label="@string/cat_topappbar_action_bar_title"
+            android:theme="@style/Theme.Material3.DayNight"/>
+        <activity
+            android:name=".topappbar.TopAppBarScrollingTransparentStatusDemoActivity"
+            android:exported="true"
+            android:label="@string/cat_topappbar_scrolling_transparent_title"
+            android:theme="@style/Theme.Catalog.TransparentStatus"/>
+        <activity
+            android:name=".card.CardSelectionModeActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".musicplayer.MusicPlayerDemoActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Catalog.MusicPlayer"/>
+        <activity
+            android:name=".transition.TransitionContainerTransformStartDemoActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".transition.TransitionContainerTransformEndDemoActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".transition.TransitionSharedAxisStartDemoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".transition.TransitionSharedAxisEndDemoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".adaptive.AdaptiveMusicPlayerDemoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".adaptive.AdaptiveListViewDemoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".adaptive.AdaptiveFeedDemoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".adaptive.AdaptiveHeroDemoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".adaptive.AdaptiveSupportingPanelDemoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".color.ColorHarmonizationDemoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".search.SearchMainDemoActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:exported="true" />
+        <activity
+            android:name=".search.SearchRecyclerDemoActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:exported="true" />
+        <activity
+            android:name=".search.SearchBarWithAppBarIconsDemoActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:exported="true" />
     </application>
 
 </manifest>

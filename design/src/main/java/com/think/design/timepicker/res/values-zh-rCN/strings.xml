@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2019 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+  <!-- 展示弹窗选择器的演示页面标题 [字符限制=40] -->
+  <string name="cat_time_picker_demo_title">时间选择器</string>
+  <!-- 时间选择器演示目录的描述文本 [字符限制=128] -->
+  <string name="cat_time_picker_description">时间选择器允许用户选择具体时间。</string>
+  <!-- 时间格式切换组的标签 [字符限制=无] -->
+  <string name="time_format_label">时间格式</string>
+  <!-- 选择12小时制的选项标签 [字符限制=16] -->
+  <string name="time_format_24">24小时制</string>
+  <!-- 选择24小时制的选项标签 [字符限制=16] -->
+  <string name="time_format_12">12小时制</string>
+  <!-- 选择与系统一致时间格式的选项标签 [字符限制=16] -->
+  <string name="time_format_system">跟随系统</string>
+  <!-- 时间输入模式切换组的标签 [字符限制=无] -->
+  <string name="time_input_mode_label">时间输入模式</string>
+  <!-- 选择默认时间选择器输入模式的选项标签 [字符限制=16] -->
+  <string name="time_input_mode_default">默认</string>
+  <!-- 选择时钟模式作为时间选择器输入模式的选项标签 [字符限制=16] -->
+  <string name="time_input_mode_clock">时钟选择</string>
+  <!-- 选择文本输入模式作为时间选择器输入模式的选项标签 [字符限制=16] -->
+  <string name="time_input_mode_keyboard">键盘输入</string>
+  <!-- 提示框架版时间选择器不支持时间输入模式选择的文本 [字符限制=无] -->
+  <string name="time_input_mode_note">（框架版时间选择器不支持）</string>
+  <!-- 允许用户使用框架版时间选择器的开关标签 [字符限制=128] -->
+  <string name="use_framework_dialog">使用框架版时间选择器</string>
+  <!-- 选择时间的按钮标签 [字符限制=64] -->
+  <string name="select_time">选择时间</string>
+  <!-- 进入页面时的默认时间 [字符限制=64] -->
+  <string name="default_time">12:00 上午</string>
+</resources>

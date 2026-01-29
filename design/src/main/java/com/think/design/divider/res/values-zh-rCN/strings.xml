@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2021 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+  <string name="cat_divider_demo_title"
+    description="分隔线演示的标题 [字符限制=无]">
+    分隔线
+  </string>
+  <string name="cat_divider_description"
+    description="分隔线演示的描述 [字符限制=无]">
+    展示 Material 风格分隔线的演示示例。
+  </string>
+  <string name="cat_divider_title"
+    description="分隔线的标题标签 [字符限制=20]">
+    通栏分隔线
+  </string>
+  <string name="cat_divider_subtitle"
+    description="分隔线的副标题标签 [字符限制=无]">
+    下方展示的是通栏分隔线。
+  </string>
+  <string name="cat_divider_inset_title"
+    description="内缩分隔线的标题标签 [字符限制=20]">
+    内缩分隔线
+  </string>
+  <string name="cat_divider_inset_subtitle"
+    description="内缩分隔线的副标题标签 [字符限制=无]">
+    下方展示的是内缩分隔线。
+  </string>
+  <string name="cat_divider_middle_title"
+    description="居中分隔线的标题标签 [字符限制=20]">
+    居中分隔线
+  </string>
+  <string name="cat_divider_middle_subtitle"
+    description="居中分隔线的副标题标签 [字符限制=无]">
+    下方展示的是居中分隔线（首尾均有内缩距离的分隔线）。
+  </string>
+  <string name="cat_divider_heavy_title"
+    description="粗线分隔线的标题标签 [字符限制=20]">
+    粗线分隔线
+  </string>
+  <string name="cat_divider_heavy_subtitle"
+    description="粗线分隔线的副标题标签 [字符限制=无]">
+    下方展示的是粗线分隔线（线条粗细更粗的分隔线）。
+  </string>
+
+  <!-- MaterialDividerItemDecoration 演示相关 -->
+  <string name="cat_divider_item_decoration_demo_title"
+    description="MaterialDividerItemDecoration 演示的标题 [字符限制=无]">
+    列表项分隔线装饰
+  </string>
+  <string name="cat_divider_item_text"
+    description="MaterialDividerItemDecoration 演示中列表项的标签 [字符限制=20]">
+    列表项 %1$d
+  </string>
+  <string name="cat_divider_item_decoration_horizontal"
+    description="水平方向分隔线的副标题标签 [字符限制=无]">
+    水平方向布局管理器
+  </string>
+  <string name="cat_divider_item_decoration_vertical"
+    description="垂直方向分隔线的副标题标签 [字符限制=无]">
+    垂直方向布局管理器
+  </string>
+</resources>

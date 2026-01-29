@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2018 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+  <string name="cat_menus_title">菜单</string>
+  <string name="cat_menus_description">菜单会在临时浮层上展示一系列可选操作，用户点击按钮、执行操作或交互其他控件时便会触发显示。</string>
+  <string name="menu_button_label">&#8942;</string>
+  <string name="show_menu" description="展示菜单的按钮标签 [字符限制=20]。">显示菜单</string>
+  <string name="menu_with_icons" description="用于标识下方按钮展示带图标菜单的文本 [字符限制=无]。">带图标的菜单</string>
+  <string name="menu" description="用于标识下方按钮展示菜单的文本 [字符限制=无]。">菜单</string>
+  <string name="context_menu" description="展示上下文菜单的章节标签 [字符限制=20]。">上下文菜单</string>
+  <string name="list_popup_window" description="用于标识下方按钮展示 ListPopupWindow 的文本 [字符限制=无]。">列表弹窗</string>
+  <string name="menu_demo_description">
+    Material 主题下的菜单默认采用 textAppearanceSubtitle1 文本样式。
+    \n\n 菜单背景会添加上下内边距、圆角效果，并设置 8dp 的高程值。
+    \n\n 你可在本演示中体验弹窗菜单、上下文菜单或溢出菜单。
+  </string>
+
+  <string name="menu_context_menu_description" description="说明上下文菜单使用方式的文本 [字符限制=无]。">
+    长按该文本视图，或在键盘上按下 Ctrl + Enter 组合键，即可打开上下文菜单。
+    \n\n 该菜单提供的操作会作用于选中的内容或当前上下文区域。
+  </string>
+  <string name="context_menu_highlight" description="用于高亮文本的菜单选项文本 [字符限制=20]。">高亮</string>
+
+  <string-array name="cat_list_popup_window_content">
+    <item>选项 1</item>
+    <item>选项 2</item>
+    <item>选项 3</item>
+    <item>选项 4</item>
+  </string-array>
+</resources>

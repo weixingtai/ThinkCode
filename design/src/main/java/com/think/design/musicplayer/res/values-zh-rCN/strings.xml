@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2021 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="cat_music_player_album_cover_content_description" description="专辑封面的内容描述 [字符限制=无]">专辑封面</string>
+
+  <string name="cat_music_player_progress_indicator_content_description" description="进度指示器的内容描述 [字符限制=无]">音乐播放进度</string>
+  <string name="cat_music_player_pause_button_content_description" description="暂停按钮的内容描述 [字符限制=无]">暂停按钮</string>
+  <string name="cat_music_player_play_button_content_description" description="播放按钮的内容描述 [字符限制=无]">播放按钮</string>
+  <string name="cat_music_player_rewind_button_content_description" description="回退按钮的内容描述 [字符限制=无]">回退按钮</string>
+  <string name="cat_music_player_fast_forward_button_content_description" description="快进按钮的内容描述 [字符限制=无]">快进按钮</string>
+  <string name="cat_music_player_volume_down_button_content_description" description="音量减小按钮的内容描述 [字符限制=无]">音量减小按钮</string>
+  <string name="cat_music_player_volume_slider_content_description" description="音量滑块的内容描述 [字符限制=无]">音量调节滑块</string>
+  <string name="cat_music_player_volume_up_button_content_description" description="音量增大按钮的内容描述 [字符限制=无]">音量增大按钮</string>
+
+  <string name="cat_music_player_album_menu_favorite_title" description="收藏按钮的内容描述 [字符限制=无]">收藏</string>
+  <string name="cat_music_player_album_menu_share_title" description="分享按钮的内容描述 [字符限制=无]">分享</string>
+
+  <string name="cat_music_player_lib_menu_sort_title" description="列表排序按钮的名称 [字符限制=无]">排序</string>
+  <string name="cat_music_player_lib_menu_list_type_title" description="列表类型切换按钮的名称 [字符限制=无]">切换列表类型</string>
+
+  <string name="cat_music_player_album_duration" description="专辑总时长 [字符限制=无]">52分钟</string>
+</resources>

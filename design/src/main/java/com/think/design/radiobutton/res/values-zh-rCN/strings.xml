@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2018 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+
+  <string name="cat_radiobutton_title">单选按钮</string>
+  <string name="cat_radiobutton_description">
+    单选按钮是一种可点击的交互元素，通常隶属于单选按钮组。在同一个单选按钮组内，仅能选中一个单选按钮。</string>
+  <string name="cat_radiobutton_color_guide">
+    单选按钮的样式会随 colorSecondary 颜色值变化而调整。
+    直接点击无法取消已选中的单选按钮。</string>
+  <string name="cat_radiobutton_disabled_guide">处于禁用状态的单选按钮无法交互，且视觉上会呈现褪色效果。</string>
+  <string name="cat_radiobutton_enabled">已启用</string>
+  <string name="cat_radiobutton_disabled">已禁用</string>
+
+</resources>

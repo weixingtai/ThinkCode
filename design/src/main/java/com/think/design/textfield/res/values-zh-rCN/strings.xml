@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2017 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="cat_textfield_title">文本输入框</string>
+  <string name="cat_textfield_filled_demo_title">填充式文本输入框演示</string>
+  <string name="cat_textfield_filled_icons_demo_title">带图标填充式文本输入框演示</string>
+  <string name="cat_textfield_exposed_dropdown_menu_demo_title">展开式下拉菜单演示</string>
+  <string name="cat_textfield_outlined_demo_title">轮廓式文本输入框演示</string>
+  <string name="cat_textfield_outlined_icons_demo_title">带图标轮廓式文本输入框演示</string>
+  <string name="cat_textfield_prefix_suffix_demo_title">带前缀后缀文本输入框演示</string>
+  <string name="cat_textfield_legacy_demo_title">传统文本输入框演示</string>
+  <string name="cat_textfield_description">
+    文本输入框允许用户输入、编辑和选择文本内容。文本输入框通常用于表单场景，
+    也可出现在对话框、搜索栏等其他位置。
+  </string>
+
+  <string name="cat_textfield_filled_helper_text">填充式文本输入框</string>
+  <string name="cat_textfield_filled_dense_helper_text">紧凑版填充式文本输入框</string>
+  <string name="cat_textfield_filled_dense_password_helper_text">
+    紧凑版填充式密码输入框
+  </string>
+  <string name="cat_textfield_filled_start_icon_helper_text">带起始图标填充式文本输入框</string>
+  <string name="cat_textfield_filled_start_end_icons_helper_text">带起始和末尾图标填充式文本输入框</string>
+  <string name="cat_textfield_filled_clear_button_helper_text">带清除按钮填充式文本输入框</string>
+  <string name="cat_textfield_filled_custom_end_icon_helper_text">带自定义末尾图标填充式文本输入框</string>
+  <string name="cat_textfield_filled_exposed_dropdown_helper_text">填充式展开下拉菜单</string>
+  <string name="cat_textfield_filled_editable_exposed_dropdown_helper_text">可编辑填充式展开下拉菜单</string>
+  <string name="cat_textfield_legacy_helper_text">传统文本输入框</string>
+  <string name="cat_textfield_outlined_helper_text">轮廓式文本输入框</string>
+  <string name="cat_textfield_outlined_dense_helper_text">紧凑版轮廓式文本输入框</string>
+  <string name="cat_textfield_outlined_dense_password_helper_text">
+    紧凑版轮廓式密码输入框
+  </string>
+  <string name="cat_textfield_outlined_start_icon_helper_text">带起始图标轮廓式文本输入框</string>
+  <string name="cat_textfield_outlined_start_end_icons_helper_text">带起始和末尾图标轮廓式文本输入框</string>
+  <string name="cat_textfield_outlined_clear_button_helper_text">带清除按钮轮廓式文本输入框</string>
+  <string name="cat_textfield_outlined_custom_end_icon_helper_text">带自定义末尾图标轮廓式文本输入框</string>
+  <string name="cat_textfield_custom_end_icon_content_description">自定义末尾图标</string>
+  <string name="cat_textfield_custom_start_icon_content_description">自定义起始图标</string>
+  <string name="cat_textfield_outlined_exposed_dropdown_helper_text">轮廓式展开下拉菜单</string>
+  <string name="cat_textfield_outlined_editable_exposed_dropdown_helper_text">可编辑轮廓式展开下拉菜单</string>
+
+  <string name="cat_textfield_prefix">$</string>
+  <string name="cat_textfield_suffix">/100</string>
+  <string name="cat_textfield_outlined_prefix_helper_text">带前缀轮廓式文本输入框</string>
+  <string name="cat_textfield_outlined_prefix_icon_helper_text">带前缀和图标轮廓式文本输入框</string>
+  <string name="cat_textfield_outlined_suffix_helper_text">带后缀轮廓式文本输入框</string>
+  <string name="cat_textfield_outlined_suffix_icon_helper_text">带后缀和图标轮廓式文本输入框</string>
+  <string name="cat_textfield_filled_prefix_helper_text">带前缀填充式文本输入框</string>
+  <string name="cat_textfield_filled_prefix_icon_helper_text">带前缀和图标填充式文本输入框</string>
+  <string name="cat_textfield_filled_suffix_helper_text">带后缀填充式文本输入框</string>
+  <string name="cat_textfield_filled_suffix_icon_helper_text">带后缀和图标填充式文本输入框</string>
+
+  <string name="cat_textfield_customize_section_title">自定义文本输入框</string>
+  <string name="cat_textfield_customize_section_description">
+    在下方输入数值来自定义上方的文本输入框。按下键盘的“完成”按钮可更新单个输入框，
+    或点击底部的更新按钮一次性更新所有输入框。
+  </string>
+  <string name="cat_textfield_label">标签</string>
+  <string name="cat_textfield_password">密码</string>
+  <string name="cat_textfield_error">错误</string>
+  <string name="cat_textfield_placeholder_text">占位文本</string>
+
+  <string name="cat_textfield_customize_counter_text">更新字符计数器最大值</string>
+  <string name="cat_textfield_customize_label_text">更新标签文本</string>
+  <string name="cat_textfield_customize_error_text">更新错误文本</string>
+  <string name="cat_textfield_customize_helper_text">更新辅助文本</string>
+  <string name="cat_textfield_customize_placeholder_text">更新占位文本</string>
+
+  <string name="cat_textfield_null_input_error_text">请输入内容</string>
+  <string name="cat_textfield_show_error_text">显示错误</string>
+  <string name="cat_textfield_hide_error_text">隐藏错误</string>
+
+  <string-array name="cat_textfield_exposed_dropdown_content">
+    <item>选项 1</item>
+    <item>选项 2</item>
+    <item>选项 3</item>
+    <item>选项 4</item>
+  </string-array>
+
+  <string name="cat_textfield_show_leading_icon">显示前置图标</string>
+  <string name="cat_textfield_hide_leading_icon">隐藏前置图标</string>
+  <string name="cat_textfield_update_button" description="更新可自定义输入框的按钮 [字符限制=无]">更新</string>
+
+  <string name="cat_textfield_label_enabled" description="启用文本输入框的开关标签 [字符限制=10]">输入框已启用</string>
+  <string name="cat_textfield_label_disabled">输入框已禁用</string>
+
+  <string name="cat_textfield_toast_update_button" description="点击更新按钮的提示文案 [字符限制=无]">文本输入框已更新。</string>
+  <string name="cat_textfield_toast_label_text" description="更新标签的提示文案 [字符限制=无]">标签已更新。</string>
+  <string name="cat_textfield_toast_error_text" description="更新错误文本的提示文案 [字符限制=无]">错误提示已更新。</string>
+  <string name="cat_textfield_toast_helper_text" description="更新辅助文本的提示文案 [字符限制=无]">辅助文本已更新。</string>
+  <string name="cat_textfield_toast_counter_text" description="更新计数器最大值的提示文案 [字符限制=无]">计数器最大值已更新。</string>
+  <string name="cat_textfield_toast_placeholder_text" description="更新占位文本的提示文案 [字符限制=无]">占位文本已更新。</string>
+  <string name="cat_textfield_toast_error_icon_click" description="点击错误图标的提示文案 [字符限制=无]">错误图标已点击。</string>
+  <string name="cat_textfield_toast_error_icon_long_click" description="长按错误图标的提示文案 [字符限制=无]">错误图标已长按。</string>
+
+</resources>

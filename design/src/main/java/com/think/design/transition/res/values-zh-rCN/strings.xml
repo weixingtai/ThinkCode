@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2019 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+  <string name="cat_toc_transition" tools:ignore="UnusedResources">过渡动画</string>
+  <string name="cat_transition_title">过渡动画</string>
+  <string name="cat_transition_description">
+    过渡动画编排是一套协调的运动序列，可在界面适配变化时保持用户的视觉焦点。
+  </string>
+
+  <string name="cat_transition_container_transform_activity_title">容器变换（Activity）</string>
+
+  <string name="cat_transition_container_transform_fragment_title">容器变换（Fragment）</string>
+  <string name="cat_transition_card_title">标题</string>
+  <string name="cat_transition_lorem_ipsum" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a, ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
+Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae, molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor bibendum, vel congue leo egestas.\n\n
+Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel, molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula, in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque est.\n\n
+Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh. Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc, quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus convallis.\n\n
+Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper, libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.</string>
+  <string name="cat_transition_title_content_desc">示例标题</string>
+  <string name="cat_transition_body_content_desc">示例正文文本</string>
+  <string name="cat_transition_image_content_desc">示例头部图片</string>
+
+  <string name="cat_transition_container_transform_view_title">容器变换（View）</string>
+
+  <string name="cat_transition_contact_card_sandra">桑德拉·亚当斯</string>
+  <string name="cat_transition_contact_card_charlie">赵查理</string>
+  <string name="cat_transition_contact_card_trevor">特雷弗·汉森</string>
+  <string name="cat_transition_contact_card_david">朴大卫</string>
+  <string name="cat_transition_contact_card_compose">新建</string>
+
+  <string name="cat_transition_config_menu_item_title">配置过渡动画</string>
+  <string name="cat_transition_config_path_motion_title">路径运动</string>
+  <string name="cat_transition_config_path_motion_arc">弧形</string>
+  <string name="cat_transition_config_path_motion_linear">线性</string>
+  <string name="cat_transition_config_enter_duration_title">进入时长</string>
+  <string name="cat_transition_config_return_duration_title">返回时长</string>
+  <string name="cat_transition_config_interpolation_title">插值器</string>
+  <string name="cat_transition_config_default">默认</string>
+  <string name="cat_transition_config_fast_out_slow_in_title">快出慢入</string>
+  <string name="cat_transition_config_overshoot">过冲</string>
+  <string name="cat_transition_config_anticipate_overshoot">预冲过冲</string>
+  <string name="cat_transition_config_overshoot_tension_hint">张力</string>
+  <string name="cat_transition_config_bounce">弹跳</string>
+  <string name="cat_transition_config_custom_interpolator_title">自定义三次贝塞尔曲线</string>
+  <string name="cat_transition_config_custom_interpolator_desc">自定义 (%1$.3f, %2$.3f, %3$.3f, %4$.3f)</string>
+  <string name="cat_transition_config_cubic_bezier_control_x1_hint">x1</string>
+  <string name="cat_transition_config_cubic_bezier_control_y1_hint">y1</string>
+  <string name="cat_transition_config_cubic_bezier_control_x2_hint">x2</string>
+  <string name="cat_transition_config_cubic_bezier_control_y2_hint">y2</string>
+  <string name="cat_transition_config_fade_mode_title">渐变模式</string>
+  <string name="cat_transition_config_fade_mode_in">淡入</string>
+  <string name="cat_transition_config_fade_mode_out">淡出</string>
+  <string name="cat_transition_config_fade_mode_cross">交叉渐变</string>
+  <string name="cat_transition_config_fade_mode_through">穿透渐变</string>
+  <string name="cat_transition_config_debug_title">调试</string>
+  <string name="cat_transition_config_draw_debug_checkbox_desc">绘制调试线</string>
+  <string name="cat_transition_config_apply_button_text">应用</string>
+  <string name="cat_transition_config_clear_button_text">清空</string>
+
+  <string name="cat_transition_fade_through_title">穿透渐变</string>
+  <string name="cat_transition_fade_through_menu_item_albums">相册</string>
+  <string name="cat_transition_fade_through_menu_item_photos">照片</string>
+  <string name="cat_transition_fade_through_menu_item_search">搜索</string>
+  <string name="cat_transition_fade_through_photo_count">123 张照片</string>
+
+  <string name="cat_transition_shared_axis_fragment_title">共享轴（Fragment）</string>
+  <string name="cat_transition_shared_axis_activity_title">共享轴（Activity）</string>
+  <string name="cat_transition_shared_axis_view_title">共享轴（View）</string>
+  <string name="cat_transition_shared_axis_back">返回</string>
+  <string name="cat_transition_shared_axis_next">下一步</string>
+  <string name="cat_transition_shared_axis_x">X轴</string>
+  <string name="cat_transition_shared_axis_y">Y轴</string>
+  <string name="cat_transition_shared_axis_z">Z轴</string>
+  <string name="cat_transition_shared_axis_sign_in_greeting">你好，朴大卫</string>
+  <string name="cat_transition_shared_axis_sign_in_title">使用你的账号登录</string>
+  <string name="cat_transition_shared_axis_sign_in_hint">邮箱或手机号</string>
+  <string name="cat_transition_shared_axis_sign_in_forgot_email">忘记邮箱？</string>
+  <string name="cat_transition_shared_axis_sign_in_create_account">创建账号</string>
+  <string name="cat_transition_shared_axis_courses_title">整理你的课程</string>
+  <string name="cat_transition_shared_axis_courses_caption">分组后的分类会以群组形式显示在你的信息流中，你可随时修改此设置。</string>
+  <string name="cat_transition_shared_axis_courses_bundled">已分组</string>
+  <string name="cat_transition_shared_axis_courses_unbundled">单独显示</string>
+  <string name="cat_transition_shared_axis_courses_one"><![CDATA[工艺美术]]></string>
+  <string name="cat_transition_shared_axis_courses_two">商务</string>
+  <string name="cat_transition_shared_axis_courses_three">插画</string>
+  <string name="cat_transition_shared_axis_courses_four">设计</string>
+  <string name="cat_transition_shared_axis_courses_five">烹饪</string>
+
+  <string name="cat_transition_fade_title">渐变</string>
+  <string name="cat_transition_fade_button_hide_fab">隐藏悬浮按钮</string>
+  <string name="cat_transition_fade_button_show_fab">显示悬浮按钮</string>
+
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2018 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+  <string name="cat_checkbox_title">多选框</string>
+  <string name="cat_checkbox_description">
+    多选框提供一种可选中的交互元素，通常用于列表中，
+    支持在两种状态之间切换。
+  </string>
+  <string name="cat_checkbox_intro">
+    以下为 Material 风格多选框示例。
+  </string>
+  <string name="cat_checkbox_disabled_guide">
+    处于禁用状态的多选框无法进行交互，且显示为淡化样式。
+  </string>
+  <string name="cat_checkbox_enabled">已启用</string>
+  <string name="cat_checkbox_disabled">已禁用</string>
+  <string name="cat_checkbox_enablable_description">
+    勾选此多选框，可控制下方所有多选框的启用状态。
+  </string>
+  <string name="cat_checkbox_toggle">
+    由多选框控制状态
+  </string>
+  <string name="cat_indeterminate_description">
+    下方多选框存在父子层级关系，父多选框的状态
+    由所有子多选框的状态共同决定。
+  </string>
+  <string name="cat_checkbox_indeterminate">
+    父多选框
+  </string>
+  <string name="cat_checkbox_indeterminate_child">
+    子多选框
+  </string>
+  <string name="cat_checkbox_no_text">
+    以下为无文本标签的多选框示例。
+  </string>
+  <string name="cat_checkbox_toggle_error">
+    勾选此多选框，可控制当前页面所有多选框的错误状态。
+  </string>
+</resources>

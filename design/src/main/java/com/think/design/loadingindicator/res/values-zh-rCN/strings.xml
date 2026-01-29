@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2024 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+  <string name="cat_loading_indicator_title"
+    description="展示加载指示器组件演示用法的页面标题 [字符限制=无]">
+    加载指示器
+  </string>
+  <string name="cat_loading_indicator_description"
+    description="设计系统中描述加载指示器组件的正文文本 [字符限制=无]">
+    加载指示器用于展示一个未确定进度的执行过程。
+  </string>
+  <string name="cat_loading_indicator_default"
+    description="默认加载指示器上方的文本标签 [字符限制=无]">
+    加载指示器
+    </string>
+  <string name="cat_loading_indicator_with_container"
+    description="带容器的加载指示器上方的文本标签 [字符限制=无]">
+    带容器的加载指示器
+  </string>
+  <string name="cat_loading_indicator_with_multiple_colors"
+    description="多色加载指示器上方的文本标签 [字符限制=无]">
+    多色加载指示器
+  </string>
+  <string name="cat_loading_indicator_in_a_button"
+    description="内置加载指示器图标的按钮上方的文本标签 [字符限制=无]">
+    按钮内置加载指示器
+  </string>
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2022 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+  <string name="cat_carousel_debug_mode_label">调试模式</string>
+  <string name="cat_carousel_draw_dividers_label">绘制分隔线</string>
+  <string name="cat_carousel_enable_snap_label" description="启用轮播项吸附效果的开关标题。[字符限制=无]">启用吸附</string>
+  <string name="cat_carousel_enable_fling_label" description="启用快速滑动手势的开关标题。[字符限制=无]">启用快速滑动</string>
+  <string name="cat_carousel_start_align_label" description="设置轮播起始端对齐的按钮标题。[字符限制=无]">起始端对齐</string>
+  <string name="cat_carousel_center_align_label" description="设置轮播居中对齐的按钮标题。[字符限制=无]">居中对齐</string>
+
+  <string name="cat_carousel_show_debug_options" description="显示轮播调试选项的按钮标题。[字符限制=无]">显示调试选项</string>
+
+  <string name="cat_carousel_adapter_item_count_hint_label">项数量</string>
+  <string name="cat_carousel_position_slider_label">滚动位置</string>
+  <string name="cat_carousel_snap_switch_description" description="启用吸附效果开关的内容描述。[字符限制=无]">启用轮播项吸附效果</string>
+  <string name="cat_carousel_position_slider_content_description">滚动位置滑块</string>
+
+  <string-array name="cat_carousel_adapter_count_content">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+  </string-array>
+
+  <string name="cat_carousel_title">轮播</string>
+  <string name="cat_carousel_description">轮播是列表的风格化形式，提供独特的视觉体验和交互行为，适合展示大幅图片及其他视觉丰富的内容。</string>
+
+  <string name="cat_carousel_multi_browse_demo_title">多览式轮播</string>
+  <string name="cat_carousel_hero_demo_title" description="焦点型轮播演示的名称。[字符限制=无]">焦点轮播</string>
+  <string name="cat_carousel_fullscreen_demo_title">全屏轮播</string>
+  <string name="cat_carousel_uncontained_demo_title" description="无边界型轮播演示的名称。[字符限制=无]">无边界轮播</string>
+
+  <string name="cat_carousel_multi_browse_title">多览式</string>
+  <string name="cat_carousel_multi_browse_desc">多览式轮播支持快速浏览大量小尺寸内容项，例如照片缩略图画廊。</string>
+
+  <string name="cat_carousel_hero_title" description="焦点型轮播演示的标题。[字符限制=无]">焦点型</string>
+  <string name="cat_carousel_hero_desc" description="焦点型轮播演示的描述。[字符限制=无]">焦点型轮播支持浏览操作，且每次仅聚焦展示一个主要内容项。</string>
+
+  <string name="cat_carousel_fullscreen_title" description="全屏型轮播演示的标题。[字符限制=无]">全屏型</string>
+  <string name="cat_carousel_fullscreen_desc" description="全屏型轮播演示的描述。[字符限制=无]">全屏型轮播支持浏览操作，且每次仅聚焦展示一个内容项。</string>
+
+  <string name="cat_carousel_uncontained_title" description="无边界型轮播演示的标题。[字符限制=无]">无边界型</string>
+  <string name="cat_carousel_uncontained_desc" description="无边界型轮播演示的描述。[字符限制=无]">无边界型轮播按内容项原始尺寸展示，当内容项靠近屏幕边缘时会缩小，且在滑动方向上被截断显示。</string>
+
+  <string name="cat_carousel_image_1_content_desc">日落时分的雏菊</string>
+  <string name="cat_carousel_image_2_content_desc">头发遮脸的人物肖像</string>
+  <string name="cat_carousel_image_3_content_desc">树上的菌类</string>
+  <string name="cat_carousel_image_4_content_desc">日本的火车站</string>
+  <string name="cat_carousel_image_5_content_desc">工作中的养蜂人</string>
+  <string name="cat_carousel_image_6_content_desc">背着背包徒步的人</string>
+  <string name="cat_carousel_image_7_content_desc">原木上生长的三朵蘑菇</string>
+  <string name="cat_carousel_image_8_content_desc">波奇碗</string>
+  <string name="cat_carousel_image_9_content_desc">便当盒</string>
+  <string name="cat_carousel_image_10_content_desc">白色金属户外椅</string>
+</resources>
