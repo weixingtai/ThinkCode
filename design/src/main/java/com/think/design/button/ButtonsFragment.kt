@@ -1,133 +1,91 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.think.design.button
 
-package com.think.design.button;
+import androidx.fragment.app.Fragment
+import com.think.design.R
+import com.think.design.application.scope.ActivityScope
+import com.think.design.application.scope.FragmentScope
+import com.think.design.feature.Demo
+import com.think.design.feature.DemoLandingFragment
+import com.think.design.feature.FeatureDemo
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import java.util.Arrays
 
-import com.think.design.R;
-
-import androidx.fragment.app.Fragment;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import com.think.design.application.scope.ActivityScope;
-import com.think.design.application.scope.FragmentScope;
-import com.think.design.feature.Demo;
-import com.think.design.feature.DemoLandingFragment;
-import com.think.design.feature.FeatureDemo;
-import java.util.Arrays;
-import java.util.List;
-
-/** A landing fragment that links to button demos for the Catalog app. */
-public class ButtonsFragment extends DemoLandingFragment {
-
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_buttons_title;
-  }
-
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_buttons_description;
-  }
-
-  @Override
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Override
-      public Fragment createFragment() {
-        return new ButtonsMainDemoFragment();
-      }
-    };
-  }
-
-  @Override
-  public List<Demo> getAdditionalDemos() {
-    return Arrays.asList(
-        getButtonGroupDemo(),
-        getButtonToggleGroupDemo(),
-        getSplitButtonDemo(),
-        new Demo(R.string.cat_buttons_group_distribution) {
-          @Nullable
-          @Override
-          public Fragment createFragment() {
-            return new ButtonGroupDistributionDemoFragment();
-          }
-        },
-        new Demo(R.string.cat_buttons_group_runtime) {
-          @Nullable
-          @Override
-          public Fragment createFragment() {
-            return new ButtonGroupRuntimeDemoFragment();
-          }
-        });
-  }
-
-  @NonNull
-  protected Demo getButtonGroupDemo() {
-    return new Demo(R.string.cat_buttons_group) {
-      @Nullable
-      @Override
-      public Fragment createFragment() {
-        return new ButtonGroupDemoFragment();
-      }
-    };
-  }
-
-  @NonNull
-  protected Demo getButtonToggleGroupDemo() {
-    return new Demo(R.string.cat_buttons_toggle_group) {
-      @Nullable
-      @Override
-      public Fragment createFragment() {
-        return new ButtonToggleGroupDemoFragment();
-      }
-    };
-  }
-
-  @NonNull
-  protected Demo getSplitButtonDemo() {
-    return new Demo(R.string.cat_split_button) {
-      @Nullable
-      @Override
-      public Fragment createFragment() {
-        return new SplitButtonDemoFragment();
-      }
-    };
-  }
-
-  /** The Dagger module for {@link ButtonsFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract ButtonsFragment contributeInjector();
-
-    @IntoSet
-    @Provides
-    @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_buttons_title, R.drawable.ic_button) {
-        @Override
-        public Fragment createFragment() {
-          return new ButtonsFragment();
-        }
-      };
+class ButtonsFragment : DemoLandingFragment() {
+    override fun getTitleResId(): Int {
+        return R.string.cat_buttons_title
     }
-  }
+
+    override fun getDescriptionResId(): Int {
+        return R.string.cat_buttons_description
+    }
+
+    override fun getMainDemo(): Demo {
+        return object : Demo() {
+            override fun createFragment(): Fragment? {
+                return ButtonsMainDemoFragment()
+            }
+        }
+    }
+
+    override fun getAdditionalDemos(): MutableList<Demo?> {
+        return Arrays.asList<Demo?>(
+            this.buttonGroupDemo,
+            this.buttonToggleGroupDemo,
+            this.splitButtonDemo,
+            object : Demo(R.string.cat_buttons_group_distribution) {
+                override fun createFragment(): Fragment? {
+                    return ButtonGroupDistributionDemoFragment()
+                }
+            },
+            object : Demo(R.string.cat_buttons_group_runtime) {
+                override fun createFragment(): Fragment? {
+                    return ButtonGroupRuntimeDemoFragment()
+                }
+            })
+    }
+
+    protected val buttonGroupDemo: Demo
+        get() = object : Demo(R.string.cat_buttons_group) {
+            override fun createFragment(): Fragment? {
+                return ButtonGroupDemoFragment()
+            }
+        }
+
+    protected val buttonToggleGroupDemo: Demo
+        get() = object : Demo(R.string.cat_buttons_toggle_group) {
+            override fun createFragment(): Fragment? {
+                return ButtonToggleGroupDemoFragment()
+            }
+        }
+
+    protected val splitButtonDemo: Demo
+        get() = object : Demo(R.string.cat_split_button) {
+            override fun createFragment(): Fragment? {
+                return SplitButtonDemoFragment()
+            }
+        }
+
+    /** The Dagger module for [ButtonsFragment] dependencies.  */
+    @dagger.Module
+    abstract class Module {
+        @FragmentScope
+        @ContributesAndroidInjector
+        abstract fun contributeInjector(): ButtonsFragment?
+
+        companion object {
+            @JvmStatic
+            @IntoSet
+            @Provides
+            @ActivityScope
+            fun provideFeatureDemo(): FeatureDemo {
+                return object : FeatureDemo(R.string.cat_buttons_title, R.drawable.ic_button) {
+                    override fun createFragment(): Fragment {
+                        return ButtonsFragment()
+                    }
+                }
+            }
+        }
+    }
 }

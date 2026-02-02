@@ -1,110 +1,90 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.think.design.button
 
-package com.think.design.button;
+import android.os.Bundle
+import android.text.TextUtils
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.CompoundButton
+import androidx.annotation.LayoutRes
+import androidx.appcompat.widget.SwitchCompat
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
+import com.think.design.R
+import com.think.design.feature.DemoFragment
+import com.think.design.feature.DemoUtils
+import kotlin.math.max
 
-import com.think.design.R;
+class ButtonsMainDemoFragment : DemoFragment() {
+    override fun onCreateDemoView(
+        layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?
+    ): View? {
+        val view = layoutInflater.inflate(this.buttonsContent, viewGroup, false /* attachToRoot */)
 
-import android.os.Bundle;
-import androidx.appcompat.widget.SwitchCompat;
-import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.Nullable;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.think.design.feature.DemoFragment;
-import com.think.design.feature.DemoUtils;
-import java.util.List;
+        val labelButtonContent = view.findViewById<ViewGroup?>(R.id.labelButtonContent)
+        View.inflate(getContext(), this.labelButtonContent, labelButtonContent)
+        val labelIconButtonContent = view.findViewById<ViewGroup?>(R.id.labelIconButtonContent)
+        View.inflate(getContext(), this.labelIconButtonContent, labelIconButtonContent)
+        val iconButtonContent = view.findViewById<ViewGroup?>(R.id.iconButtonContent)
+        View.inflate(getContext(), this.iconButtonContent, iconButtonContent)
 
-/** A fragment that displays main button demos for the Catalog app. */
-public class ButtonsMainDemoFragment extends DemoFragment {
+        val buttons: MutableList<MaterialButton> =
+            DemoUtils.findViewsWithType<MaterialButton>(view, MaterialButton::class.java)
+        var maxMeasuredWidth = 0
+        val displayMetrics = getResources().getDisplayMetrics()
 
-  @Nullable
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view = layoutInflater.inflate(getButtonsContent(), viewGroup, false /* attachToRoot */);
+        for (button in buttons) {
+            button.measure(displayMetrics.widthPixels, displayMetrics.heightPixels)
+            maxMeasuredWidth = max(maxMeasuredWidth, button.getMeasuredWidth())
+            button.setOnClickListener(
+                View.OnClickListener { v: View? ->
+                    // Show a Snackbar with an action button, which should also have a MaterialButton style
+                    val snackbar =
+                        Snackbar.make(v!!, R.string.cat_button_clicked, Snackbar.LENGTH_LONG)
+                    snackbar.setAction(
+                        R.string.cat_snackbar_action_button_text,
+                        View.OnClickListener { v1: View? -> })
+                    snackbar.show()
+                })
+        }
 
-    ViewGroup labelButtonContent = view.findViewById(R.id.labelButtonContent);
-    View.inflate(getContext(), getLabelButtonContent(), labelButtonContent);
-    ViewGroup labelIconButtonContent = view.findViewById(R.id.labelIconButtonContent);
-    View.inflate(getContext(), getLabelIconButtonContent(), labelIconButtonContent);
-    ViewGroup iconButtonContent = view.findViewById(R.id.iconButtonContent);
-    View.inflate(getContext(), getIconButtonContent(), iconButtonContent);
+        // Using SwitchCompat here to avoid class cast issues in derived demos.
+        val enabledSwitch = view.findViewById<SwitchCompat>(R.id.cat_button_enabled_switch)
+        enabledSwitch.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                val updatedText =
+                    getText(
+                        if (isChecked)
+                            R.string.cat_button_label_enabled
+                        else
+                            R.string.cat_button_label_disabled
+                    )
+                for (button in buttons) {
+                    if (!TextUtils.isEmpty(button.getText())) {
+                        // Do not update icon only button.
+                        button.setText(updatedText)
+                    }
+                    button.setEnabled(isChecked)
+                    button.setFocusable(isChecked)
+                }
+            })
 
-    List<MaterialButton> buttons = DemoUtils.findViewsWithType(view, MaterialButton.class);
-    int maxMeasuredWidth = 0;
-    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-
-    for (MaterialButton button : buttons) {
-      button.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
-      maxMeasuredWidth = Math.max(maxMeasuredWidth, button.getMeasuredWidth());
-      button.setOnClickListener(
-          v -> {
-            // Show a Snackbar with an action button, which should also have a MaterialButton style
-            Snackbar snackbar =
-                Snackbar.make(v, R.string.cat_button_clicked, Snackbar.LENGTH_LONG);
-            snackbar.setAction(R.string.cat_snackbar_action_button_text, v1 -> {});
-            snackbar.show();
-          });
+        return view
     }
 
-    // Using SwitchCompat here to avoid class cast issues in derived demos.
-    SwitchCompat enabledSwitch = view.findViewById(R.id.cat_button_enabled_switch);
-    enabledSwitch.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          CharSequence updatedText =
-              getText(
-                  isChecked
-                      ? R.string.cat_button_label_enabled
-                      : R.string.cat_button_label_disabled);
-          for (MaterialButton button : buttons) {
-            if (!TextUtils.isEmpty(button.getText())) {
-              // Do not update icon only button.
-              button.setText(updatedText);
-            }
-            button.setEnabled(isChecked);
-            button.setFocusable(isChecked);
-          }
-        });
+    @get:LayoutRes
+    protected val labelButtonContent: Int
+        get() = R.layout.cat_label_buttons_content
 
-    return view;
-  }
+    @get:LayoutRes
+    protected val labelIconButtonContent: Int
+        get() = R.layout.cat_label_icon_buttons_content
 
-  @LayoutRes
-  protected int getLabelButtonContent() {
-    return R.layout.cat_label_buttons_content;
-  }
+    @get:LayoutRes
+    protected val iconButtonContent: Int
+        get() = R.layout.cat_icon_buttons_content
 
-  @LayoutRes
-  protected int getLabelIconButtonContent() {
-    return R.layout.cat_label_icon_buttons_content;
-  }
-
-  @LayoutRes
-  protected int getIconButtonContent() {
-    return R.layout.cat_icon_buttons_content;
-  }
-
-  @LayoutRes
-  protected int getButtonsContent() {
-    return R.layout.cat_buttons_fragment;
-  }
+    @get:LayoutRes
+    protected val buttonsContent: Int
+        get() = R.layout.cat_buttons_fragment
 }

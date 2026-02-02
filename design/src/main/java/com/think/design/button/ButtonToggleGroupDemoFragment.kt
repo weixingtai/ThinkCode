@@ -1,142 +1,131 @@
-/*
- * Copyright 2019 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.think.design.button
 
-package com.think.design.button;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.LinearLayout
+import androidx.annotation.LayoutRes
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonToggleGroup
+import com.google.android.material.button.MaterialButtonToggleGroup.OnButtonCheckedListener
+import com.google.android.material.materialswitch.MaterialSwitch
+import com.google.android.material.shape.RelativeCornerSize
+import com.google.android.material.slider.Slider
+import com.google.android.material.snackbar.Snackbar
+import com.think.design.R
+import com.think.design.feature.DemoFragment
+import com.think.design.feature.DemoUtils
 
-import com.think.design.R;
+class ButtonToggleGroupDemoFragment : DemoFragment() {
+    private var defaultInset = 0
 
-import static android.widget.LinearLayout.HORIZONTAL;
-import static android.widget.LinearLayout.VERTICAL;
+    /**
+     * Create a Demo View with different types of [MaterialButtonToggleGroup] and a switch to
+     * toggle [MaterialButtonToggleGroup.setSelectionRequired]
+     */
+    override fun onCreateDemoView(
+        layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?
+    ): View? {
+        val view =
+            layoutInflater.inflate(
+                this.buttonToggleGroupContent,
+                viewGroup,  /* attachToRoot= */
+                false
+            )
+        val requireSelectionToggle = view.findViewById<MaterialSwitch>(R.id.switch_toggle)
+        defaultInset =
+            getResources().getDimensionPixelSize(com.google.android.material.R.dimen.mtrl_btn_inset)
+        val buttons: MutableList<MaterialButton> =
+            DemoUtils.findViewsWithType<MaterialButton>(view, MaterialButton::class.java)
+        val toggleGroups: MutableList<MaterialButtonToggleGroup> =
+            DemoUtils.findViewsWithType<MaterialButtonToggleGroup>(
+                view,
+                MaterialButtonToggleGroup::class.java
+            )
+        requireSelectionToggle.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                for (toggleGroup in toggleGroups) {
+                    toggleGroup.setSelectionRequired(isChecked)
+                }
+            })
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.Nullable;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.button.MaterialButtonToggleGroup;
-import com.google.android.material.materialswitch.MaterialSwitch;
-import com.google.android.material.shape.RelativeCornerSize;
-import com.google.android.material.slider.Slider;
-import com.google.android.material.snackbar.Snackbar;
-import com.think.design.feature.DemoFragment;
-import com.think.design.feature.DemoUtils;
-import java.util.List;
+        val verticalOrientationToggle =
+            view.findViewById<MaterialSwitch>(R.id.orientation_switch_toggle)
+        verticalOrientationToggle.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                for (toggleGroup in toggleGroups) {
+                    val orientation =
+                        if (isChecked) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL
+                    toggleGroup.setOrientation(orientation)
+                    for (i in 0..<toggleGroup.getChildCount()) {
+                        val inset = getInsetForOrientation(orientation)
+                        val button = toggleGroup.getChildAt(i) as MaterialButton
+                        button.setInsetBottom(inset)
+                        button.setInsetTop(inset)
+                        adjustParams(button.getLayoutParams(), orientation)
+                    }
 
-/** A fragment that displays a button toggle group demo for the Catalog app. */
-public class ButtonToggleGroupDemoFragment extends DemoFragment {
+                    toggleGroup.requestLayout()
+                }
+            })
 
-  private int defaultInset;
+        val groupEnabledToggle = view.findViewById<MaterialSwitch>(R.id.switch_enable)
+        groupEnabledToggle.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                for (toggleGroup in toggleGroups) {
+                    // Enable the button group if enable toggle is checked.
+                    toggleGroup.setEnabled(isChecked)
+                }
+            })
 
-  /**
-   * Create a Demo View with different types of {@link MaterialButtonToggleGroup} and a switch to
-   * toggle {@link MaterialButtonToggleGroup#setSelectionRequired(boolean)}
-   */
-  @Nullable
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view =
-        layoutInflater.inflate(getButtonToggleGroupContent(), viewGroup, /* attachToRoot= */ false);
-    MaterialSwitch requireSelectionToggle = view.findViewById(R.id.switch_toggle);
-    defaultInset = getResources().getDimensionPixelSize(com.google.android.material.R.dimen.mtrl_btn_inset);
-    List<MaterialButton> buttons = DemoUtils.findViewsWithType(view, MaterialButton.class);
-    List<MaterialButtonToggleGroup> toggleGroups =
-        DemoUtils.findViewsWithType(view, MaterialButtonToggleGroup.class);
-    requireSelectionToggle.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          for (MaterialButtonToggleGroup toggleGroup : toggleGroups) {
-            toggleGroup.setSelectionRequired(isChecked);
-          }
-        });
+        for (toggleGroup in toggleGroups) {
+            toggleGroup.addOnButtonCheckedListener(
+                OnButtonCheckedListener { group: MaterialButtonToggleGroup?, checkedId: Int, isChecked: Boolean ->
+                    val message = "button" + (if (isChecked) " checked" else " unchecked")
+                    Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+                })
+        }
 
-    MaterialSwitch verticalOrientationToggle = view.findViewById(R.id.orientation_switch_toggle);
-    verticalOrientationToggle.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          for (MaterialButtonToggleGroup toggleGroup : toggleGroups) {
-            int orientation = isChecked ? VERTICAL : HORIZONTAL;
-            toggleGroup.setOrientation(orientation);
-            for (int i = 0; i < toggleGroup.getChildCount(); ++i) {
-              int inset = getInsetForOrientation(orientation);
-              MaterialButton button = (MaterialButton) toggleGroup.getChildAt(i);
-              button.setInsetBottom(inset);
-              button.setInsetTop(inset);
-              adjustParams(button.getLayoutParams(), orientation);
-            }
+        val innerCornerSizeSlider = view.findViewById<Slider>(R.id.innerCornerSizeSlider)
+        innerCornerSizeSlider.addOnChangeListener(
+            Slider.OnChangeListener { slider: Slider?, value: Float, fromUser: Boolean ->
+                for (toggleGroup in toggleGroups) {
+                    toggleGroup.setInnerCornerSize(RelativeCornerSize(value / 100f))
+                }
+            })
 
-            toggleGroup.requestLayout();
-          }
-        });
-
-    MaterialSwitch groupEnabledToggle = view.findViewById(R.id.switch_enable);
-    groupEnabledToggle.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          for (MaterialButtonToggleGroup toggleGroup : toggleGroups) {
-            // Enable the button group if enable toggle is checked.
-            toggleGroup.setEnabled(isChecked);
-          }
-        });
-
-    for (MaterialButtonToggleGroup toggleGroup : toggleGroups) {
-      toggleGroup.addOnButtonCheckedListener(
-          (group, checkedId, isChecked) -> {
-            String message = "button" + (isChecked ? " checked" : " unchecked");
-            Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
-          });
+        val spacingSlider = view.findViewById<Slider>(R.id.spacingSlider)
+        spacingSlider.addOnChangeListener(
+            Slider.OnChangeListener { slider: Slider?, value: Float, fromUser: Boolean ->
+                val pixelsInDp = view.getResources().getDisplayMetrics().density
+                for (toggleGroup in toggleGroups) {
+                    toggleGroup.setSpacing((value * pixelsInDp).toInt())
+                }
+            })
+        val opticalCenterSwitch = view.findViewById<MaterialSwitch>(R.id.switch_optical_center)
+        opticalCenterSwitch.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                for (button in buttons) {
+                    button.setOpticalCenterEnabled(isChecked)
+                }
+            })
+        return view
     }
 
-    Slider innerCornerSizeSlider = view.findViewById(R.id.innerCornerSizeSlider);
-    innerCornerSizeSlider.addOnChangeListener(
-        (slider, value, fromUser) -> {
-          for (MaterialButtonToggleGroup toggleGroup : toggleGroups) {
-            toggleGroup.setInnerCornerSize(new RelativeCornerSize(value / 100f));
-          }
-        });
+    private fun getInsetForOrientation(orientation: Int): Int {
+        return if (orientation == LinearLayout.VERTICAL) 0 else defaultInset
+    }
 
-    Slider spacingSlider = view.findViewById(R.id.spacingSlider);
-    spacingSlider.addOnChangeListener(
-        (slider, value, fromUser) -> {
-          float pixelsInDp = view.getResources().getDisplayMetrics().density;
-          for (MaterialButtonToggleGroup toggleGroup : toggleGroups) {
-            toggleGroup.setSpacing((int) (value * pixelsInDp));
-          }
-        });
-    MaterialSwitch opticalCenterSwitch = view.findViewById(R.id.switch_optical_center);
-    opticalCenterSwitch.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          for (MaterialButton button : buttons) {
-            button.setOpticalCenterEnabled(isChecked);
-          }
-        });
-    return view;
-  }
+    @get:LayoutRes
+    protected val buttonToggleGroupContent: Int
+        get() = R.layout.cat_buttons_toggle_group_fragment
 
-  private int getInsetForOrientation(int orientation) {
-    return orientation == VERTICAL ? 0 : defaultInset;
-  }
-
-  private static void adjustParams(LayoutParams layoutParams, int orientation) {
-    layoutParams.width =
-        orientation == VERTICAL ? LayoutParams.MATCH_PARENT : LayoutParams.WRAP_CONTENT;
-  }
-
-  @LayoutRes
-  protected int getButtonToggleGroupContent() {
-    return R.layout.cat_buttons_toggle_group_fragment;
-  }
+    companion object {
+        private fun adjustParams(layoutParams: ViewGroup.LayoutParams, orientation: Int) {
+            layoutParams.width =
+                if (orientation == LinearLayout.VERTICAL) ViewGroup.LayoutParams.MATCH_PARENT else ViewGroup.LayoutParams.WRAP_CONTENT
+        }
+    }
 }

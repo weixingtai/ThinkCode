@@ -4,7 +4,7 @@
 
     <data />
 
-    <merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <merge>
 
         <com.google.android.material.bottomsheet.BottomSheetDragHandleView
             android:id="@+id/drag_handle"
