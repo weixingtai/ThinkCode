@@ -1,288 +1,284 @@
-package com.think.design.bottomnav
+/*
+ * Copyright 2017 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.CompoundButton
-import android.widget.Spinner
-import android.widget.TextView
-import androidx.annotation.LayoutRes
-import androidx.core.math.MathUtils
-import com.google.android.material.badge.BadgeDrawable
-import com.google.android.material.badge.BadgeDrawable.BadgeGravity
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.materialswitch.MaterialSwitch
-import com.google.android.material.navigation.NavigationBarView
-import com.think.design.R
-import com.think.design.feature.DemoFragment
-import com.think.design.feature.DemoUtils
+package com.think.design.bottomnav;
 
-abstract class BottomNavigationDemoFragment : DemoFragment() {
-    private val badgeGravityValues: IntArray? = intArrayOf(
+import com.think.design.R;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.core.math.MathUtils;
+import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.badge.BadgeDrawable.BadgeGravity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener;
+import com.think.design.feature.DemoFragment;
+import com.think.design.feature.DemoUtils;
+import java.util.List;
+
+/** A base class that provides a demo screen structure for a single bottom nav demo. */
+public abstract class BottomNavigationDemoFragment extends DemoFragment {
+
+  private static final int MAX_BOTTOM_NAV_CHILDREN = 5;
+
+  @Nullable
+  private final int[] badgeGravityValues =
+      new int[] {
         BadgeDrawable.TOP_END,
         BadgeDrawable.TOP_START,
-    )
+      };
 
-    private var numVisibleChildren = 3
-    @JvmField
-    protected var bottomNavigationViews: MutableList<BottomNavigationView>? = null
+  private int numVisibleChildren = 3;
+  protected List<BottomNavigationView> bottomNavigationViews;
 
-    override fun onCreateDemoView(
-        layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?
-    ): View {
-        val view =
-            layoutInflater.inflate(
-                R.layout.cat_bottom_nav_fragment, viewGroup, false /* attachToRoot */
-            )
-        initBottomNavs(layoutInflater, view)
-        initBottomNavDemoControls(view)
+  @Override
+  public View onCreateDemoView(
+      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
+    View view =
+        layoutInflater.inflate(
+            R.layout.cat_bottom_nav_fragment, viewGroup, false /* attachToRoot */);
+    initBottomNavs(layoutInflater, view);
+    initBottomNavDemoControls(view);
 
-        val navigationItemListener =
-            NavigationBarView.OnItemSelectedListener { item: MenuItem? ->
-                handleAllBottomNavSelections(item!!.getItemId())
-                val page1Text = view.findViewById<TextView>(R.id.page_1)
-                val page2Text = view.findViewById<TextView>(R.id.page_2)
-                val page3Text = view.findViewById<TextView>(R.id.page_3)
-                val page4Text = view.findViewById<TextView>(R.id.page_4)
-                val page5Text = view.findViewById<TextView>(R.id.page_5)
+    OnItemSelectedListener navigationItemListener =
+        item -> {
+          handleAllBottomNavSelections(item.getItemId());
 
-                val itemId = item.getItemId()
-                page1Text.setVisibility(if (itemId == R.id.action_page_1) View.VISIBLE else View.GONE)
-                page2Text.setVisibility(if (itemId == R.id.action_page_2) View.VISIBLE else View.GONE)
-                page3Text.setVisibility(if (itemId == R.id.action_page_3) View.VISIBLE else View.GONE)
-                page4Text.setVisibility(if (itemId == R.id.action_page_4) View.VISIBLE else View.GONE)
-                page5Text.setVisibility(if (itemId == R.id.action_page_5) View.VISIBLE else View.GONE)
+          TextView page1Text = view.findViewById(R.id.page_1);
+          TextView page2Text = view.findViewById(R.id.page_2);
+          TextView page3Text = view.findViewById(R.id.page_3);
+          TextView page4Text = view.findViewById(R.id.page_4);
+          TextView page5Text = view.findViewById(R.id.page_5);
 
-                clearAndHideBadge(item.getItemId())
-                false
-            }
-        setBottomNavListeners(navigationItemListener)
-        if (bundle == null) {
-            setupBadging()
+          int itemId = item.getItemId();
+          page1Text.setVisibility(itemId == R.id.action_page_1 ? View.VISIBLE : View.GONE);
+          page2Text.setVisibility(itemId == R.id.action_page_2 ? View.VISIBLE : View.GONE);
+          page3Text.setVisibility(itemId == R.id.action_page_3 ? View.VISIBLE : View.GONE);
+          page4Text.setVisibility(itemId == R.id.action_page_4 ? View.VISIBLE : View.GONE);
+          page5Text.setVisibility(itemId == R.id.action_page_5 ? View.VISIBLE : View.GONE);
+
+          clearAndHideBadge(item.getItemId());
+          return false;
+        };
+    setBottomNavListeners(navigationItemListener);
+    if (bundle == null) {
+      setupBadging();
+    }
+    return view;
+  }
+
+  private void setupBadging() {
+    for (BottomNavigationView bn : bottomNavigationViews) {
+      int menuItemId = bn.getMenu().getItem(0).getItemId();
+      // An icon only badge will be displayed.
+      BadgeDrawable badge = bn.getOrCreateBadge(menuItemId);
+      badge.setVisible(true);
+
+      menuItemId = bn.getMenu().getItem(1).getItemId();
+      // A badge with the text "99" will be displayed.
+      badge = bn.getOrCreateBadge(menuItemId);
+      badge.setVisible(true);
+      badge.setNumber(99);
+
+      menuItemId = bn.getMenu().getItem(2).getItemId();
+      // A badge with the text "999+" will be displayed.
+      badge = bn.getOrCreateBadge(menuItemId);
+      badge.setVisible(true);
+      badge.setNumber(9999);
+    }
+  }
+
+  private void updateBadgeNumber(int delta) {
+    for (BottomNavigationView bn : bottomNavigationViews) {
+      // Increase the badge number on the first menu item.
+      MenuItem menuItem = bn.getMenu().getItem(0);
+      int menuItemId = menuItem.getItemId();
+      BadgeDrawable badgeDrawable = bn.getOrCreateBadge(menuItemId);
+      // In case the first menu item has been selected and the badge was hidden, call
+      // BadgeDrawable#setVisible() to ensure the badge is visible.
+      badgeDrawable.setVisible(true);
+      badgeDrawable.setNumber(badgeDrawable.getNumber() + delta);
+    }
+  }
+
+  private void updateBadgeGravity(@BadgeGravity int badgeGravity) {
+    for (BottomNavigationView bn : bottomNavigationViews) {
+      for (int i = 0; i < MAX_BOTTOM_NAV_CHILDREN; i++) {
+        // Update the badge gravity on all the menu items.
+        MenuItem menuItem = bn.getMenu().getItem(i);
+        int menuItemId = menuItem.getItemId();
+        BadgeDrawable badgeDrawable = bn.getBadge(menuItemId);
+        if (badgeDrawable != null) {
+          badgeDrawable.setBadgeGravity(badgeGravity);
         }
-        return view
+      }
     }
+  }
 
-    private fun setupBadging() {
-        for (bn in bottomNavigationViews!!) {
-            var menuItemId = bn.getMenu().getItem(0).getItemId()
-            // An icon only badge will be displayed.
-            var badge = bn.getOrCreateBadge(menuItemId)
-            badge.setVisible(true)
-
-            menuItemId = bn.getMenu().getItem(1).getItemId()
-            // A badge with the text "99" will be displayed.
-            badge = bn.getOrCreateBadge(menuItemId)
-            badge.setVisible(true)
-            badge.setNumber(99)
-
-            menuItemId = bn.getMenu().getItem(2).getItemId()
-            // A badge with the text "999+" will be displayed.
-            badge = bn.getOrCreateBadge(menuItemId)
-            badge.setVisible(true)
-            badge.setNumber(9999)
+  private void clearAndHideBadge(int menuItemId) {
+    for (BottomNavigationView bn : bottomNavigationViews) {
+      MenuItem menuItem = bn.getMenu().getItem(0);
+      if (menuItem.getItemId() == menuItemId) {
+        // Hide instead of removing the badge associated with the first menu item because the user
+        // can trigger it to be displayed again.
+        BadgeDrawable badgeDrawable = bn.getBadge(menuItemId);
+        if (badgeDrawable != null) {
+          badgeDrawable.setVisible(false);
+          badgeDrawable.clearNumber();
         }
+      } else {
+        // Remove the badge associated with this menu item because cannot be displayed again.
+        bn.removeBadge(menuItemId);
+      }
     }
+  }
 
-    private fun updateBadgeNumber(delta: Int) {
-        for (bn in bottomNavigationViews!!) {
-            // Increase the badge number on the first menu item.
-            val menuItem = bn.getMenu().getItem(0)
-            val menuItemId = menuItem.getItemId()
-            val badgeDrawable = bn.getOrCreateBadge(menuItemId)
-            // In case the first menu item has been selected and the badge was hidden, call
-            // BadgeDrawable#setVisible() to ensure the badge is visible.
-            badgeDrawable.setVisible(true)
-            badgeDrawable.setNumber(badgeDrawable.getNumber() + delta)
-        }
+  private void handleAllBottomNavSelections(int itemId) {
+    for (BottomNavigationView bn : bottomNavigationViews) {
+      handleBottomNavItemSelections(bn, itemId);
     }
+  }
 
-    private fun updateBadgeGravity(@BadgeGravity badgeGravity: Int) {
-        for (bn in bottomNavigationViews!!) {
-            for (i in 0..<MAX_BOTTOM_NAV_CHILDREN) {
-                // Update the badge gravity on all the menu items.
-                val menuItem = bn.getMenu().getItem(i)
-                val menuItemId = menuItem.getItemId()
-                val badgeDrawable = bn.getBadge(menuItemId)
-                if (badgeDrawable != null) {
-                    badgeDrawable.setBadgeGravity(badgeGravity)
-                }
-            }
-        }
+  private void handleBottomNavItemSelections(BottomNavigationView bn, int itemId) {
+    bn.getMenu().findItem(itemId).setChecked(true);
+  }
+
+  protected void initBottomNavDemoControls(View view) {
+    initAddNavItemButton(view.findViewById(R.id.add_button));
+    initRemoveNavItemButton(view.findViewById(R.id.remove_button));
+    initAddIncreaseBadgeNumberButton(view.findViewById(R.id.increment_badge_number_button));
+
+    Spinner badgeGravitySpinner = view.findViewById(R.id.badge_gravity_spinner);
+    ArrayAdapter<CharSequence> adapter =
+        ArrayAdapter.createFromResource(
+            badgeGravitySpinner.getContext(),
+            R.array.cat_bottom_nav_badge_gravity_titles,
+            android.R.layout.simple_spinner_item);
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    badgeGravitySpinner.setAdapter(adapter);
+
+    badgeGravitySpinner.setOnItemSelectedListener(
+        new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            updateBadgeGravity(
+                badgeGravityValues[MathUtils.clamp(position, 0, badgeGravityValues.length - 1)]);
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+    MaterialSwitch materialSwitch = view.findViewById(R.id.bold_text_switch);
+    materialSwitch.setChecked(true);
+    materialSwitch.setOnCheckedChangeListener(
+        (buttonView, isChecked) -> {
+          for (BottomNavigationView bn : bottomNavigationViews) {
+            bn.setItemTextAppearanceActiveBoldEnabled(isChecked);
+          }
+        });
+  }
+
+  private void initAddIncreaseBadgeNumberButton(Button incrementBadgeNumberButton) {
+    incrementBadgeNumberButton.setOnClickListener(v -> updateBadgeNumber(1));
+  }
+
+  private void initAddNavItemButton(Button addNavItemButton) {
+    addNavItemButton.setOnClickListener(
+        v -> {
+          if (numVisibleChildren < MAX_BOTTOM_NAV_CHILDREN) {
+            addNavItemsToBottomNavs();
+            numVisibleChildren++;
+          }
+        });
+  }
+
+  private void initRemoveNavItemButton(Button removeNavItemButton) {
+    removeNavItemButton.setOnClickListener(
+        v -> {
+          if (numVisibleChildren > 0) {
+            numVisibleChildren--;
+            removeNavItemsFromBottomNavs();
+          }
+        });
+  }
+
+  private void setBottomNavListeners(OnItemSelectedListener listener) {
+    for (BottomNavigationView bn : bottomNavigationViews) {
+      bn.setOnItemSelectedListener(listener);
     }
+  }
 
-    private fun clearAndHideBadge(menuItemId: Int) {
-        for (bn in bottomNavigationViews!!) {
-            val menuItem = bn.getMenu().getItem(0)
-            if (menuItem.getItemId() == menuItemId) {
-                // Hide instead of removing the badge associated with the first menu item because the user
-                // can trigger it to be displayed again.
-                val badgeDrawable = bn.getBadge(menuItemId)
-                if (badgeDrawable != null) {
-                    badgeDrawable.setVisible(false)
-                    badgeDrawable.clearNumber()
-                }
-            } else {
-                // Remove the badge associated with this menu item because cannot be displayed again.
-                bn.removeBadge(menuItemId)
-            }
-        }
+  private void removeNavItemsFromBottomNavs() {
+    adjustAllBottomNavItemsVisibilities(false);
+  }
+
+  private void addNavItemsToBottomNavs() {
+    adjustAllBottomNavItemsVisibilities(true);
+  }
+
+  private void adjustAllBottomNavItemsVisibilities(boolean visibility) {
+    for (BottomNavigationView bn : bottomNavigationViews) {
+      adjustBottomNavItemsVisibility(bn, visibility);
     }
+  }
 
-    private fun handleAllBottomNavSelections(itemId: Int) {
-        for (bn in bottomNavigationViews!!) {
-            handleBottomNavItemSelections(bn, itemId)
-        }
+  private void adjustBottomNavItemsVisibility(BottomNavigationView bn, boolean visibility) {
+    bn.getMenu().getItem(numVisibleChildren).setVisible(visibility);
+  }
+
+  private void initBottomNavs(LayoutInflater layoutInflater, View view) {
+    inflateBottomNavs(layoutInflater, view.findViewById(R.id.bottom_navs));
+    inflateBottomNavDemoControls(layoutInflater, view.findViewById(R.id.demo_controls));
+    addBottomNavsToList(view);
+  }
+
+  private void inflateBottomNavDemoControls(LayoutInflater layoutInflater, ViewGroup content) {
+    @LayoutRes int demoControls = getBottomNavDemoControlsLayout();
+    if (demoControls != 0) {
+      content.addView(layoutInflater.inflate(getBottomNavDemoControlsLayout(), content, false));
     }
+  }
 
-    private fun handleBottomNavItemSelections(bn: BottomNavigationView, itemId: Int) {
-        bn.getMenu().findItem(itemId).setChecked(true)
-    }
+  private void inflateBottomNavs(LayoutInflater layoutInflater, ViewGroup content) {
+    content.addView(layoutInflater.inflate(getBottomNavsContent(), content, false));
+  }
 
-    protected open fun initBottomNavDemoControls(view: View) {
-        initAddNavItemButton(view.findViewById<Button?>(R.id.add_button)!!)
-        initRemoveNavItemButton(view.findViewById<Button?>(R.id.remove_button)!!)
-        initAddIncreaseBadgeNumberButton(view.findViewById<Button?>(R.id.increment_badge_number_button)!!)
+  private void addBottomNavsToList(View view) {
+    bottomNavigationViews = DemoUtils.findViewsWithType(view, BottomNavigationView.class);
+  }
 
-        val badgeGravitySpinner = view.findViewById<Spinner>(R.id.badge_gravity_spinner)
-        val adapter =
-            ArrayAdapter.createFromResource(
-                badgeGravitySpinner.getContext(),
-                R.array.cat_bottom_nav_badge_gravity_titles,
-                android.R.layout.simple_spinner_item
-            )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        badgeGravitySpinner.setAdapter(adapter)
+  @LayoutRes
+  protected int getBottomNavsContent() {
+    return R.layout.cat_bottom_navs;
+  }
 
-        badgeGravitySpinner.setOnItemSelectedListener(
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    updateBadgeGravity(
-                        badgeGravityValues!![MathUtils.clamp(
-                            position,
-                            0,
-                            badgeGravityValues.size - 1
-                        )]
-                    )
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-            })
-
-        val materialSwitch = view.findViewById<MaterialSwitch>(R.id.bold_text_switch)
-        materialSwitch.setChecked(true)
-        materialSwitch.setOnCheckedChangeListener(
-            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
-                for (bn in bottomNavigationViews!!) {
-                    bn.setItemTextAppearanceActiveBoldEnabled(isChecked)
-                }
-            })
-    }
-
-    private fun initAddIncreaseBadgeNumberButton(incrementBadgeNumberButton: Button) {
-        incrementBadgeNumberButton.setOnClickListener(View.OnClickListener { v: View? ->
-            updateBadgeNumber(
-                1
-            )
-        })
-    }
-
-    private fun initAddNavItemButton(addNavItemButton: Button) {
-        addNavItemButton.setOnClickListener(
-            View.OnClickListener { v: View? ->
-                if (numVisibleChildren < MAX_BOTTOM_NAV_CHILDREN) {
-                    addNavItemsToBottomNavs()
-                    numVisibleChildren++
-                }
-            })
-    }
-
-    private fun initRemoveNavItemButton(removeNavItemButton: Button) {
-        removeNavItemButton.setOnClickListener(
-            View.OnClickListener { v: View? ->
-                if (numVisibleChildren > 0) {
-                    numVisibleChildren--
-                    removeNavItemsFromBottomNavs()
-                }
-            })
-    }
-
-    private fun setBottomNavListeners(listener: NavigationBarView.OnItemSelectedListener?) {
-        for (bn in bottomNavigationViews!!) {
-            bn.setOnItemSelectedListener(listener)
-        }
-    }
-
-    private fun removeNavItemsFromBottomNavs() {
-        adjustAllBottomNavItemsVisibilities(false)
-    }
-
-    private fun addNavItemsToBottomNavs() {
-        adjustAllBottomNavItemsVisibilities(true)
-    }
-
-    private fun adjustAllBottomNavItemsVisibilities(visibility: Boolean) {
-        for (bn in bottomNavigationViews!!) {
-            adjustBottomNavItemsVisibility(bn, visibility)
-        }
-    }
-
-    private fun adjustBottomNavItemsVisibility(bn: BottomNavigationView, visibility: Boolean) {
-        bn.getMenu().getItem(numVisibleChildren).setVisible(visibility)
-    }
-
-    private fun initBottomNavs(layoutInflater: LayoutInflater, view: View) {
-        inflateBottomNavs(layoutInflater, view.findViewById<ViewGroup?>(R.id.bottom_navs)!!)
-        inflateBottomNavDemoControls(
-            layoutInflater,
-            view.findViewById<ViewGroup?>(R.id.demo_controls)!!
-        )
-        addBottomNavsToList(view)
-    }
-
-    private fun inflateBottomNavDemoControls(layoutInflater: LayoutInflater, content: ViewGroup) {
-        @LayoutRes val demoControls = this.bottomNavDemoControlsLayout
-        if (demoControls != 0) {
-            content.addView(
-                layoutInflater.inflate(
-                    this.bottomNavDemoControlsLayout,
-                    content,
-                    false
-                )
-            )
-        }
-    }
-
-    private fun inflateBottomNavs(layoutInflater: LayoutInflater, content: ViewGroup) {
-        content.addView(layoutInflater.inflate(this.bottomNavsContent, content, false))
-    }
-
-    private fun addBottomNavsToList(view: View?) {
-        bottomNavigationViews = DemoUtils.findViewsWithType<BottomNavigationView>(
-            view,
-            BottomNavigationView::class.java
-        )
-    }
-
-    @get:LayoutRes
-    protected open val bottomNavsContent: Int
-        get() = R.layout.cat_bottom_navs
-
-    @get:LayoutRes
-    protected open val bottomNavDemoControlsLayout: Int
-        get() = 0
-
-    companion object {
-        private const val MAX_BOTTOM_NAV_CHILDREN = 5
-    }
+  @LayoutRes
+  protected int getBottomNavDemoControlsLayout() {
+    return 0;
+  }
 }
