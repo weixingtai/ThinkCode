@@ -1,41 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright 2021 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
 
 <resources>
 
-    <string name="cat_adaptive_title" description="自适应组件演示的标题 [字符限制=无]">自适应布局</string>
-    <string name="cat_adaptive_description" description="自适应组件演示的描述 [字符限制=无]">自适应布局可适配不同设备的固有差异（如更大的屏幕空间），让界面在各类不同形态的设备上都能保持连贯、统一的体验。</string>
-    <string name="cat_adaptive_fab_content_desc" description="悬浮按钮的内容描述 [字符限制=无]">悬浮操作按钮</string>
+  <string name="cat_adaptive_title" description="自适应组件演示的标题 [字符限制=无]">自适应布局</string>
+  <string name="cat_adaptive_description" description="自适应组件演示的描述 [字符限制=无]">自适应布局可适配不同设备的固有差异（如更大的屏幕空间），让界面在各类不同形态的设备上都能保持连贯、统一的体验。</string>
+  <string name="cat_adaptive_fab_content_desc" description="悬浮按钮的内容描述 [字符限制=无]">悬浮操作按钮</string>
 
-    <string name="cat_adaptive_nav_button" description="自适应布局的导航按钮。[字符限制=50]">展开/收起导航栏</string>
-    <string name="cat_adaptive_menu_page_1_title" description="导航栏选项中某页面的标题。[字符限制=50]">页面 1</string>
-    <string name="cat_adaptive_menu_page_2_title" description="导航栏选项中某页面的标题。[字符限制=50]">页面 2</string>
-    <string name="cat_adaptive_menu_page_3_title" description="导航栏选项中某页面的标题。[字符限制=50]">页面 3</string>
-    <string name="cat_adaptive_menu_page_4_title" description="导航栏选项中某页面的标题。[字符限制=50]">页面 4</string>
-    <string name="cat_adaptive_fab" description="悬浮操作按钮的标题。[字符限制=50]">悬浮操作按钮</string>
-    <string name="cat_adaptive_nav_fab_text" description="导航栏悬浮操作按钮的标题。[字符限制=50]">撰写</string>
+  <string name="cat_adaptive_nav_button" description="自适应布局的导航按钮。[字符限制=50]">展开/收起导航栏</string>
+  <string name="cat_adaptive_menu_page_1_title" description="导航栏选项中某页面的标题。[字符限制=50]">页面 1</string>
+  <string name="cat_adaptive_menu_page_2_title" description="导航栏选项中某页面的标题。[字符限制=50]">页面 2</string>
+  <string name="cat_adaptive_menu_page_3_title" description="导航栏选项中某页面的标题。[字符限制=50]">页面 3</string>
+  <string name="cat_adaptive_menu_page_4_title" description="导航栏选项中某页面的标题。[字符限制=50]">页面 4</string>
+  <string name="cat_adaptive_fab" description="悬浮操作按钮的标题。[字符限制=50]">悬浮操作按钮</string>
+  <string name="cat_adaptive_nav_fab_text" description="导航栏悬浮操作按钮的标题。[字符限制=50]">撰写</string>
 
-    <string name="cat_feed_title" description="信息流组件演示的标题 [字符限制=无]">信息流演示</string>
-    <string name="cat_feed_fragment_title" description="信息流碎片页元素的标题 [字符限制=无]">标题</string>
-    <string name="cat_feed_fragment_subhead" description="信息流碎片页的副标题 [字符限制=无]">副标题</string>
-    <string name="cat_feed_sample_image_content_desc" description="信息流演示中示例图片的描述 [字符限制=无]">示例图片</string>
+  <string name="cat_feed_title" description="信息流组件演示的标题 [字符限制=无]">信息流演示</string>
+  <string name="cat_feed_fragment_title" description="信息流碎片页元素的标题 [字符限制=无]">标题</string>
+  <string name="cat_feed_fragment_subhead" description="信息流碎片页的副标题 [字符限制=无]">副标题</string>
+  <string name="cat_feed_sample_image_content_desc" description="信息流演示中示例图片的描述 [字符限制=无]">示例图片</string>
 
-    <string name="cat_list_view_title" description="列表视图组件演示的标题 [字符限制=无]">列表视图演示</string>
-    <string name="cat_list_view_inbox_title" description="收件箱的标题。[字符限制=无]">收件箱</string>
-    <string name="cat_list_view_email_text" description="邮件正文内容 [字符限制=无]">
+  <string name="cat_list_view_title" description="列表视图组件演示的标题 [字符限制=无]">列表视图演示</string>
+  <string name="cat_list_view_inbox_title" description="收件箱的标题。[字符限制=无]">收件箱</string>
+  <string name="cat_list_view_email_text" description="邮件正文内容 [字符限制=无]">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     Fringilla est ullamcorper eget nulla facilisi etiam dignissim. Tellus integer feugiat scelerisque varius morbi enim nunc faucibus a.
     Nisi lacus sed viverra tellus in hac. Ridiculus mus mauris vitae ultricies leo integer malesuada.</string>
-    <string name="cat_list_view_email_timestamp" description="邮件的时间戳。[字符限制=50]">刚刚</string>
-    <string name="cat_list_view_email_title" description="邮件的标题。[字符限制=无]">邮件标题</string>
-    <string name="cat_list_view_sender_title" description="邮件发送者的姓名。[字符限制=无]">约翰·多伊</string>
-    <string name="cat_list_view_menu_archive_button" description="归档邮件按钮的名称。[字符限制=50]">归档</string>
-    <string name="cat_list_view_menu_delete_button" description="删除邮件按钮的名称。[字符限制=50]">删除</string>
-    <string name="cat_list_view_menu_unread_button" description="标记邮件为未读按钮的名称。[字符限制=50]">标记为未读</string>
+  <string name="cat_list_view_email_timestamp" description="邮件的时间戳。[字符限制=50]">刚刚</string>
+  <string name="cat_list_view_email_title" description="邮件的标题。[字符限制=无]">邮件标题</string>
+  <string name="cat_list_view_sender_title" description="邮件发送者的姓名。[字符限制=无]">约翰·多伊</string>
+  <string name="cat_list_view_menu_archive_button" description="归档邮件按钮的名称。[字符限制=50]">归档</string>
+  <string name="cat_list_view_menu_delete_button" description="删除邮件按钮的名称。[字符限制=50]">删除</string>
+  <string name="cat_list_view_menu_unread_button" description="标记邮件为未读按钮的名称。[字符限制=50]">标记为未读</string>
 
-    <string name="cat_hero_title" description="焦点视图组件演示的标题 [字符限制=无]">单视图焦点演示</string>
-    <string name="cat_hero_fragment_title" description="焦点碎片页元素的标题 [字符限制=无]">标题</string>
+  <string name="cat_hero_title" description="焦点视图组件演示的标题 [字符限制=无]">单视图焦点演示</string>
+  <string name="cat_hero_fragment_title" description="焦点碎片页元素的标题 [字符限制=无]">标题</string>
 
-    <string name="cat_supporting_panel_title" description="辅助面板组件演示的标题 [字符限制=无]">辅助面板演示</string>
-    <string name="cat_supporting_panel_fragment_title" description="辅助面板碎片页元素的标题 [字符限制=无]">标题</string>
+  <string name="cat_supporting_panel_title" description="辅助面板组件演示的标题 [字符限制=无]">辅助面板演示</string>
+  <string name="cat_supporting_panel_fragment_title" description="辅助面板碎片页元素的标题 [字符限制=无]">标题</string>
 
 </resources>
