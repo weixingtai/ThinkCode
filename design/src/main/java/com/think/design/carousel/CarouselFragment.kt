@@ -1,110 +1,77 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.think.design.carousel
 
-package com.think.design.carousel;
+import androidx.fragment.app.Fragment
+import com.think.design.R
+import com.think.design.application.scope.ActivityScope
+import com.think.design.application.scope.FragmentScope
+import com.think.design.feature.Demo
+import com.think.design.feature.DemoLandingFragment
+import com.think.design.feature.FeatureDemo
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import java.util.Arrays
 
-import com.think.design.R;
-
-import androidx.fragment.app.Fragment;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import com.think.design.application.scope.ActivityScope;
-import com.think.design.application.scope.FragmentScope;
-import com.think.design.feature.Demo;
-import com.think.design.feature.DemoLandingFragment;
-import com.think.design.feature.FeatureDemo;
-import java.util.Arrays;
-import java.util.List;
-
-/** A landing fragment that links to Carousel demos for the Catalog app. */
-public class CarouselFragment extends DemoLandingFragment {
-
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_carousel_title;
-  }
-
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_carousel_description;
-  }
-
-  @NonNull
-  @Override
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Nullable
-      @Override
-      public Fragment createFragment() {
-        return new CarouselMainDemoFragment();
-      }
-    };
-  }
-
-  @NonNull
-  @Override
-  public List<Demo> getAdditionalDemos() {
-    return Arrays.asList(
-        new Demo(R.string.cat_carousel_multi_browse_demo_title) {
-          @Override
-          public Fragment createFragment() {
-            return new MultiBrowseCarouselDemoFragment();
-          }
-        },
-        new Demo(R.string.cat_carousel_hero_demo_title) {
-          @Override
-          public Fragment createFragment() {
-            return new HeroCarouselDemoFragment();
-          }
-        },
-        new Demo(R.string.cat_carousel_fullscreen_demo_title) {
-          @Override
-          public Fragment createFragment() {
-            return new FullScreenStrategyDemoFragment();
-          }
-        },
-        new Demo(R.string.cat_carousel_uncontained_demo_title) {
-          @Override
-          public Fragment createFragment() {
-            return new UncontainedCarouselDemoFragment();
-          }
-        });
-  }
-
-  /** The Dagger module for {@link CarouselFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract CarouselFragment contributeInjector();
-
-    @IntoSet
-    @Provides
-    @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_carousel_title, R.drawable.ic_lists) {
-        @Override
-        public Fragment createFragment() {
-          return new CarouselFragment();
-        }
-      };
+class CarouselFragment : DemoLandingFragment() {
+    override fun getTitleResId(): Int {
+        return R.string.cat_carousel_title
     }
-  }
+
+    override fun getDescriptionResId(): Int {
+        return R.string.cat_carousel_description
+    }
+
+    override fun getMainDemo(): Demo {
+        return object : Demo() {
+            override fun createFragment(): Fragment? {
+                return CarouselMainDemoFragment()
+            }
+        }
+    }
+
+    override fun getAdditionalDemos(): MutableList<Demo?> {
+        return Arrays.asList<Demo?>(
+            object : Demo(R.string.cat_carousel_multi_browse_demo_title) {
+                override fun createFragment(): Fragment? {
+                    return MultiBrowseCarouselDemoFragment()
+                }
+            },
+            object : Demo(R.string.cat_carousel_hero_demo_title) {
+                override fun createFragment(): Fragment? {
+                    return HeroCarouselDemoFragment()
+                }
+            },
+            object : Demo(R.string.cat_carousel_fullscreen_demo_title) {
+                override fun createFragment(): Fragment? {
+                    return FullScreenStrategyDemoFragment()
+                }
+            },
+            object : Demo(R.string.cat_carousel_uncontained_demo_title) {
+                override fun createFragment(): Fragment? {
+                    return UncontainedCarouselDemoFragment()
+                }
+            })
+    }
+
+    /** The Dagger module for [CarouselFragment] dependencies.  */
+    @dagger.Module
+    abstract class Module {
+        @FragmentScope
+        @ContributesAndroidInjector
+        abstract fun contributeInjector(): CarouselFragment?
+
+        companion object {
+            @JvmStatic
+            @IntoSet
+            @Provides
+            @ActivityScope
+            fun provideFeatureDemo(): FeatureDemo {
+                return object : FeatureDemo(R.string.cat_carousel_title, R.drawable.ic_lists) {
+                    override fun createFragment(): Fragment {
+                        return CarouselFragment()
+                    }
+                }
+            }
+        }
+    }
 }

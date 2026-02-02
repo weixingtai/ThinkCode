@@ -1,204 +1,193 @@
-/*
- * Copyright 2023 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.think.design.carousel
 
-package com.think.design.carousel;
+import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
+import android.widget.AutoCompleteTextView
+import android.widget.Button
+import android.widget.CompoundButton
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.carousel.CarouselLayoutManager
+import com.google.android.material.carousel.CarouselSnapHelper
+import com.google.android.material.carousel.FullScreenCarouselStrategy
+import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.materialswitch.MaterialSwitch
+import com.google.android.material.slider.Slider
+import com.think.design.R
+import com.think.design.carousel.CarouselData.createItems
+import com.think.design.feature.DemoFragment
+import com.think.design.windowpreferences.WindowPreferencesManager
 
-import com.think.design.R;
+class FullScreenStrategyDemoFragment : DemoFragment() {
+    private var verticalDivider: MaterialDividerItemDecoration? = null
+    private var bottomSheetDialog: BottomSheetDialog? = null
 
-import android.annotation.SuppressLint;
-import android.content.pm.ActivityInfo;
-import android.os.Bundle;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.carousel.CarouselLayoutManager;
-import com.google.android.material.carousel.CarouselSnapHelper;
-import com.google.android.material.carousel.FullScreenCarouselStrategy;
-import com.google.android.material.divider.MaterialDividerItemDecoration;
-import com.google.android.material.materialswitch.MaterialSwitch;
-import com.google.android.material.slider.Slider;
-import com.google.android.material.slider.Slider.OnSliderTouchListener;
-import com.think.design.feature.DemoFragment;
-import com.think.design.windowpreferences.WindowPreferencesManager;
+    @SuppressLint("SourceLockedOrientationActivity")
+    override fun onCreateDemoView(
+        layoutInflater: LayoutInflater,
+        viewGroup: ViewGroup?,
+        bundle: Bundle?
+    ): View {
+        // We want to force portrait mode for the fullscreen vertical carousel
+        requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
-/** A fragment that displays the fullscreen variant of the Carousel. */
-public class FullScreenStrategyDemoFragment extends DemoFragment {
+        return layoutInflater.inflate(
+            R.layout.cat_carousel_full_screen_fragment, viewGroup, false /* attachToRoot */
+        )
+    }
 
-  private MaterialDividerItemDecoration verticalDivider;
-  private BottomSheetDialog bottomSheetDialog;
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+    }
 
-  @NonNull
-  @Override
-  @SuppressLint("SourceLockedOrientationActivity")
-  public View onCreateDemoView(
-      @NonNull LayoutInflater layoutInflater,
-      @Nullable ViewGroup viewGroup,
-      @Nullable Bundle bundle) {
-    // We want to force portrait mode for the fullscreen vertical carousel
-    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    @SuppressLint("RestrictedApi")
+    override fun onViewCreated(view: View, bundle: Bundle?) {
+        super.onViewCreated(view, bundle)
 
-    return layoutInflater.inflate(
-        R.layout.cat_carousel_full_screen_fragment, viewGroup, false /* attachToRoot */);
-  }
+        bottomSheetDialog = BottomSheetDialog(view.getContext())
+        bottomSheetDialog!!.setContentView(R.layout.cat_carousel_bottom_sheet_contents)
+        // Opt in to perform swipe to dismiss animation when dismissing bottom sheet dialog.
+        bottomSheetDialog!!.setDismissWithAnimation(true)
 
-  @Override
-  public void onDestroyView() {
-    super.onDestroyView();
-    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-  }
+        WindowPreferencesManager(requireContext())
+            .applyEdgeToEdgePreference(bottomSheetDialog!!.getWindow())
+        verticalDivider =
+            MaterialDividerItemDecoration(requireContext(), MaterialDividerItemDecoration.VERTICAL)
 
-  @Override
-  @SuppressWarnings("RestrictTo")
-  public void onViewCreated(@NonNull View view, @Nullable Bundle bundle) {
-    super.onViewCreated(view, bundle);
-
-    bottomSheetDialog = new BottomSheetDialog(view.getContext());
-    bottomSheetDialog.setContentView(R.layout.cat_carousel_bottom_sheet_contents);
-    // Opt in to perform swipe to dismiss animation when dismissing bottom sheet dialog.
-    bottomSheetDialog.setDismissWithAnimation(true);
-
-    new WindowPreferencesManager(requireContext())
-        .applyEdgeToEdgePreference(bottomSheetDialog.getWindow());
-    verticalDivider =
-        new MaterialDividerItemDecoration(requireContext(), MaterialDividerItemDecoration.VERTICAL);
-
-    Button showBottomSheetButton = view.findViewById(R.id.show_bottomsheet_button);
-    showBottomSheetButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        bottomSheetDialog.show();
-      }
-    });
-
-    MaterialSwitch debugSwitch = bottomSheetDialog.findViewById(R.id.debug_switch);
-    MaterialSwitch drawDividers = bottomSheetDialog.findViewById(R.id.draw_dividers_switch);
-    MaterialSwitch enableFlingSwitch = bottomSheetDialog.findViewById(R.id.enable_fling_switch);
-    AutoCompleteTextView itemCountDropdown =
-        bottomSheetDialog.findViewById(R.id.item_count_dropdown);
-    Slider positionSlider = bottomSheetDialog.findViewById(R.id.position_slider);
-
-    // A vertical fullscreen carousel
-    RecyclerView fullscreenRecyclerView =
-        view.findViewById(R.id.fullscreen_carousel_recycler_view);
-    CarouselLayoutManager carouselLayoutManager =
-        new CarouselLayoutManager(new FullScreenCarouselStrategy(), RecyclerView.VERTICAL);
-    carouselLayoutManager.setDebuggingEnabled(
-        fullscreenRecyclerView, debugSwitch.isChecked());
-    fullscreenRecyclerView.setLayoutManager(carouselLayoutManager);
-    fullscreenRecyclerView.setNestedScrollingEnabled(false);
-
-    debugSwitch.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          carouselLayoutManager.setOrientation(CarouselLayoutManager.VERTICAL);
-          fullscreenRecyclerView.setBackgroundResource(
-              isChecked ? R.drawable.dashed_outline_rectangle : 0);
-          carouselLayoutManager.setDebuggingEnabled(
-              fullscreenRecyclerView, isChecked);
-        });
-
-    drawDividers.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          if (isChecked) {
-            fullscreenRecyclerView.addItemDecoration(verticalDivider);
-          } else {
-            fullscreenRecyclerView.removeItemDecoration(verticalDivider);
-          }
-        });
-
-    CarouselAdapter adapter =
-        new CarouselAdapter(
-            (item, position) -> fullscreenRecyclerView.scrollToPosition(position),
-            R.layout.cat_carousel_item_vertical);
-    fullscreenRecyclerView.addOnScrollListener(
-        new RecyclerView.OnScrollListener() {
-          private boolean dragged = false;
-
-          @Override
-          public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-            if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-              dragged = true;
-            } else if (dragged && newState == RecyclerView.SCROLL_STATE_IDLE) {
-              if (recyclerView.computeVerticalScrollRange() != 0) {
-                positionSlider.setValue(
-                    (adapter.getItemCount() - 1)
-                            * recyclerView.computeVerticalScrollOffset()
-                            / recyclerView.computeVerticalScrollRange()
-                        + 1);
-              }
-              dragged = false;
+        val showBottomSheetButton = view.findViewById<Button>(R.id.show_bottomsheet_button)
+        showBottomSheetButton.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                bottomSheetDialog!!.show()
             }
-          }
-        });
+        })
 
-    SnapHelper flingDisabledSnapHelper = new CarouselSnapHelper();
-    SnapHelper flingEnabledSnapHelper = new CarouselSnapHelper(false);
+        val debugSwitch = bottomSheetDialog!!.findViewById<MaterialSwitch?>(R.id.debug_switch)
+        val drawDividers =
+            bottomSheetDialog!!.findViewById<MaterialSwitch?>(R.id.draw_dividers_switch)
+        val enableFlingSwitch =
+            bottomSheetDialog!!.findViewById<MaterialSwitch?>(R.id.enable_fling_switch)
+        val itemCountDropdown =
+            bottomSheetDialog!!.findViewById<AutoCompleteTextView?>(R.id.item_count_dropdown)
+        val positionSlider = bottomSheetDialog!!.findViewById<Slider?>(R.id.position_slider)
 
-    flingDisabledSnapHelper.attachToRecyclerView(fullscreenRecyclerView);
+        // A vertical fullscreen carousel
+        val fullscreenRecyclerView =
+            view.findViewById<RecyclerView>(R.id.fullscreen_carousel_recycler_view)
+        val carouselLayoutManager =
+            CarouselLayoutManager(FullScreenCarouselStrategy(), RecyclerView.VERTICAL)
+        carouselLayoutManager.setDebuggingEnabled(
+            fullscreenRecyclerView, debugSwitch!!.isChecked()
+        )
+        fullscreenRecyclerView.setLayoutManager(carouselLayoutManager)
+        fullscreenRecyclerView.setNestedScrollingEnabled(false)
 
-    enableFlingSwitch.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          if (isChecked) {
-            flingDisabledSnapHelper.attachToRecyclerView(null);
-            flingEnabledSnapHelper.attachToRecyclerView(fullscreenRecyclerView);
-          } else {
-            flingEnabledSnapHelper.attachToRecyclerView(null);
-            flingDisabledSnapHelper.attachToRecyclerView(fullscreenRecyclerView);
-          }
-        });
+        debugSwitch.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                carouselLayoutManager.setOrientation(CarouselLayoutManager.VERTICAL)
+                fullscreenRecyclerView.setBackgroundResource(
+                    if (isChecked) R.drawable.dashed_outline_rectangle else 0
+                )
+                carouselLayoutManager.setDebuggingEnabled(
+                    fullscreenRecyclerView, isChecked
+                )
+            })
 
-    itemCountDropdown.setOnItemClickListener(
-        (parent, view1, position, id) ->
-            adapter.submitList(
-                CarouselData.createItems().subList(0, position),
-                updateSliderRange(positionSlider, adapter)));
+        drawDividers!!.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                if (isChecked) {
+                    fullscreenRecyclerView.addItemDecoration(verticalDivider!!)
+                } else {
+                    fullscreenRecyclerView.removeItemDecoration(verticalDivider!!)
+                }
+            })
 
-    positionSlider.addOnSliderTouchListener(
-        new OnSliderTouchListener() {
-          @Override
-          public void onStartTrackingTouch(@NonNull Slider slider) {}
+        val adapter =
+            CarouselAdapter(
+                CarouselItemListener { item: CarouselItem?, position: Int ->
+                    fullscreenRecyclerView.scrollToPosition(
+                        position
+                    )
+                },
+                R.layout.cat_carousel_item_vertical
+            )
+        fullscreenRecyclerView.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                private var dragged = false
 
-          @Override
-          public void onStopTrackingTouch(@NonNull Slider slider) {
-            fullscreenRecyclerView.smoothScrollToPosition(((int) slider.getValue()) - 1);
-          }
-        });
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                        dragged = true
+                    } else if (dragged && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        if (recyclerView.computeVerticalScrollRange() != 0) {
+                            positionSlider!!.setValue(
+                                ((adapter.getItemCount() - 1)
+                                        * recyclerView.computeVerticalScrollOffset()
+                                        / recyclerView.computeVerticalScrollRange()
+                                        + 1).toFloat()
+                            )
+                        }
+                        dragged = false
+                    }
+                }
+            })
 
-    fullscreenRecyclerView.setAdapter(adapter);
-    adapter.submitList(CarouselData.createItems(), updateSliderRange(positionSlider, adapter));
-  }
+        val flingDisabledSnapHelper: SnapHelper = CarouselSnapHelper()
+        val flingEnabledSnapHelper: SnapHelper = CarouselSnapHelper(false)
 
-  private static Runnable updateSliderRange(Slider slider, CarouselAdapter adapter) {
-    return () -> {
-      if (adapter.getItemCount() <= 1) {
-        slider.setEnabled(false);
-        return;
-      }
+        flingDisabledSnapHelper.attachToRecyclerView(fullscreenRecyclerView)
 
-      slider.setValueFrom(1);
-      slider.setValue(1);
-      slider.setValueTo(adapter.getItemCount());
-      slider.setEnabled(true);
-    };
-  }
+        enableFlingSwitch!!.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                if (isChecked) {
+                    flingDisabledSnapHelper.attachToRecyclerView(null)
+                    flingEnabledSnapHelper.attachToRecyclerView(fullscreenRecyclerView)
+                } else {
+                    flingEnabledSnapHelper.attachToRecyclerView(null)
+                    flingDisabledSnapHelper.attachToRecyclerView(fullscreenRecyclerView)
+                }
+            })
+
+        itemCountDropdown!!.setOnItemClickListener(
+            OnItemClickListener { parent: AdapterView<*>?, view1: View?, position: Int, id: Long ->
+                adapter.submitList(
+                    createItems().subList(0, position),
+                    Companion.updateSliderRange(positionSlider!!, adapter)
+                )
+            })
+
+        positionSlider!!.addOnSliderTouchListener(
+            object : Slider.OnSliderTouchListener {
+                override fun onStartTrackingTouch(slider: Slider) {}
+
+                override fun onStopTrackingTouch(slider: Slider) {
+                    fullscreenRecyclerView.smoothScrollToPosition((slider.getValue().toInt()) - 1)
+                }
+            })
+
+        fullscreenRecyclerView.setAdapter(adapter)
+        adapter.submitList(createItems(), Companion.updateSliderRange(positionSlider, adapter))
+    }
+
+    companion object {
+        private fun updateSliderRange(slider: Slider, adapter: CarouselAdapter): Runnable {
+            return Runnable {
+                if (adapter.getItemCount() <= 1) {
+                    slider.setEnabled(false)
+                    return@Runnable
+                }
+                slider.setValueFrom(1f)
+                slider.setValue(1f)
+                slider.setValueTo(adapter.getItemCount().toFloat())
+                slider.setEnabled(true)
+            }
+        }
+    }
 }
