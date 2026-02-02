@@ -1,340 +1,316 @@
-/*
- * Copyright 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.think.design.bottomsheet
 
-package com.think.design.bottomsheet;
+import android.app.Activity
+import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CompoundButton
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.BackEventCompat
+import androidx.activity.OnBackPressedCallback
+import androidx.annotation.LayoutRes
+import androidx.core.view.OnApplyWindowInsetsListener
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.insets.Protection
+import androidx.core.view.insets.ProtectionLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.materialswitch.MaterialSwitch
+import com.think.design.R
+import com.think.design.feature.DemoFragment
+import com.think.design.windowpreferences.WindowPreferencesManager
 
-import com.think.design.R;
+class BottomSheetMainDemoFragment : DemoFragment() {
+    private val persistentBottomSheetBackCallback: OnBackPressedCallback =
+        object : OnBackPressedCallback( /* enabled= */false) {
+            override fun handleOnBackStarted(backEvent: BackEventCompat) {
+                persistentBottomSheetBehavior!!.startBackProgress(backEvent)
+            }
 
-import static com.google.android.material.bottomsheet.BottomSheetBehavior.getDefaultBottomGradientProtection;
+            override fun handleOnBackProgressed(backEvent: BackEventCompat) {
+                persistentBottomSheetBehavior!!.updateBackProgress(backEvent)
+            }
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import androidx.activity.BackEventCompat;
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.insets.ProtectionLayout;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.materialswitch.MaterialSwitch;
-import com.think.design.feature.DemoFragment;
-import com.think.design.windowpreferences.WindowPreferencesManager;
-import java.util.Collections;
+            override fun handleOnBackPressed() {
+                persistentBottomSheetBehavior!!.handleBackInvoked()
+            }
 
-/** A fragment that displays the main BottomSheet demo for the Catalog app. */
-public class BottomSheetMainDemoFragment extends DemoFragment {
-
-  private final OnBackPressedCallback persistentBottomSheetBackCallback =
-      new OnBackPressedCallback(/* enabled= */ false) {
-
-        @Override
-        public void handleOnBackStarted(@NonNull BackEventCompat backEvent) {
-          persistentBottomSheetBehavior.startBackProgress(backEvent);
+            override fun handleOnBackCancelled() {
+                persistentBottomSheetBehavior!!.cancelBackProgress()
+            }
         }
 
-        @Override
-        public void handleOnBackProgressed(@NonNull BackEventCompat backEvent) {
-          persistentBottomSheetBehavior.updateBackProgress(backEvent);
-        }
+    private var windowPreferencesManager: WindowPreferencesManager? = null
+    private var bottomSheetDialog: BottomSheetDialog? = null
+    private var persistentBottomSheetBehavior: BottomSheetBehavior<View?>? = null
+    private var windowInsets: WindowInsetsCompat? = null
+    private var peekHeightPx = 0
 
-        @Override
-        public void handleOnBackPressed() {
-          persistentBottomSheetBehavior.handleBackInvoked();
-        }
+    private var fullScreenSwitch: MaterialSwitch? = null
+    private var restrictExpansionSwitch: MaterialSwitch? = null
 
-        @Override
-        public void handleOnBackCancelled() {
-          persistentBottomSheetBehavior.cancelBackProgress();
-        }
-      };
+    override fun onCreate(bundle: Bundle?) {
+        super.onCreate(bundle)
+        windowPreferencesManager = WindowPreferencesManager(requireContext())
+        peekHeightPx = getResources().getDimensionPixelSize(R.dimen.cat_bottom_sheet_peek_height)
+    }
 
-  private WindowPreferencesManager windowPreferencesManager;
-  private BottomSheetDialog bottomSheetDialog;
-  private BottomSheetBehavior<View> persistentBottomSheetBehavior;
-  private WindowInsetsCompat windowInsets;
-  private int peekHeightPx;
+    override fun onCreateDemoView(
+        layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?
+    ): View {
+        val view = layoutInflater.inflate(this.demoContent, viewGroup, false /* attachToRoot */)
 
-  private MaterialSwitch fullScreenSwitch;
-  private MaterialSwitch restrictExpansionSwitch;
+        val content = view.findViewById<ViewGroup>(R.id.cat_bottomsheet_coordinator_layout)
+        content.addView(layoutInflater.inflate(this.standardBottomSheetLayout, content, false))
 
-  @Override
-  public void onCreate(@Nullable Bundle bundle) {
-    super.onCreate(bundle);
-    windowPreferencesManager = new WindowPreferencesManager(requireContext());
-    peekHeightPx = getResources().getDimensionPixelSize(R.dimen.cat_bottom_sheet_peek_height);
-  }
+        // Set up BottomSheetDialog
+        bottomSheetDialog = BottomSheetDialog(requireContext())
+        bottomSheetDialog!!.setContentView(R.layout.cat_bottomsheet_content)
+        // Opt in to perform swipe to dismiss animation when dismissing bottom sheet dialog.
+        bottomSheetDialog!!.setDismissWithAnimation(true)
+        windowPreferencesManager!!.applyEdgeToEdgePreference(bottomSheetDialog!!.getWindow())
+        val bottomSheetInternal =
+            bottomSheetDialog!!.findViewById<View?>(com.google.android.material.R.id.design_bottom_sheet)
+        bottomSheetDialog!!.setProtections(
+            mutableListOf<Protection?>(
+                BottomSheetBehavior.getDefaultBottomGradientProtection(requireContext())
+            )
+        )
+        BottomSheetBehavior.from<View?>(bottomSheetInternal!!).setPeekHeight(peekHeightPx)
+        val button = view.findViewById<View>(R.id.bottomsheet_button)
+        button.setOnClickListener(
+            View.OnClickListener { v: View? ->
+                bottomSheetDialog!!.show()
+                bottomSheetDialog!!.setTitle(getText(R.string.cat_bottomsheet_title))
+                val button0 =
+                    bottomSheetInternal.findViewById<Button>(R.id.cat_bottomsheet_modal_button)
+                button0.setOnClickListener(
+                    View.OnClickListener { v0: View? ->
+                        Toast.makeText(
+                            v!!.getContext(),
+                            R.string.cat_bottomsheet_button_clicked,
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    })
 
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view = layoutInflater.inflate(getDemoContent(), viewGroup, false /* attachToRoot */);
+                val enabledSwitch =
+                    bottomSheetInternal.findViewById<MaterialSwitch>(R.id.cat_bottomsheet_modal_enabled_switch)
+                enabledSwitch.setOnCheckedChangeListener(
+                    CompoundButton.OnCheckedChangeListener { buttonSwitch: CompoundButton?, isSwitchChecked: Boolean ->
+                        val updatedText =
+                            getText(
+                                if (isSwitchChecked)
+                                    R.string.cat_bottomsheet_button_label_enabled
+                                else
+                                    R.string.cat_bottomsheet_button_label_disabled
+                            )
+                        button0.setText(updatedText)
+                        button0.setEnabled(isSwitchChecked)
+                    })
+            })
 
-    ViewGroup content = view.findViewById(R.id.cat_bottomsheet_coordinator_layout);
-    content.addView(layoutInflater.inflate(getStandardBottomSheetLayout(), content, false));
+        fullScreenSwitch = view.findViewById<MaterialSwitch>(R.id.cat_fullscreen_switch)
+        fullScreenSwitch!!.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                restrictExpansionSwitch!!.setEnabled(!isChecked)
+                updateBottomSheetHeights()
+            })
 
-    // Set up BottomSheetDialog
-    bottomSheetDialog = new BottomSheetDialog(requireContext());
-    bottomSheetDialog.setContentView(R.layout.cat_bottomsheet_content);
-    // Opt in to perform swipe to dismiss animation when dismissing bottom sheet dialog.
-    bottomSheetDialog.setDismissWithAnimation(true);
-    windowPreferencesManager.applyEdgeToEdgePreference(bottomSheetDialog.getWindow());
-    View bottomSheetInternal = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
-    bottomSheetDialog.setProtections(
-        Collections.singletonList(
-            getDefaultBottomGradientProtection(getContext())));
-    BottomSheetBehavior.from(bottomSheetInternal).setPeekHeight(peekHeightPx);
-    View button = view.findViewById(R.id.bottomsheet_button);
-    button.setOnClickListener(
-        v -> {
-          bottomSheetDialog.show();
-          bottomSheetDialog.setTitle(getText(R.string.cat_bottomsheet_title));
-          Button button0 = bottomSheetInternal.findViewById(R.id.cat_bottomsheet_modal_button);
-          button0.setOnClickListener(
-              v0 ->
-                  Toast.makeText(
-                          v.getContext(),
-                          R.string.cat_bottomsheet_button_clicked,
-                          Toast.LENGTH_SHORT)
-                      .show());
+        restrictExpansionSwitch =
+            view.findViewById<MaterialSwitch>(R.id.cat_bottomsheet_expansion_switch)
+        restrictExpansionSwitch!!.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                fullScreenSwitch!!.setEnabled(!isChecked)
+                view.findViewById<View?>(R.id.drag_handle)!!.setEnabled(!isChecked)
+                bottomSheetInternal.findViewById<View?>(R.id.drag_handle)!!.setEnabled(!isChecked)
+                updateBottomSheetHeights()
+            })
 
-          MaterialSwitch enabledSwitch =
-              bottomSheetInternal.findViewById(R.id.cat_bottomsheet_modal_enabled_switch);
-          enabledSwitch.setOnCheckedChangeListener(
-              (buttonSwitch, isSwitchChecked) -> {
-                CharSequence updatedText =
+        val dialogText = bottomSheetInternal.findViewById<TextView>(R.id.bottomsheet_state)
+        BottomSheetBehavior.from<View?>(bottomSheetInternal)
+            .addBottomSheetCallback(createBottomSheetCallback(dialogText))
+        val bottomSheetText = view.findViewById<TextView>(R.id.cat_persistent_bottomsheet_state)
+        val bottomSheetPersistent = view.findViewById<View>(R.id.bottom_drawer)
+        val protectionLayout =
+            view.findViewById<ProtectionLayout>(R.id.cat_bottomsheet_protection_layout)
+        persistentBottomSheetBehavior = BottomSheetBehavior.from<View?>(bottomSheetPersistent)
+        persistentBottomSheetBehavior!!.addBottomSheetCallback(
+            createBottomSheetCallback(bottomSheetText)
+        )
+        bottomSheetPersistent.post(
+            Runnable {
+                val state = persistentBottomSheetBehavior!!.getState()
+                updateStateTextView(bottomSheetPersistent, bottomSheetText, state)
+                updateBackHandlingEnabled(state)
+                protectionLayout.setProtections(
+                    mutableListOf<Protection?>(
+                        BottomSheetBehavior.getDefaultBottomGradientProtection(
+                            requireContext()
+                        )
+                    )
+                )
+            })
+        setupBackHandling(persistentBottomSheetBehavior!!)
+
+        val button1 = view.findViewById<Button>(R.id.cat_bottomsheet_button)
+        button1.setOnClickListener(
+            View.OnClickListener { v: View? ->
+                Toast.makeText(
+                    v!!.getContext(), R.string.cat_bottomsheet_button_clicked, Toast.LENGTH_SHORT
+                )
+                    .show()
+            })
+
+        val enabledSwitch = view.findViewById<MaterialSwitch>(R.id.cat_bottomsheet_enabled_switch)
+        enabledSwitch.setOnCheckedChangeListener(
+            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+                val updatedText =
                     getText(
-                        isSwitchChecked
-                            ? R.string.cat_bottomsheet_button_label_enabled
-                            : R.string.cat_bottomsheet_button_label_disabled);
-                button0.setText(updatedText);
-                button0.setEnabled(isSwitchChecked);
-              });
-        });
+                        if (isChecked)
+                            R.string.cat_bottomsheet_button_label_enabled
+                        else
+                            R.string.cat_bottomsheet_button_label_disabled
+                    )
+                button1.setText(updatedText)
+                button1.setEnabled(isChecked)
+            })
 
-    fullScreenSwitch = view.findViewById(R.id.cat_fullscreen_switch);
-    fullScreenSwitch.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          restrictExpansionSwitch.setEnabled(!isChecked);
-          updateBottomSheetHeights();
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(
+            view,
+            OnApplyWindowInsetsListener { ignored: View?, insets: WindowInsetsCompat? ->
+                windowInsets = insets
+                updateBottomSheetHeights()
+                insets!!
+            })
 
-    restrictExpansionSwitch = view.findViewById(R.id.cat_bottomsheet_expansion_switch);
-    restrictExpansionSwitch.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          fullScreenSwitch.setEnabled(!isChecked);
-          view.findViewById(R.id.drag_handle).setEnabled(!isChecked);
-          bottomSheetInternal.findViewById(R.id.drag_handle).setEnabled(!isChecked);
-          updateBottomSheetHeights();
-        });
-
-    TextView dialogText = bottomSheetInternal.findViewById(R.id.bottomsheet_state);
-    BottomSheetBehavior.from(bottomSheetInternal)
-        .addBottomSheetCallback(createBottomSheetCallback(dialogText));
-    TextView bottomSheetText = view.findViewById(R.id.cat_persistent_bottomsheet_state);
-    View bottomSheetPersistent = view.findViewById(R.id.bottom_drawer);
-    ProtectionLayout protectionLayout = view.findViewById(R.id.cat_bottomsheet_protection_layout);
-    persistentBottomSheetBehavior = BottomSheetBehavior.from(bottomSheetPersistent);
-    persistentBottomSheetBehavior.addBottomSheetCallback(
-        createBottomSheetCallback(bottomSheetText));
-    bottomSheetPersistent.post(
-        () -> {
-          int state = persistentBottomSheetBehavior.getState();
-          updateStateTextView(bottomSheetPersistent, bottomSheetText, state);
-          updateBackHandlingEnabled(state);
-          protectionLayout.setProtections(
-              Collections.singletonList(
-                  getDefaultBottomGradientProtection(
-                      requireContext())));
-        });
-    setupBackHandling(persistentBottomSheetBehavior);
-
-    Button button1 = view.findViewById(R.id.cat_bottomsheet_button);
-    button1.setOnClickListener(
-        v ->
-            Toast.makeText(
-                    v.getContext(), R.string.cat_bottomsheet_button_clicked, Toast.LENGTH_SHORT)
-                .show());
-
-    MaterialSwitch enabledSwitch = view.findViewById(R.id.cat_bottomsheet_enabled_switch);
-    enabledSwitch.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          CharSequence updatedText =
-              getText(
-                  isChecked
-                      ? R.string.cat_bottomsheet_button_label_enabled
-                      : R.string.cat_bottomsheet_button_label_disabled);
-          button1.setText(updatedText);
-          button1.setEnabled(isChecked);
-        });
-
-    ViewCompat.setOnApplyWindowInsetsListener(
-        view,
-        (ignored, insets) -> {
-          windowInsets = insets;
-          updateBottomSheetHeights();
-          return insets;
-        });
-
-    return view;
-  }
-
-  private int getBottomSheetDialogDefaultHeight() {
-    return getWindowHeight() * 2 / 3;
-  }
-
-  private int getBottomSheetPersistentDefaultHeight() {
-    return getWindowHeight() * 3 / 5;
-  }
-
-  private void updateBottomSheetHeights() {
-    View view = getView();
-    View bottomSheetChildView = view.findViewById(R.id.bottom_drawer);
-    ViewGroup.LayoutParams params = bottomSheetChildView.getLayoutParams();
-    BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetChildView);
-    bottomSheetBehavior.setUpdateImportantForAccessibilityOnSiblings(fullScreenSwitch.isChecked());
-    View modalBottomSheetChildView = bottomSheetDialog.findViewById(R.id.bottom_drawer_2);
-    ViewGroup.LayoutParams layoutParams = modalBottomSheetChildView.getLayoutParams();
-    BottomSheetBehavior<FrameLayout> modalBottomSheetBehavior = bottomSheetDialog.getBehavior();
-    boolean fitToContents = true;
-    float halfExpandedRatio = 0.5f;
-    int windowHeight = getWindowHeight();
-    if (params != null && layoutParams != null) {
-      if (fullScreenSwitch.isEnabled() && fullScreenSwitch.isChecked()) {
-        params.height = windowHeight;
-        layoutParams.height = windowHeight;
-        fitToContents = false;
-        halfExpandedRatio = 0.7f;
-      } else if (restrictExpansionSwitch.isEnabled() && restrictExpansionSwitch.isChecked()) {
-        params.height = peekHeightPx;
-        layoutParams.height = peekHeightPx;
-      } else {
-        params.height = getBottomSheetPersistentDefaultHeight();
-        layoutParams.height = getBottomSheetDialogDefaultHeight();
-      }
-      bottomSheetChildView.setLayoutParams(params);
-      modalBottomSheetChildView.setLayoutParams(layoutParams);
-      bottomSheetBehavior.setFitToContents(fitToContents);
-      modalBottomSheetBehavior.setFitToContents(fitToContents);
-      bottomSheetBehavior.setHalfExpandedRatio(halfExpandedRatio);
-      modalBottomSheetBehavior.setHalfExpandedRatio(halfExpandedRatio);
+        return view
     }
-  }
 
-  private int getWindowHeight() {
-    // Calculate window height for fullscreen use
-    DisplayMetrics displayMetrics = new DisplayMetrics();
-    ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-    // Allow Fullscreen BottomSheet to expand beyond system windows and draw under status bar.
-    int height = displayMetrics.heightPixels;
-    if (windowInsets != null) {
-      height += windowInsets.getSystemWindowInsetTop();
-      height += windowInsets.getSystemWindowInsetBottom();
+    private val bottomSheetDialogDefaultHeight: Int
+        get() = this.windowHeight * 2 / 3
+
+    private val bottomSheetPersistentDefaultHeight: Int
+        get() = this.windowHeight * 3 / 5
+
+    private fun updateBottomSheetHeights() {
+        val view = getView()
+        val bottomSheetChildView = view!!.findViewById<View>(R.id.bottom_drawer)
+        val params = bottomSheetChildView.getLayoutParams()
+        val bottomSheetBehavior = BottomSheetBehavior.from<View?>(bottomSheetChildView)
+        bottomSheetBehavior.setUpdateImportantForAccessibilityOnSiblings(fullScreenSwitch!!.isChecked())
+        val modalBottomSheetChildView =
+            bottomSheetDialog!!.findViewById<View?>(R.id.bottom_drawer_2)
+        val layoutParams = modalBottomSheetChildView!!.getLayoutParams()
+        val modalBottomSheetBehavior = bottomSheetDialog!!.getBehavior()
+        var fitToContents = true
+        var halfExpandedRatio = 0.5f
+        val windowHeight = this.windowHeight
+        if (params != null && layoutParams != null) {
+            if (fullScreenSwitch!!.isEnabled() && fullScreenSwitch!!.isChecked()) {
+                params.height = windowHeight
+                layoutParams.height = windowHeight
+                fitToContents = false
+                halfExpandedRatio = 0.7f
+            } else if (restrictExpansionSwitch!!.isEnabled() && restrictExpansionSwitch!!.isChecked()) {
+                params.height = peekHeightPx
+                layoutParams.height = peekHeightPx
+            } else {
+                params.height = this.bottomSheetPersistentDefaultHeight
+                layoutParams.height = this.bottomSheetDialogDefaultHeight
+            }
+            bottomSheetChildView.setLayoutParams(params)
+            modalBottomSheetChildView.setLayoutParams(layoutParams)
+            bottomSheetBehavior.setFitToContents(fitToContents)
+            modalBottomSheetBehavior.setFitToContents(fitToContents)
+            bottomSheetBehavior.setHalfExpandedRatio(halfExpandedRatio)
+            modalBottomSheetBehavior.setHalfExpandedRatio(halfExpandedRatio)
+        }
     }
-    return height;
-  }
 
-  @LayoutRes
-  protected int getDemoContent() {
-    return R.layout.cat_bottomsheet_fragment;
-  }
+    private val windowHeight: Int
+        get() {
+            // Calculate window height for fullscreen use
+            val displayMetrics = DisplayMetrics()
+            (getContext() as Activity).getWindowManager().getDefaultDisplay()
+                .getMetrics(displayMetrics)
+            // Allow Fullscreen BottomSheet to expand beyond system windows and draw under status bar.
+            var height = displayMetrics.heightPixels
+            if (windowInsets != null) {
+                height += windowInsets!!.getSystemWindowInsetTop()
+                height += windowInsets!!.getSystemWindowInsetBottom()
+            }
+            return height
+        }
 
-  @LayoutRes
-  protected int getStandardBottomSheetLayout() {
-    return R.layout.cat_bottomsheet_standard;
-  }
+    @get:LayoutRes
+    protected val demoContent: Int
+        get() = R.layout.cat_bottomsheet_fragment
 
-  private BottomSheetCallback createBottomSheetCallback(@NonNull TextView text) {
-    return new BottomSheetCallback() {
-      @Override
-      public void onStateChanged(@NonNull View bottomSheet, int newState) {
-        updateStateTextView(bottomSheet, text, newState);
-      }
+    @get:LayoutRes
+    protected val standardBottomSheetLayout: Int
+        get() = R.layout.cat_bottomsheet_standard
 
-      @Override
-      public void onSlide(@NonNull View bottomSheet, float slideOffset) {}
-    };
-  }
+    private fun createBottomSheetCallback(text: TextView): BottomSheetCallback {
+        return object : BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                updateStateTextView(bottomSheet, text, newState)
+            }
 
-  private void updateStateTextView(@NonNull View bottomSheet, @NonNull TextView text, int state) {
-    switch (state) {
-      case BottomSheetBehavior.STATE_DRAGGING:
-        text.setText(R.string.cat_bottomsheet_state_dragging);
-        break;
-      case BottomSheetBehavior.STATE_EXPANDED:
-        text.setText(R.string.cat_bottomsheet_state_expanded);
-        break;
-      case BottomSheetBehavior.STATE_COLLAPSED:
-        text.setText(R.string.cat_bottomsheet_state_collapsed);
-        break;
-      case BottomSheetBehavior.STATE_HALF_EXPANDED:
-        BottomSheetBehavior<View> bottomSheetBehavior =
-            BottomSheetBehavior.from(bottomSheet);
-        text.setText(
-            getString(
-                R.string.cat_bottomsheet_state_half_expanded,
-                bottomSheetBehavior.getHalfExpandedRatio()));
-        break;
-      default:
-        break;
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+        }
     }
-  }
 
-  private void setupBackHandling(BottomSheetBehavior<View> behavior) {
-    requireActivity()
-        .getOnBackPressedDispatcher()
-        .addCallback(this, persistentBottomSheetBackCallback);
-    behavior.addBottomSheetCallback(
-        new BottomSheetCallback() {
-          @Override
-          public void onStateChanged(@NonNull View bottomSheet, int newState) {
-            updateBackHandlingEnabled(newState);
-          }
+    private fun updateStateTextView(bottomSheet: View, text: TextView, state: Int) {
+        when (state) {
+            BottomSheetBehavior.STATE_DRAGGING -> text.setText(R.string.cat_bottomsheet_state_dragging)
+            BottomSheetBehavior.STATE_EXPANDED -> text.setText(R.string.cat_bottomsheet_state_expanded)
+            BottomSheetBehavior.STATE_COLLAPSED -> text.setText(R.string.cat_bottomsheet_state_collapsed)
+            BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                val bottomSheetBehavior =
+                    BottomSheetBehavior.from<View?>(bottomSheet)
+                text.setText(
+                    getString(
+                        R.string.cat_bottomsheet_state_half_expanded,
+                        bottomSheetBehavior.getHalfExpandedRatio()
+                    )
+                )
+            }
 
-          @Override
-          public void onSlide(@NonNull View bottomSheet, float slideOffset) {}
-        });
-  }
-
-  private void updateBackHandlingEnabled(int state) {
-    switch (state) {
-      case BottomSheetBehavior.STATE_EXPANDED:
-      case BottomSheetBehavior.STATE_HALF_EXPANDED:
-        persistentBottomSheetBackCallback.setEnabled(true);
-        break;
-      case BottomSheetBehavior.STATE_COLLAPSED:
-      case BottomSheetBehavior.STATE_HIDDEN:
-        persistentBottomSheetBackCallback.setEnabled(false);
-        break;
-      case BottomSheetBehavior.STATE_DRAGGING:
-      case BottomSheetBehavior.STATE_SETTLING:
-      default:
-        // Do nothing, only change callback enabled for "stable" states.
-        break;
+            else -> {}
+        }
     }
-  }
+
+    private fun setupBackHandling(behavior: BottomSheetBehavior<View?>) {
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(this, persistentBottomSheetBackCallback)
+        behavior.addBottomSheetCallback(
+            object : BottomSheetCallback() {
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    updateBackHandlingEnabled(newState)
+                }
+
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+            })
+    }
+
+    private fun updateBackHandlingEnabled(state: Int) {
+        when (state) {
+            BottomSheetBehavior.STATE_EXPANDED, BottomSheetBehavior.STATE_HALF_EXPANDED -> persistentBottomSheetBackCallback.isEnabled =
+                true
+
+            BottomSheetBehavior.STATE_COLLAPSED, BottomSheetBehavior.STATE_HIDDEN -> persistentBottomSheetBackCallback.isEnabled =
+                false
+
+            BottomSheetBehavior.STATE_DRAGGING, BottomSheetBehavior.STATE_SETTLING -> {}
+            else -> {}
+        }
+    }
 }
