@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The Android Open Source Project
+ * Copyright 2020 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,10 @@
  * limitations under the License.
  */
 
-package com.think.design.application.scope;
+package com.think.design.application;
 
-import java.lang.annotation.Documented;
-import javax.inject.Scope;
+import dagger.Module;
 
-/** Dagger scope for dependencies that should only have a single instance created per fragment. */
-@Scope
-@Documented
-public @interface FragmentScope {}
+/** A module for catalog demo dependencies. */
+@Module
+public abstract class CatalogDemoModule {}
