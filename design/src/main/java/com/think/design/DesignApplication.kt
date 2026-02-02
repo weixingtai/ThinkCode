@@ -13,7 +13,7 @@ import dagger.hilt.android.HiltAndroidApp
  * desc   : 应用Application页
  */
 @HiltAndroidApp
-class MainApplication: BaseApplication() {
+class DesignApplication: BaseApplication() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
@@ -25,7 +25,7 @@ class MainApplication: BaseApplication() {
     }
 
     companion object {
-        private const val SUB_TAG = "MainApplication-> "
+        private const val SUB_TAG = "DesignApplication-> "
     }
 
 }
