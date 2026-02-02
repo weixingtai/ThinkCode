@@ -1,141 +1,145 @@
-package com.think.design.carousel
+/*
+ * Copyright 2023 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.AutoCompleteTextView
-import android.widget.CompoundButton
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.carousel.CarouselLayoutManager
-import com.google.android.material.carousel.CarouselSnapHelper
-import com.google.android.material.carousel.UncontainedCarouselStrategy
-import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.google.android.material.materialswitch.MaterialSwitch
-import com.google.android.material.slider.Slider
-import com.think.design.R
-import com.think.design.carousel.CarouselData.createItems
-import com.think.design.carousel.CarouselDemoUtils.createScrollToPositionSliderTouchListener
-import com.think.design.feature.DemoFragment
+package com.think.design.carousel;
 
-class UncontainedCarouselDemoFragment : DemoFragment() {
-    private var horizontalDivider: MaterialDividerItemDecoration? = null
-    private var adapter: CarouselAdapter? = null
-    private var positionSlider: Slider? = null
+import com.think.design.R;
 
-    override fun onCreateDemoView(
-        layoutInflater: LayoutInflater,
-        viewGroup: ViewGroup?,
-        bundle: Bundle?
-    ): View {
-        return layoutInflater.inflate(
-            R.layout.cat_carousel_uncontained_fragment, viewGroup, false /* attachToRoot */
-        )
-    }
+import android.os.Bundle;
+import androidx.recyclerview.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.carousel.CarouselLayoutManager;
+import com.google.android.material.carousel.CarouselSnapHelper;
+import com.google.android.material.carousel.UncontainedCarouselStrategy;
+import com.google.android.material.divider.MaterialDividerItemDecoration;
+import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.android.material.slider.Slider;
+import com.think.design.feature.DemoFragment;
 
-    override fun onViewCreated(view: View, bundle: Bundle?) {
-        super.onViewCreated(view, bundle)
+/** A fragment that displays the uncontained variant of the Carousel. */
+public class UncontainedCarouselDemoFragment extends DemoFragment {
 
-        horizontalDivider =
-            MaterialDividerItemDecoration(
-                requireContext(), MaterialDividerItemDecoration.HORIZONTAL
-            )
+  private MaterialDividerItemDecoration horizontalDivider;
+  private CarouselAdapter adapter;
+  private Slider positionSlider;
 
-        val debugSwitch = view.findViewById<MaterialSwitch>(R.id.debug_switch)
-        val drawDividers = view.findViewById<MaterialSwitch>(R.id.draw_dividers_switch)
-        val snapSwitch = view.findViewById<MaterialSwitch>(R.id.snap_switch)
-        val itemCountDropdown = view.findViewById<AutoCompleteTextView>(R.id.item_count_dropdown)
-        positionSlider = view.findViewById<Slider>(R.id.position_slider)
+  @NonNull
+  @Override
+  public View onCreateDemoView(
+      @NonNull LayoutInflater layoutInflater,
+      @Nullable ViewGroup viewGroup,
+      @Nullable Bundle bundle) {
+    return layoutInflater.inflate(
+        R.layout.cat_carousel_uncontained_fragment, viewGroup, false /* attachToRoot */);
+  }
 
-        val uncontainedRecyclerView =
-            view.findViewById<RecyclerView>(R.id.uncontained_carousel_recycler_view)
-        val uncontainedCarouselLayoutManager =
-            CarouselLayoutManager(UncontainedCarouselStrategy())
-        uncontainedCarouselLayoutManager.setDebuggingEnabled(
-            uncontainedRecyclerView, debugSwitch.isChecked()
-        )
-        uncontainedRecyclerView.setLayoutManager(uncontainedCarouselLayoutManager)
-        uncontainedRecyclerView.setNestedScrollingEnabled(false)
+  @Override
+  @SuppressWarnings("RestrictTo")
+  public void onViewCreated(@NonNull View view, @Nullable Bundle bundle) {
+    super.onViewCreated(view, bundle);
 
-        debugSwitch.setOnCheckedChangeListener(
-            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
-                uncontainedRecyclerView.setBackgroundResource(
-                    if (isChecked) R.drawable.dashed_outline_rectangle else 0
-                )
-                uncontainedCarouselLayoutManager.setDebuggingEnabled(
-                    uncontainedRecyclerView,
-                    isChecked
-                )
-            })
+    horizontalDivider =
+        new MaterialDividerItemDecoration(
+            requireContext(), MaterialDividerItemDecoration.HORIZONTAL);
 
-        drawDividers.setOnCheckedChangeListener(
-            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
-                if (isChecked) {
-                    uncontainedRecyclerView.addItemDecoration(horizontalDivider!!)
-                } else {
-                    uncontainedRecyclerView.removeItemDecoration(horizontalDivider!!)
-                }
-            })
+    MaterialSwitch debugSwitch = view.findViewById(R.id.debug_switch);
+    MaterialSwitch drawDividers = view.findViewById(R.id.draw_dividers_switch);
+    MaterialSwitch snapSwitch = view.findViewById(R.id.snap_switch);
+    AutoCompleteTextView itemCountDropdown = view.findViewById(R.id.item_count_dropdown);
+    positionSlider = view.findViewById(R.id.position_slider);
 
-        val snapHelper = CarouselSnapHelper()
-        snapSwitch.setOnCheckedChangeListener(
-            CompoundButton.OnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
-                if (isChecked) {
-                    snapHelper.attachToRecyclerView(uncontainedRecyclerView)
-                } else {
-                    snapHelper.attachToRecyclerView(null)
-                }
-            })
+    RecyclerView uncontainedRecyclerView =
+        view.findViewById(R.id.uncontained_carousel_recycler_view);
+    CarouselLayoutManager uncontainedCarouselLayoutManager =
+        new CarouselLayoutManager(new UncontainedCarouselStrategy());
+    uncontainedCarouselLayoutManager.setDebuggingEnabled(
+        uncontainedRecyclerView, debugSwitch.isChecked());
+    uncontainedRecyclerView.setLayoutManager(uncontainedCarouselLayoutManager);
+    uncontainedRecyclerView.setNestedScrollingEnabled(false);
 
-        adapter =
-            CarouselAdapter(
-                CarouselItemListener { item: CarouselItem?, position: Int ->
-                    uncontainedRecyclerView.scrollToPosition(position)
-                    positionSlider!!.setValue((position + 1).toFloat())
-                },
-                R.layout.cat_carousel_item_narrow
-            )
-        uncontainedRecyclerView.addOnScrollListener(
-            CarouselDemoUtils.createUpdateSliderOnScrollListener(positionSlider!!, adapter!!)
-        )
+    debugSwitch.setOnCheckedChangeListener(
+        (buttonView, isChecked) -> {
+          uncontainedRecyclerView.setBackgroundResource(
+              isChecked ? R.drawable.dashed_outline_rectangle : 0);
+          uncontainedCarouselLayoutManager.setDebuggingEnabled(uncontainedRecyclerView, isChecked);
+        });
 
-        itemCountDropdown.setOnItemClickListener(
-            OnItemClickListener { parent: AdapterView<*>?, view1: View?, position: Int, id: Long ->
-                adapter!!.submitList(
-                    createItems().subList(0, position),
-                    Companion.updateSliderRange(positionSlider!!, adapter!!)
-                )
-            })
+    drawDividers.setOnCheckedChangeListener(
+        (buttonView, isChecked) -> {
+          if (isChecked) {
+            uncontainedRecyclerView.addItemDecoration(horizontalDivider);
+          } else {
+            uncontainedRecyclerView.removeItemDecoration(horizontalDivider);
+          }
+        });
 
-        positionSlider!!.addOnSliderTouchListener(
-            createScrollToPositionSliderTouchListener(uncontainedRecyclerView)
-        )
+    CarouselSnapHelper snapHelper = new CarouselSnapHelper();
+    snapSwitch.setOnCheckedChangeListener(
+        (buttonView, isChecked) -> {
+          if (isChecked) {
+            snapHelper.attachToRecyclerView(uncontainedRecyclerView);
+          } else {
+            snapHelper.attachToRecyclerView(null);
+          }
+        });
 
-        uncontainedRecyclerView.setAdapter(adapter)
-    }
+    adapter =
+        new CarouselAdapter(
+            (item, position) -> {
+              uncontainedRecyclerView.scrollToPosition(position);
+              positionSlider.setValue(position + 1);
+            },
+            R.layout.cat_carousel_item_narrow);
+    uncontainedRecyclerView.addOnScrollListener(
+        CarouselDemoUtils.createUpdateSliderOnScrollListener(positionSlider, adapter));
 
-    override fun onStart() {
-        super.onStart()
-        adapter!!.submitList(
-            createItems(),
-            Companion.updateSliderRange(positionSlider!!, adapter!!)
-        )
-    }
+    itemCountDropdown.setOnItemClickListener(
+        (parent, view1, position, id) ->
+            adapter.submitList(
+                CarouselData.createItems().subList(0, position),
+                updateSliderRange(positionSlider, adapter)));
 
-    companion object {
-        private fun updateSliderRange(slider: Slider, adapter: CarouselAdapter): Runnable {
-            return Runnable {
-                if (adapter.getItemCount() <= 1) {
-                    slider.setEnabled(false)
-                    return@Runnable
-                }
-                slider.setValueFrom(1f)
-                slider.setValue(1f)
-                slider.setValueTo(adapter.getItemCount().toFloat())
-                slider.setEnabled(true)
-            }
-        }
-    }
+    positionSlider.addOnSliderTouchListener(
+        CarouselDemoUtils.createScrollToPositionSliderTouchListener(uncontainedRecyclerView));
+
+    uncontainedRecyclerView.setAdapter(adapter);
+  }
+
+  @Override
+  public void onStart() {
+    super.onStart();
+    adapter.submitList(CarouselData.createItems(), updateSliderRange(positionSlider, adapter));
+  }
+
+  private static Runnable updateSliderRange(Slider slider, CarouselAdapter adapter) {
+    return () -> {
+      if (adapter.getItemCount() <= 1) {
+        slider.setEnabled(false);
+        return;
+      }
+
+      slider.setValueFrom(1);
+      slider.setValue(1);
+      slider.setValueTo(adapter.getItemCount());
+      slider.setEnabled(true);
+    };
+  }
 }
