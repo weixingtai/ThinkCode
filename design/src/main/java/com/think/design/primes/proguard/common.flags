@@ -1,2 +1,0 @@
-# Keep Dagger generated application component class
--keep class com.think.design.application.primes.DaggerPrimesCatalogApplicationComponent** {*;}
