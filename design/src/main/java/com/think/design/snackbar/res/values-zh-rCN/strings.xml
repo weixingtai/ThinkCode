@@ -1,71 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Copyright 2025 The Android Open Source Project
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-
 <resources>
 
   <string name="cat_snackbar_title" description="提示条演示目录的标题 [字符限制=无]">
     提示条
   </string>
-  <string name="cat_snackbar_description" description="提示条演示目录的描述文本 [字符限制=无]">
+    <string name="cat_snackbar_description" description="提示条演示目录的描述文本 [字符限制=无]">
     提示条会在屏幕底部短暂显示应用进程的相关更新信息
   </string>
 
-  <string name="cat_snackbar_default_button" description="触发默认提示条的按钮标签 [字符限制=无]">
+    <string name="cat_snackbar_default_button" description="触发默认提示条的按钮标签 [字符限制=无]">
     默认提示条
   </string>
-  <string name="cat_snackbar_default_message" description="默认提示条的展示文案 [字符限制=无]">
+    <string name="cat_snackbar_default_message" description="默认提示条的展示文案 [字符限制=无]">
     这是一条提示条
   </string>
 
-  <string name="cat_snackbar_single_line_button" description="触发单行提示条的按钮标签 [字符限制=无]">
+    <string name="cat_snackbar_single_line_button" description="触发单行提示条的按钮标签 [字符限制=无]">
     单行提示条
   </string>
-  <string name="cat_snackbar_single_line_message" description="单行提示条的展示文案 [字符限制=无]">
+    <string name="cat_snackbar_single_line_message" description="单行提示条的展示文案 [字符限制=无]">
     这是一条单行提示条，超长文本内容会被省略显示。
   </string>
 
-  <string name="cat_snackbar_with_action_button" description="触发带操作按钮提示条的按钮标签 [字符限制=无]">
+    <string name="cat_snackbar_with_action_button" description="触发带操作按钮提示条的按钮标签 [字符限制=无]">
     带操作按钮的提示条
   </string>
-  <string name="cat_snackbar_with_action_message" description="带操作按钮提示条的展示文案 [字符限制=无]">
+    <string name="cat_snackbar_with_action_message" description="带操作按钮提示条的展示文案 [字符限制=无]">
     带操作按钮的提示条
   </string>
-  <string name="cat_snackbar_action_title" description="提示条内操作按钮的标签 [字符限制=无]">
+    <string name="cat_snackbar_action_title" description="提示条内操作按钮的标签 [字符限制=无]">
     完成
   </string>
 
-  <string name="cat_snackbar_multi_line_button" description="触发多行提示条的按钮标签 [字符限制=无]">
+    <string name="cat_snackbar_multi_line_button" description="触发多行提示条的按钮标签 [字符限制=无]">
     多行提示条
   </string>
-  <string name="cat_snackbar_multi_line_message" description="多行提示条的展示文案 [字符限制=无]">
+    <string name="cat_snackbar_multi_line_message" description="多行提示条的展示文案 [字符限制=无]">
     这是一条多行提示条，超长文本内容会自动换行，在提示条内显示为多行。
   </string>
 
-  <string name="cat_snackbar_custom_shape_button" description="触发自定义背景形状提示条的按钮标签 [字符限制=无]">
+    <string name="cat_snackbar_custom_shape_button" description="触发自定义背景形状提示条的按钮标签 [字符限制=无]">
     自定义形状提示条
   </string>
-  <string name="cat_snackbar_custom_shape_message" description="自定义背景形状提示条的展示文案 [字符限制=无]">
+    <string name="cat_snackbar_custom_shape_message" description="自定义背景形状提示条的展示文案 [字符限制=无]">
     这是一条自定义形状的提示条，且配有自定义关闭图标
   </string>
 
-  <string name="cat_snackbar_with_close_button" description="触发带关闭图标提示条的按钮标签 [字符限制=无]">
+    <string name="cat_snackbar_with_close_button" description="触发带关闭图标提示条的按钮标签 [字符限制=无]">
     带关闭图标的提示条
   </string>
-  <string name="cat_snackbar_with_close_message" description="带关闭图标提示条的展示文案 [字符限制=无]">
+    <string name="cat_snackbar_with_close_message" description="带关闭图标提示条的展示文案 [字符限制=无]">
     这是一条带有关闭图标的提示条。
   </string>
 </resources>
