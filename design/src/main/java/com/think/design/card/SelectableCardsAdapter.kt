@@ -1,176 +1,233 @@
-package com.think.design.card
+/*
+ * Copyright 2019 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.ViewCompat
-import androidx.core.view.accessibility.AccessibilityViewCommand
-import androidx.core.view.accessibility.AccessibilityViewCommand.CommandArguments
-import androidx.recyclerview.selection.ItemDetailsLookup
-import androidx.recyclerview.selection.ItemDetailsLookup.ItemDetails
-import androidx.recyclerview.selection.ItemKeyProvider
-import androidx.recyclerview.selection.SelectionTracker
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.card.MaterialCardView
-import com.think.design.R
+package com.think.design.card;
 
-internal class SelectableCardsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
-    private var items: MutableList<Item>
+import com.think.design.R;
 
-    private var selectionTracker: SelectionTracker<Long?>? = null
+import androidx.recyclerview.widget.RecyclerView;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.selection.ItemDetailsLookup;
+import androidx.recyclerview.selection.ItemKeyProvider;
+import androidx.recyclerview.selection.SelectionTracker;
+import com.google.android.material.card.MaterialCardView;
+import java.util.ArrayList;
+import java.util.List;
 
-    init {
-        this.items = ArrayList<Item>()
+/** An Adapter that works with a collection of selectable card items */
+class SelectableCardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+  private List<Item> items;
+
+  private SelectionTracker<Long> selectionTracker;
+
+  public SelectableCardsAdapter() {
+    this.items = new ArrayList<>();
+  }
+
+  public void setItems(List<Item> items) {
+    this.items = items;
+  }
+
+  @Override
+  public int getItemViewType(int position) {
+    return 0;
+  }
+
+  public void setSelectionTracker(SelectionTracker<Long> selectionTracker) {
+    this.selectionTracker = selectionTracker;
+  }
+
+  @NonNull
+  @Override
+  public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+    View view = inflater.inflate(R.layout.cat_card_item_view, parent, false);
+    return new ItemViewHolder(view);
+  }
+
+  @Override
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    Item item = items.get(position);
+    ((ItemViewHolder) viewHolder).bind(item, position);
+  }
+
+  @Override
+  public int getItemCount() {
+    return items.size();
+  }
+
+  class ItemViewHolder extends RecyclerView.ViewHolder {
+
+    private final Details details;
+    private final MaterialCardView materialCardView;
+    private final TextView titleView;
+    private final TextView subtitleView;
+
+    ItemViewHolder(View itemView) {
+      super(itemView);
+      materialCardView = itemView.findViewById(R.id.item_card);
+      titleView = itemView.findViewById(R.id.cat_card_title);
+      subtitleView = itemView.findViewById(R.id.cat_card_subtitle);
+      details = new Details();
     }
 
-    fun setItems(items: MutableList<Item>) {
-        this.items = items
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return 0
-    }
-
-    fun setSelectionTracker(selectionTracker: SelectionTracker<Long?>?) {
-        this.selectionTracker = selectionTracker
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflater = LayoutInflater.from(parent.getContext())
-        val view = inflater.inflate(R.layout.cat_card_item_view, parent, false)
-        return ItemViewHolder(view)
-    }
-
-    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-        val item = items.get(position)
-        (viewHolder as ItemViewHolder).bind(item, position)
-    }
-
-    override fun getItemCount(): Int {
-        return items.size
-    }
-
-    internal inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val details: Details
-        private val materialCardView: MaterialCardView
-        private val titleView: TextView
-        private val subtitleView: TextView
-
-        init {
-            materialCardView = itemView.findViewById<MaterialCardView>(R.id.item_card)
-            titleView = itemView.findViewById<TextView>(R.id.cat_card_title)
-            subtitleView = itemView.findViewById<TextView>(R.id.cat_card_subtitle)
-            details = Details()
-        }
-
-        fun bind(item: Item, position: Int) {
-            details.position = position.toLong()
-            titleView.setText(item.title)
-            subtitleView.setText(item.subtitle)
-            if (selectionTracker != null) {
-                bindSelectedState()
-                materialCardView.setOnKeyListener(
-                    View.OnKeyListener { v: View?, keyCode: Int, event: KeyEvent? ->
-                        if (event!!.getAction() == KeyEvent.ACTION_DOWN
-                            && (keyCode == KeyEvent.KEYCODE_ENTER
-                                    || keyCode == KeyEvent.KEYCODE_DPAD_CENTER)
-                        ) {
-                            val selectionKey = details.getSelectionKey()
-                            if (selectionKey != null) {
-                                if (selectionTracker!!.isSelected(selectionKey)) {
-                                    selectionTracker!!.deselect(selectionKey)
-                                } else {
-                                    selectionTracker!!.select(selectionKey)
-                                }
-                                return@OnKeyListener true
-                            }
-                        }
-                        false
-                    })
-            } else {
-                materialCardView.setOnKeyListener(null)
-            }
-        }
-
-        private fun bindSelectedState() {
-            val selectionKey = details.getSelectionKey()
-            materialCardView.setChecked(selectionTracker!!.isSelected(selectionKey))
-            if (selectionKey != null) {
-                addAccessibilityActions(selectionKey)
-            }
-        }
-
-        private fun addAccessibilityActions(selectionKey: Long) {
-            ViewCompat.addAccessibilityAction(
-                materialCardView,
-                materialCardView.getContext().getString(R.string.cat_card_action_select),
-                AccessibilityViewCommand { view: View?, arguments: CommandArguments? ->
-                    selectionTracker!!.select(selectionKey)
-                    true
-                })
-            ViewCompat.addAccessibilityAction(
-                materialCardView,
-                materialCardView.getContext().getString(R.string.cat_card_action_deselect),
-                AccessibilityViewCommand { view: View?, arguments: CommandArguments? ->
-                    selectionTracker!!.deselect(selectionKey)
-                    true
-                })
-        }
-
-        val itemDetails: ItemDetails<Long?>
-            get() = details
-    }
-
-    internal class DetailsLookup(private val recyclerView: RecyclerView) :
-        ItemDetailsLookup<Long?>() {
-        override fun getItemDetails(e: MotionEvent): ItemDetails<Long?>? {
-            val view = recyclerView.findChildViewUnder(e.getX(), e.getY())
-            if (view != null) {
-                val viewHolder = recyclerView.getChildViewHolder(view)
-                if (viewHolder is ItemViewHolder) {
-                    return viewHolder.itemDetails
+    private void bind(Item item, int position) {
+      details.position = position;
+      titleView.setText(item.title);
+      subtitleView.setText(item.subtitle);
+      if (selectionTracker != null) {
+        bindSelectedState();
+        materialCardView.setOnKeyListener(
+            (v, keyCode, event) -> {
+              if (event.getAction() == KeyEvent.ACTION_DOWN
+                  && (keyCode == KeyEvent.KEYCODE_ENTER
+                      || keyCode == KeyEvent.KEYCODE_DPAD_CENTER)) {
+                Long selectionKey = details.getSelectionKey();
+                if (selectionKey != null) {
+                  if (selectionTracker.isSelected(selectionKey)) {
+                    selectionTracker.deselect(selectionKey);
+                  } else {
+                    selectionTracker.select(selectionKey);
+                  }
+                  return true;
                 }
-            }
-            return null
-        }
+              }
+              return false;
+            });
+      } else {
+        materialCardView.setOnKeyListener(null);
+      }
     }
 
-    internal class KeyProvider(adapter: RecyclerView.Adapter<RecyclerView.ViewHolder?>?) :
-        ItemKeyProvider<Long?>(
-            SCOPE_MAPPED
-        ) {
-        override fun getKey(position: Int): Long? {
-            return position.toLong()
-        }
-
-        override fun getPosition(key: Long): Int {
-            val value = key
-            return value.toInt()
-        }
+    private void bindSelectedState() {
+      Long selectionKey = details.getSelectionKey();
+      materialCardView.setChecked(selectionTracker.isSelected(selectionKey));
+      if (selectionKey != null) {
+        addAccessibilityActions(selectionKey);
+      }
     }
 
-    internal class Item(val title: String?, val subtitle: String?)
-
-    internal class Details : ItemDetails<Long?>() {
-        var position: Long = 0
-
-        override fun getPosition(): Int {
-            return position.toInt()
-        }
-
-        override fun getSelectionKey(): Long? {
-            return position
-        }
-
-        override fun inSelectionHotspot(e: MotionEvent): Boolean {
-            return false
-        }
-
-        override fun inDragRegion(e: MotionEvent): Boolean {
-            return true
-        }
+    private void addAccessibilityActions(@NonNull Long selectionKey) {
+      ViewCompat.addAccessibilityAction(
+          materialCardView,
+          materialCardView.getContext().getString(R.string.cat_card_action_select),
+          (view, arguments) -> {
+            selectionTracker.select(selectionKey);
+            return true;
+          });
+      ViewCompat.addAccessibilityAction(
+          materialCardView,
+          materialCardView.getContext().getString(R.string.cat_card_action_deselect),
+          (view, arguments) -> {
+            selectionTracker.deselect(selectionKey);
+            return true;
+          });
     }
+
+    ItemDetailsLookup.ItemDetails<Long> getItemDetails() {
+      return details;
+    }
+  }
+
+  static class DetailsLookup extends ItemDetailsLookup<Long> {
+
+    private final RecyclerView recyclerView;
+
+    DetailsLookup(RecyclerView recyclerView) {
+      this.recyclerView = recyclerView;
+    }
+
+    @Nullable
+    @Override
+    public ItemDetails<Long> getItemDetails(@NonNull MotionEvent e) {
+      View view = recyclerView.findChildViewUnder(e.getX(), e.getY());
+      if (view != null) {
+        RecyclerView.ViewHolder viewHolder = recyclerView.getChildViewHolder(view);
+        if (viewHolder instanceof ItemViewHolder) {
+          return ((ItemViewHolder) viewHolder).getItemDetails();
+        }
+      }
+      return null;
+    }
+  }
+
+  static class KeyProvider extends ItemKeyProvider<Long> {
+
+    KeyProvider(RecyclerView.Adapter<RecyclerView.ViewHolder> adapter) {
+      super(ItemKeyProvider.SCOPE_MAPPED);
+    }
+
+    @Nullable
+    @Override
+    public Long getKey(int position) {
+      return (long) position;
+    }
+
+    @Override
+    public int getPosition(@NonNull Long key) {
+      long value = key;
+      return (int) value;
+    }
+  }
+
+  static class Item {
+
+    private final String title;
+    private final String subtitle;
+
+    Item(String title, String subtitle) {
+      this.title = title;
+      this.subtitle = subtitle;
+    }
+  }
+
+  static class Details extends ItemDetailsLookup.ItemDetails<Long> {
+
+    long position;
+
+    Details() {}
+
+    @Override
+    public int getPosition() {
+      return (int) position;
+    }
+
+    @Nullable
+    @Override
+    public Long getSelectionKey() {
+      return position;
+    }
+
+    @Override
+    public boolean inSelectionHotspot(@NonNull MotionEvent e) {
+      return false;
+    }
+
+    @Override
+    public boolean inDragRegion(@NonNull MotionEvent e) {
+      return true;
+    }
+  }
 }

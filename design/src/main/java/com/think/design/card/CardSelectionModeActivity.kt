@@ -1,107 +1,127 @@
-package com.think.design.card
+/*
+ * Copyright 2019 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.view.ActionMode
-import androidx.recyclerview.selection.SelectionPredicates
-import androidx.recyclerview.selection.SelectionTracker
-import androidx.recyclerview.selection.StorageStrategy
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.think.design.R
-import com.think.design.card.SelectableCardsAdapter.DetailsLookup
-import com.think.design.feature.DemoActivity
+package com.think.design.card;
 
-class CardSelectionModeActivity : DemoActivity(), ActionMode.Callback {
-    private var actionMode: ActionMode? = null
-    private var adapter: SelectableCardsAdapter? = null
-    private var selectionTracker: SelectionTracker<Long?>? = null
+import com.think.design.R;
 
-    override fun onCreateDemoView(
-        layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?
-    ): View {
-        val view = layoutInflater.inflate(R.layout.cat_card_selection_activity, viewGroup, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
-        setUpRecyclerView(recyclerView)
+import android.os.Bundle;
+import androidx.appcompat.view.ActionMode;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.selection.SelectionPredicates;
+import androidx.recyclerview.selection.SelectionTracker;
+import androidx.recyclerview.selection.StorageStrategy;
+import com.think.design.card.SelectableCardsAdapter.Item;
+import com.think.design.feature.DemoActivity;
+import java.util.ArrayList;
+import java.util.List;
 
-        return view
-    }
+/** An activity that displays a {@link RecyclerView} with checkable cards. */
+public class CardSelectionModeActivity extends DemoActivity implements ActionMode.Callback {
 
-    protected fun setUpRecyclerView(recyclerView: RecyclerView) {
-        adapter = SelectableCardsAdapter()
-        adapter!!.setItems(generateItems())
-        recyclerView.setAdapter(adapter)
+  private static final int ITEM_COUNT = 20;
 
-        selectionTracker =
-            SelectionTracker.Builder<Long?>(
+  private ActionMode actionMode;
+  private SelectableCardsAdapter adapter;
+  private SelectionTracker<Long> selectionTracker;
+
+  @Override
+  public View onCreateDemoView(
+      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
+    View view = layoutInflater.inflate(R.layout.cat_card_selection_activity, viewGroup, false);
+    RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+    setUpRecyclerView(recyclerView);
+
+    return view;
+  }
+
+  protected void setUpRecyclerView(RecyclerView recyclerView) {
+    adapter = new SelectableCardsAdapter();
+    adapter.setItems(generateItems());
+    recyclerView.setAdapter(adapter);
+
+    selectionTracker =
+        new SelectionTracker.Builder<>(
                 "card_selection",
                 recyclerView,
-                SelectableCardsAdapter.KeyProvider(adapter),
-                DetailsLookup(recyclerView),
-                StorageStrategy.createLongStorage()
-            )
-                .withSelectionPredicate(SelectionPredicates.createSelectAnything<Long?>())
-                .build()
+                new SelectableCardsAdapter.KeyProvider(adapter),
+                new SelectableCardsAdapter.DetailsLookup(recyclerView),
+                StorageStrategy.createLongStorage())
+            .withSelectionPredicate(SelectionPredicates.createSelectAnything())
+            .build();
 
-        adapter!!.setSelectionTracker(selectionTracker)
-        selectionTracker!!.addObserver(
-            object : SelectionTracker.SelectionObserver<Long?>() {
-                override fun onSelectionChanged() {
-                    if (selectionTracker!!.getSelection().size() > 0) {
-                        if (actionMode == null) {
-                            actionMode = startSupportActionMode(this@CardSelectionModeActivity)
-                        }
-                        actionMode!!.setTitle(selectionTracker!!.getSelection().size().toString())
-                    } else if (actionMode != null) {
-                        actionMode!!.finish()
-                    }
-                }
-            })
-        recyclerView.setLayoutManager(LinearLayoutManager(this))
+    adapter.setSelectionTracker(selectionTracker);
+    selectionTracker.addObserver(
+        new SelectionTracker.SelectionObserver<Long>() {
+          @Override
+          public void onSelectionChanged() {
+            if (selectionTracker.getSelection().size() > 0) {
+              if (actionMode == null) {
+                actionMode = startSupportActionMode(CardSelectionModeActivity.this);
+              }
+              actionMode.setTitle(String.valueOf(selectionTracker.getSelection().size()));
+            } else if (actionMode != null) {
+              actionMode.finish();
+            }
+          }
+        });
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+  }
+
+  private List<Item> generateItems() {
+    String titlePrefix = getString(R.string.cat_card_selectable_item_title);
+    List<Item> items = new ArrayList<>();
+    for (int i = 0; i < ITEM_COUNT; i++) {
+      items.add(
+          new Item(titlePrefix + " " + (i + 1), getString(R.string.cat_card_selectable_content)));
     }
 
-    private fun generateItems(): MutableList<SelectableCardsAdapter.Item> {
-        val titlePrefix = getString(R.string.cat_card_selectable_item_title)
-        val items: MutableList<SelectableCardsAdapter.Item> =
-            ArrayList<SelectableCardsAdapter.Item>()
-        for (i in 0..<ITEM_COUNT) {
-            items.add(
-                SelectableCardsAdapter.Item(
-                    titlePrefix + " " + (i + 1),
-                    getString(R.string.cat_card_selectable_content)
-                )
-            )
-        }
+    return items;
+  }
 
-        return items
-    }
+  @Override
+  public int getDemoTitleResId() {
+    return R.string.cat_card_selection_mode;
+  }
 
-    override fun getDemoTitleResId(): Int {
-        return R.string.cat_card_selection_mode
-    }
+  @Override
+  public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+    return true;
+  }
 
-    override fun onCreateActionMode(actionMode: ActionMode?, menu: Menu?): Boolean {
-        return true
-    }
+  @Override
+  public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+    return false;
+  }
 
-    override fun onPrepareActionMode(actionMode: ActionMode?, menu: Menu?): Boolean {
-        return false
-    }
+  @Override
+  public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+    return false;
+  }
 
-    override fun onActionItemClicked(actionMode: ActionMode?, menuItem: MenuItem?): Boolean {
-        return false
-    }
-
-    override fun onDestroyActionMode(actionMode: ActionMode?) {
-        selectionTracker!!.clearSelection()
-        this.actionMode = null
-    }
-
-    companion object {
-        private const val ITEM_COUNT = 20
-    }
+  @Override
+  public void onDestroyActionMode(ActionMode actionMode) {
+    selectionTracker.clearSelection();
+    this.actionMode = null;
+  }
 }
