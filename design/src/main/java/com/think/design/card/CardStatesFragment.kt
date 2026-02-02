@@ -1,6 +1,14 @@
-package com.think.design.card;
+package com.think.design.card
 
-import com.think.design.R;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.View.OnLongClickListener
+import android.view.ViewGroup
+import android.widget.RadioGroup
+import com.google.android.material.card.MaterialCardView
+import com.think.design.R
+import com.think.design.feature.DemoFragment
 
 /*
  * Copyright 2018 The Android Open Source Project
@@ -16,50 +24,34 @@ import com.think.design.R;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ */class CardStatesFragment : DemoFragment() {
+    override fun getDemoTitleResId(): Int {
+        return R.string.cat_card_states
+    }
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RadioGroup;
-import androidx.annotation.Nullable;
-import com.google.android.material.card.MaterialCardView;
-import com.think.design.feature.DemoFragment;
+    override fun onCreateDemoView(
+        layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?
+    ): View {
+        val view = layoutInflater
+            .inflate(R.layout.cat_card_states_fragment, viewGroup, false /* attachToRoot */)
+        val radioGroup = view.findViewById<RadioGroup>(R.id.cat_card_radio_group)
+        val card = view.findViewById<MaterialCardView>(R.id.card)
+        val checkableCard = view.findViewById<MaterialCardView>(R.id.checkable_card)
 
-/**
- * A fragment showing {@link MaterialCardView} states
- */
-public class CardStatesFragment extends DemoFragment {
+        checkableCard.setOnLongClickListener(
+            OnLongClickListener { v: View? ->
+                checkableCard.setChecked(!checkableCard.isChecked())
+                true
+            })
 
-  @Override
-  public int getDemoTitleResId() {
-    return R.string.cat_card_states;
-  }
+        radioGroup.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener { group: RadioGroup?, checkedId: Int ->
+                card.setHovered(checkedId == R.id.hovered)
+                card.setPressed(checkedId == R.id.pressed)
+                checkableCard.setHovered(checkedId == R.id.hovered)
+                checkableCard.setPressed(checkedId == R.id.pressed)
+            })
 
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view = layoutInflater
-        .inflate(R.layout.cat_card_states_fragment, viewGroup, false /* attachToRoot */);
-    RadioGroup radioGroup = view.findViewById(R.id.cat_card_radio_group);
-    final MaterialCardView card = view.findViewById(R.id.card);
-    final MaterialCardView checkableCard = view.findViewById(R.id.checkable_card);
-
-    checkableCard.setOnLongClickListener(
-        v -> {
-          checkableCard.setChecked(!checkableCard.isChecked());
-          return true;
-        });
-
-    radioGroup.setOnCheckedChangeListener(
-        (group, checkedId) -> {
-          card.setHovered(checkedId == R.id.hovered);
-          card.setPressed(checkedId == R.id.pressed);
-          checkableCard.setHovered(checkedId == R.id.hovered);
-          checkableCard.setPressed(checkedId == R.id.pressed);
-        });
-
-    return view;
-  }
+        return view
+    }
 }
