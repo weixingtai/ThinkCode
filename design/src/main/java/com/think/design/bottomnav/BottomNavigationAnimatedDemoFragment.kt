@@ -1,64 +1,46 @@
-/*
- * Copyright 2019 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.think.design.bottomnav
 
-package com.think.design.bottomnav;
+import android.os.Bundle
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.OnApplyWindowInsetsListener
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.think.design.R
+import com.think.design.feature.DemoFragment
 
-import com.think.design.R;
+class BottomNavigationAnimatedDemoFragment : DemoFragment() {
+    override fun onCreateDemoView(
+        layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?
+    ): View? {
+        val view =
+            layoutInflater.inflate(
+                R.layout.cat_bottom_navs_animated, viewGroup, false /* attachToRoot */
+            )
+        return view
+    }
 
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams;
-import androidx.core.view.ViewCompat;
-import com.think.design.feature.DemoFragment;
+    override fun onCreateView(
+        layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?
+    ): View? {
+        val view = super.onCreateView(layoutInflater, viewGroup, bundle)
+        val coordinatorLayout =
+            view!!.findViewById<CoordinatorLayout>(R.id.cat_demo_fragment_container)
 
-/**
- * A fragment that displays a bottom nav that uses {@link
- * android.graphics.drawable.AnimatedStateListDrawable} for icons.
- */
-public class BottomNavigationAnimatedDemoFragment extends DemoFragment {
+        // For unknown reasons, setting this in the xml is cleared out but setting it here takes effect.
+        val container =
+            coordinatorLayout.findViewById<View>(R.id.cat_bottom_navs_animated_container)
+        val lp =
+            container.getLayoutParams() as CoordinatorLayout.LayoutParams
+        lp.setBehavior(null)
+        lp.gravity = Gravity.BOTTOM
 
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view =
-        layoutInflater.inflate(
-            R.layout.cat_bottom_navs_animated, viewGroup, false /* attachToRoot */);
-    return view;
-  }
-
-  @Nullable
-  @Override
-  public View onCreateView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view = super.onCreateView(layoutInflater, viewGroup, bundle);
-    CoordinatorLayout coordinatorLayout = view.findViewById(R.id.cat_demo_fragment_container);
-
-    // For unknown reasons, setting this in the xml is cleared out but setting it here takes effect.
-    View container = coordinatorLayout.findViewById(R.id.cat_bottom_navs_animated_container);
-    LayoutParams lp =
-        (LayoutParams) container.getLayoutParams();
-    lp.setBehavior(null);
-    lp.gravity = Gravity.BOTTOM;
-
-    ViewCompat.setOnApplyWindowInsetsListener(coordinatorLayout, (v, insets) -> insets);
-    return view;
-  }
+        ViewCompat.setOnApplyWindowInsetsListener(
+            coordinatorLayout,
+            OnApplyWindowInsetsListener { v: View?, insets: WindowInsetsCompat? -> insets!! })
+        return view
+    }
 }

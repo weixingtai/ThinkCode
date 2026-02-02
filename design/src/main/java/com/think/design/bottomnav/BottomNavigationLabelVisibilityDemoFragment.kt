@@ -1,106 +1,97 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.think.design.bottomnav
 
-package com.think.design.bottomnav;
+import android.util.TypedValue
+import android.view.View
+import android.widget.Button
+import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.TextView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomnavigation.LabelVisibilityMode
+import com.think.design.R
 
-import com.think.design.R;
-
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-import android.view.View;
-import android.widget.Button;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
-
-/** A fragment that displays controls for the bottom nav's label visibility. */
-public class BottomNavigationLabelVisibilityDemoFragment extends BottomNavigationDemoFragment {
-  @Override
-  protected void initBottomNavDemoControls(View view) {
-    super.initBottomNavDemoControls(view);
-    initLabelVisibilityModeButtons(view);
-    initIconSlider(view);
-  }
-
-  @Override
-  protected int getBottomNavDemoControlsLayout() {
-    return R.layout.cat_bottom_navs_label_visibility_controls;
-  }
-
-  private void setAllBottomNavsLabelVisibilityMode(@LabelVisibilityMode int labelVisibilityMode) {
-    for (BottomNavigationView bn : bottomNavigationViews) {
-      setBottomNavsLabelVisibilityMode(bn, labelVisibilityMode);
+class BottomNavigationLabelVisibilityDemoFragment : BottomNavigationDemoFragment() {
+    override fun initBottomNavDemoControls(view: View) {
+        super.initBottomNavDemoControls(view)
+        initLabelVisibilityModeButtons(view)
+        initIconSlider(view)
     }
-  }
 
-  private void setBottomNavsLabelVisibilityMode(
-      BottomNavigationView bn, @LabelVisibilityMode int labelVisibilityMode) {
-    bn.setLabelVisibilityMode(labelVisibilityMode);
-  }
+    override val bottomNavDemoControlsLayout: Int
+        get() = R.layout.cat_bottom_navs_label_visibility_controls
 
-  private void setAllBottomNavsIconSize(int size) {
-    for (BottomNavigationView bn : bottomNavigationViews) {
-      bn.setItemIconSize(size);
+    private fun setAllBottomNavsLabelVisibilityMode(@LabelVisibilityMode labelVisibilityMode: Int) {
+        for (bn in bottomNavigationViews!!) {
+            setBottomNavsLabelVisibilityMode(bn, labelVisibilityMode)
+        }
     }
-  }
 
-  private void initLabelVisibilityModeButtons(View view) {
-    initLabelVisibilityModeButton(
-        view.findViewById(R.id.label_mode_auto_button), LabelVisibilityMode.LABEL_VISIBILITY_AUTO);
-    initLabelVisibilityModeButton(
-        view.findViewById(R.id.label_mode_selected_button),
-        LabelVisibilityMode.LABEL_VISIBILITY_SELECTED);
-    initLabelVisibilityModeButton(
-        view.findViewById(R.id.label_mode_labeled_button),
-        LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
-    initLabelVisibilityModeButton(
-        view.findViewById(R.id.label_mode_unlabeled_button),
-        LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED);
-  }
+    private fun setBottomNavsLabelVisibilityMode(
+        bn: BottomNavigationView, @LabelVisibilityMode labelVisibilityMode: Int
+    ) {
+        bn.setLabelVisibilityMode(labelVisibilityMode)
+    }
 
-  private void initLabelVisibilityModeButton(
-      Button labelVisibilityModeButton, @LabelVisibilityMode int labelVisibilityMode) {
-    labelVisibilityModeButton.setOnClickListener(
-        v -> setAllBottomNavsLabelVisibilityMode(labelVisibilityMode));
-  }
+    private fun setAllBottomNavsIconSize(size: Int) {
+        for (bn in bottomNavigationViews!!) {
+            bn.setItemIconSize(size)
+        }
+    }
 
-  private void initIconSlider(View view) {
-    SeekBar iconSizeSlider = view.findViewById(R.id.icon_size_slider);
-    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-    TextView iconSizeTextView = view.findViewById(R.id.icon_size_text_view);
-    String iconSizeUnit = "dp";
+    private fun initLabelVisibilityModeButtons(view: View) {
+        initLabelVisibilityModeButton(
+            view.findViewById<Button?>(R.id.label_mode_auto_button)!!,
+            LabelVisibilityMode.LABEL_VISIBILITY_AUTO
+        )
+        initLabelVisibilityModeButton(
+            view.findViewById<Button?>(R.id.label_mode_selected_button)!!,
+            LabelVisibilityMode.LABEL_VISIBILITY_SELECTED
+        )
+        initLabelVisibilityModeButton(
+            view.findViewById<Button?>(R.id.label_mode_labeled_button)!!,
+            LabelVisibilityMode.LABEL_VISIBILITY_LABELED
+        )
+        initLabelVisibilityModeButton(
+            view.findViewById<Button?>(R.id.label_mode_unlabeled_button)!!,
+            LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED
+        )
+    }
 
-    iconSizeSlider.setOnSeekBarChangeListener(
-        new OnSeekBarChangeListener() {
-          @Override
-          public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            setAllBottomNavsIconSize(
-                (int)
-                    TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP, progress, displayMetrics));
-            iconSizeTextView.setText(String.valueOf(progress).concat(iconSizeUnit));
-          }
+    private fun initLabelVisibilityModeButton(
+        labelVisibilityModeButton: Button, @LabelVisibilityMode labelVisibilityMode: Int
+    ) {
+        labelVisibilityModeButton.setOnClickListener(
+            View.OnClickListener { v: View? ->
+                setAllBottomNavsLabelVisibilityMode(
+                    labelVisibilityMode
+                )
+            })
+    }
 
-          @Override
-          public void onStartTrackingTouch(SeekBar seekBar) {}
+    private fun initIconSlider(view: View) {
+        val iconSizeSlider = view.findViewById<SeekBar>(R.id.icon_size_slider)
+        val displayMetrics = getResources().getDisplayMetrics()
+        val iconSizeTextView = view.findViewById<TextView>(R.id.icon_size_text_view)
+        val iconSizeUnit = "dp"
 
-          @Override
-          public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
-  }
+        iconSizeSlider.setOnSeekBarChangeListener(
+            object : OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    setAllBottomNavsIconSize(
+                        TypedValue.applyDimension(
+                            TypedValue.COMPLEX_UNIT_DIP, progress.toFloat(), displayMetrics
+                        ).toInt()
+                    )
+                    iconSizeTextView.setText(progress.toString() + iconSizeUnit)
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            })
+    }
 }
