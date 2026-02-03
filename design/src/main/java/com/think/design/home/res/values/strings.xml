@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="toolbar_navigation_close_description">Close demo</string>
-    <string name="cat_choose_preferences_description">Open preferences dialog</string>
-    <string name="cat_search_description">Open the search bar</string>
+    <string name="home_toolbar_navigation_close_description">Close demo</string>
+    <string name="home_close_preferences_description">Open preferences dialog</string>
+    <string name="home_search_description">Open the search bar</string>
 </resources>

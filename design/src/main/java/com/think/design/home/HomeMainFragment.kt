@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.math.MathUtils
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.think.base.BaseFragment
 import com.think.design.R
@@ -27,8 +29,18 @@ class HomeMainFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initHeader()
         initTopDividerVisibility()
         initRecyclerView()
+    }
+
+    fun initHeader() {
+        View.inflate(context, R.layout.fragment_home_header, binding.homeContent)
+        View.inflate(context, R.layout.fragment_home_logo, binding.homeContent)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _: View?, insetsCompat: WindowInsetsCompat? ->
+            binding.homeAppBarLayout.setPadding(0, insetsCompat!!.systemWindowInsetTop, 0, 0)
+            insetsCompat
+        }
     }
 
     fun initTopDividerVisibility() {

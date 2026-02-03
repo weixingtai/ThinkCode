@@ -13,6 +13,7 @@
     <dimen name="md_sys_margin_none">0dp</dimen>
     <dimen name="md_sys_divider_regular">1dp</dimen>
 
+    <dimen name="md_sys_toolbar_icon">48dp</dimen>
     <dimen name="md_sys_list_item_icon">40dp</dimen>
     <dimen name="md_sys_toolbar_height">112dp</dimen>
     <dimen name="md_sys_grid_item_height">180dp</dimen>

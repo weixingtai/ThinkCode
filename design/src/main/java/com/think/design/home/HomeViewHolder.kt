@@ -17,6 +17,6 @@ import com.think.design.R
 class HomeViewHolder(activity: FragmentActivity, viewGroup: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(activity).inflate(R.layout.fragment_home_item, viewGroup, false)
     ) {
-    val titleView: TextView = itemView.findViewById<TextView>(R.id.cat_toc_title)
-    val imageView: ImageView = itemView.findViewById<ImageView>(R.id.cat_toc_image)
+    val titleView: TextView = itemView.findViewById<TextView>(R.id.home_item_title)
+    val imageView: ImageView = itemView.findViewById<ImageView>(R.id.home_item_image)
 }

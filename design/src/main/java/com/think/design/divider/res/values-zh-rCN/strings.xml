@@ -10,7 +10,7 @@
     <string name="divider_middle_subtitle">下方展示的是居中分隔线（首尾均有内缩距离的分隔线）。</string>
     <string name="divider_heavy_title">粗线分隔线</string>
     <string name="divider_heavy_subtitle">下方展示的是粗线分隔线（线条粗细更粗的分隔线）。</string>
-    <string name="divider_item_decoration_demo_title">列表项分隔线装饰</string>
+    <string name="divider_item_decoration_demo_title">列表项分隔线示例</string>
     <string name="divider_item_text">列表项 %1$d</string>
     <string name="divider_item_decoration_horizontal">水平方向布局管理器</string>
     <string name="divider_item_decoration_vertical">垂直方向布局管理器</string>

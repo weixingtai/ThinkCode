@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="toolbar_navigation_close_description">关闭示例</string>
-    <string name="cat_choose_preferences_description">关闭设置对话框</string>
-    <string name="cat_search_description">打开搜索框</string>
+    <string name="home_toolbar_navigation_close_description">关闭示例</string>
+    <string name="home_close_preferences_description">关闭设置对话框</string>
+    <string name="home_search_description">打开搜索框</string>
 </resources>
