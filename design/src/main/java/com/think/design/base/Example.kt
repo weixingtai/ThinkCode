@@ -1,4 +1,4 @@
-package com.think.design.feature
+package com.think.design.base
 
 import android.content.Intent
 import androidx.annotation.IdRes
@@ -16,7 +16,7 @@ abstract class Example {
 
     @StringRes
     open fun buildTitleResId(): Int {
-        return R.string.cat_demo_landing_row_demo_header
+        return R.string.base_listing_row_demo_header
     }
 
     @IdRes

@@ -26,7 +26,9 @@ class HomeMainAdapter(val activity: FragmentActivity, val featureList: MutableLi
                 filteredList.addAll(featureList)
             } else {
                 for (homeFeature in featureList) {
-                    if (activity.getString(homeFeature.titleResId).lowercase().contains(constraint.toString().lowercase())) {
+                    if (activity.getString(homeFeature.titleResId).lowercase()
+                            .contains(constraint.toString().lowercase())
+                    ) {
                         filteredList.add(homeFeature)
                     }
                 }
@@ -52,8 +54,9 @@ class HomeMainAdapter(val activity: FragmentActivity, val featureList: MutableLi
         val homeFeature = featureList[i]
         homeViewHolder.titleView.setText(homeFeature.titleResId)
         homeViewHolder.imageView.setImageResource(homeFeature.drawableResId)
-        homeViewHolder.itemView.setOnClickListener { v: View? ->
-            activity.findNavController(R.id.nav_host_fragment_activity_main).navigate(homeFeature.routeResId)
+        homeViewHolder.itemView.setOnClickListener { _: View? ->
+            activity.findNavController(R.id.nav_host_fragment_activity_main)
+                .navigate(homeFeature.routeResId)
         }
     }
 

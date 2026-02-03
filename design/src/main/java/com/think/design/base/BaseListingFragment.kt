@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.think.design.databinding.FragmentBaseListingBinding
 import com.think.design.databinding.FragmentBaseListingItemBinding
-import com.think.design.feature.Example
+import com.think.design.base.Example
 
 /**
  * author : Samuel
@@ -20,56 +20,64 @@ import com.think.design.feature.Example
 abstract class BaseListingFragment : Fragment() {
 
     @StringRes
-    open fun getTitleResId(): Int { return 0 }
+    open fun getTitleResId(): Int {
+        return 0
+    }
 
     @StringRes
-    open fun getDescResId(): Int { return 0 }
+    open fun getDescResId(): Int {
+        return 0
+    }
 
     protected abstract fun onCreateMainExample(): Example
 
     protected abstract fun onCreateExtraList(): List<Example>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        bundle: Bundle?
+    ): View? {
         val binding = FragmentBaseListingBinding.inflate(inflater)
         if (getTitleResId() != 0) {
-            binding.toolbar.setTitle(getTitleResId())
+            binding.baseListingToolbar.setTitle(getTitleResId())
         } else {
-            binding.toolbar.setTitle("")
+            binding.baseListingToolbar.setTitle("")
         }
         if (getTitleResId() != 0) {
-            binding.listingMainDescription.setText(getDescResId())
+            binding.baseListingMainDescription.setText(getDescResId())
         } else {
-            binding.listingMainDescription.text = ""
+            binding.baseListingMainDescription.text = ""
         }
-        binding.listingMainContainer.removeAllViews()
-        binding.listingExtraContainer.removeAllViews()
+        binding.baseListingMainContainer.removeAllViews()
+        binding.baseListingExtraContainer.removeAllViews()
 
         val mainExample = onCreateMainExample()
 
         val mainBinding = FragmentBaseListingItemBinding.inflate(inflater)
-        mainBinding.listingItemContainer.setOnClickListener {
+        mainBinding.baseListingItemContainer.setOnClickListener {
             findNavController().navigate(mainExample.buildDestinationId())
         }
-        mainBinding.listingItemTitle.setText(mainExample.buildTitleResId())
-        mainBinding.listingItemDesc.text = mainExample.buildClassName()
+        mainBinding.baseListingItemTitle.setText(mainExample.buildTitleResId())
+        mainBinding.baseListingItemDesc.text = mainExample.buildClassName()
 
-        binding.listingMainContainer.addView(mainBinding.root)
+        binding.baseListingMainContainer.addView(mainBinding.root)
 
         val extrasExampleList = onCreateExtraList()
         if (extrasExampleList.isNotEmpty()) {
-            binding.listingExtraSection.visibility = View.VISIBLE
+            binding.baseListingExtraSection.visibility = View.VISIBLE
         } else {
-            binding.listingExtraSection.visibility = View.GONE
+            binding.baseListingExtraSection.visibility = View.GONE
         }
         for (extrasExample in extrasExampleList) {
             val extraBinding = FragmentBaseListingItemBinding.inflate(inflater)
-            extraBinding.listingItemContainer.setOnClickListener {
+            extraBinding.baseListingItemContainer.setOnClickListener {
 
             }
-            extraBinding.listingItemTitle.setText(extrasExample.buildTitleResId())
-            extraBinding.listingItemDesc.text = extrasExample.buildClassName()
+            extraBinding.baseListingItemTitle.setText(extrasExample.buildTitleResId())
+            extraBinding.baseListingItemDesc.text = extrasExample.buildClassName()
 
-            binding.listingExtraContainer.addView(extraBinding.root)
+            binding.baseListingExtraContainer.addView(extraBinding.root)
         }
 
         return binding.root

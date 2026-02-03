@@ -13,7 +13,7 @@ import dagger.hilt.android.HiltAndroidApp
  * desc   : 应用Application页
  */
 @HiltAndroidApp
-class DesignApplication: BaseApplication() {
+class DesignApplication : BaseApplication() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)

@@ -12,33 +12,15 @@
         tools:layout="@layout/fragment_base_landing" />
 
     <fragment
-        android:id="@+id/navigation_follow"
-        android:name="com.think.design.follow.FollowFragment"
-        android:label="@string/follow"
-        tools:layout="@layout/fragment_follow" />
-
-    <fragment
-        android:id="@+id/navigation_message"
-        android:name="com.think.design.message.MessageFragment"
-        android:label="@string/message"
-        tools:layout="@layout/fragment_message" />
-
-    <fragment
-        android:id="@+id/navigation_user"
-        android:name="com.think.design.user.UserFragment"
-        android:label="@string/user"
-        tools:layout="@layout/fragment_user" />
-
-    <fragment
         android:id="@+id/navigation_divider_list"
         android:name="com.think.design.divider.DividerListFragment"
-        android:label="@string/cat_divider_demo_title"
+        android:label="@string/divider_demo_title"
         tools:layout="@layout/fragment_divider_list" />
 
     <fragment
         android:id="@+id/navigation_divider_main"
         android:name="com.think.design.divider.DividerMainFragment"
-        android:label="@string/cat_divider_demo_title"
+        android:label="@string/divider_demo_title"
         tools:layout="@layout/fragment_divider_main" />
 
 </navigation>

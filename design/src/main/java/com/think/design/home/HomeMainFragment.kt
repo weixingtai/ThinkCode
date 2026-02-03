@@ -44,12 +44,20 @@ class HomeMainFragment : BaseFragment<FragmentHomeBinding>() {
     fun initRecyclerView() {
         val displayMetrics = resources.displayMetrics
         val displayWidth = displayMetrics.widthPixels
-        val itemSize = resources.getDimensionPixelSize(R.dimen.cat_toc_item_size)
+        val itemSize = resources.getDimensionPixelSize(R.dimen.md_sys_grid_item_height)
         val gridSpanCount = displayWidth / itemSize
         val spanCount = MathUtils.clamp(gridSpanCount, GRID_SPAN_COUNT_MIN, GRID_SPAN_COUNT_MAX)
 
         binding.homeRecyclerView.layoutManager = GridLayoutManager(context, spanCount)
-        binding.homeRecyclerView.addItemDecoration(HomeItemDecoration(resources.getDimensionPixelSize(R.dimen.cat_toc_grid_divider_size), ContextCompat.getColor(requireContext(), R.color.cat_toc_grid_divider_color), gridSpanCount))
+        binding.homeRecyclerView.addItemDecoration(
+            HomeItemDecoration(
+                resources.getDimensionPixelSize(
+                    R.dimen.md_sys_divider_regular
+                ),
+                ContextCompat.getColor(requireContext(), R.color.md_sys_grid_divider_color),
+                gridSpanCount
+            )
+        )
 
         val adapter = HomeMainAdapter(requireActivity(), HomeUtil.featureList)
         binding.homeRecyclerView.adapter = adapter

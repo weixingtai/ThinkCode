@@ -3,7 +3,7 @@ package com.think.design.divider
 import androidx.fragment.app.Fragment
 import com.think.design.R
 import com.think.design.base.BaseListingFragment
-import com.think.design.feature.Example
+import com.think.design.base.Example
 
 /**
  * author : Samuel
@@ -14,17 +14,17 @@ import com.think.design.feature.Example
 class DividerListFragment : BaseListingFragment() {
 
     override fun getTitleResId(): Int {
-        return R.string.cat_divider_demo_title
+        return R.string.divider_demo_title
     }
 
     override fun getDescResId(): Int {
-        return R.string.cat_divider_description
+        return R.string.divider_description
     }
 
     override fun onCreateMainExample(): Example {
         return object : Example() {
             override fun buildDestinationId(): Int {
-                return R.id.navigation_follow
+                return R.id.navigation_divider_main
             }
 
             override fun buildFragment(): Fragment {
@@ -37,8 +37,9 @@ class DividerListFragment : BaseListingFragment() {
         val extrasList = mutableListOf<Example>()
         extrasList.add(object : Example() {
             override fun buildTitleResId(): Int {
-                return R.string.cat_divider_item_decoration_demo_title
+                return R.string.divider_item_decoration_demo_title
             }
+
             override fun buildFragment(): Fragment {
                 return DividerMainFragment()
             }

@@ -42,7 +42,13 @@ class HomeItemDecoration(@Px dividerSize: Int, @ColorInt dividerColor: Int, span
             val y = bounds.bottom
             val startX = bounds.left
             val stopX = bounds.right
-            canvas.drawLine(startX.toFloat(), y.toFloat(), stopX.toFloat(), y.toFloat(), dividerPaint)
+            canvas.drawLine(
+                startX.toFloat(),
+                y.toFloat(),
+                stopX.toFloat(),
+                y.toFloat(),
+                dividerPaint
+            )
         }
     }
 
@@ -58,7 +64,13 @@ class HomeItemDecoration(@Px dividerSize: Int, @ColorInt dividerColor: Int, span
             val x = if (isRTL) bounds.left else bounds.right
             val startY = bounds.top
             val stopY = bounds.bottom
-            canvas.drawLine(x.toFloat(), startY.toFloat(), x.toFloat(), stopY.toFloat(), dividerPaint)
+            canvas.drawLine(
+                x.toFloat(),
+                startY.toFloat(),
+                x.toFloat(),
+                stopY.toFloat(),
+                dividerPaint
+            )
         }
     }
 

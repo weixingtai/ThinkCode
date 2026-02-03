@@ -19,7 +19,7 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/home_collapsing_toolbar_layout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/cat_toc_tall_toolbar_height"
+                android:layout_height="@dimen/md_sys_toolbar_height"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
                 app:titleEnabled="false">
 
@@ -49,8 +49,8 @@
         <View
             android:id="@+id/home_top_divider"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/cat_toc_grid_divider_size"
-            android:background="@color/cat_toc_grid_divider_color"
+            android:layout_height="@dimen/md_sys_divider_regular"
+            android:background="@color/md_sys_grid_divider_color"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

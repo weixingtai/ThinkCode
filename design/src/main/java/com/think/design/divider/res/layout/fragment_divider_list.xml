@@ -16,17 +16,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@string/cat_divider_title"
+                android:layout_margin="@dimen/md_sys_margin_medium"
+                android:text="@string/divider_title"
                 android:textAppearance="?attr/textAppearanceHeadlineLarge" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/cat_divider_subtitle" />
+                android:layout_marginStart="@dimen/md_sys_margin_medium"
+                android:layout_marginEnd="@dimen/md_sys_margin_medium"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:text="@string/divider_subtitle" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -35,59 +35,59 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@string/cat_divider_inset_title"
+                android:layout_margin="@dimen/md_sys_margin_medium"
+                android:text="@string/divider_inset_title"
                 android:textAppearance="?attr/textAppearanceHeadlineLarge" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/cat_divider_inset_subtitle" />
+                android:layout_marginStart="@dimen/md_sys_margin_extra_heavy"
+                android:layout_marginEnd="@dimen/md_sys_margin_medium"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:text="@string/divider_inset_subtitle" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerInsetStart="32dp" />
+                app:dividerInsetStart="@dimen/md_sys_margin_extra_heavy" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@string/cat_divider_middle_title"
+                android:layout_margin="@dimen/md_sys_margin_medium"
+                android:text="@string/divider_middle_title"
                 android:textAppearance="?attr/textAppearanceHeadlineLarge" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/cat_divider_middle_subtitle" />
+                android:layout_marginStart="@dimen/md_sys_margin_medium"
+                android:layout_marginEnd="@dimen/md_sys_margin_medium"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:text="@string/divider_middle_subtitle" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                app:dividerInsetEnd="32dp"
-                app:dividerInsetStart="32dp" />
+                app:dividerInsetEnd="@dimen/md_sys_margin_extra_heavy"
+                app:dividerInsetStart="@dimen/md_sys_margin_extra_heavy" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@string/cat_divider_heavy_title"
+                android:layout_margin="@dimen/md_sys_margin_medium"
+                android:text="@string/divider_heavy_title"
                 android:textAppearance="?attr/textAppearanceHeadlineLarge" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/cat_divider_heavy_subtitle" />
+                android:layout_marginStart="@dimen/md_sys_margin_medium"
+                android:layout_marginEnd="@dimen/md_sys_margin_medium"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:text="@string/divider_heavy_subtitle" />
 
             <com.google.android.material.divider.MaterialDivider
                 style="?attr/materialDividerHeavyStyle"

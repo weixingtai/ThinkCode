@@ -19,20 +19,31 @@ import com.think.design.databinding.FragmentBaseLandingBinding
 abstract class BaseLandingFragment : Fragment() {
 
     @StringRes
-    open fun getTitleResId(): Int { return 0 }
+    open fun getTitleResId(): Int {
+        return 0
+    }
 
-    protected abstract fun onCreateLandingView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?): View
+    protected abstract fun onCreateLandingView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        bundle: Bundle?
+    ): View
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        bundle: Bundle?
+    ): View? {
         val binding = FragmentBaseLandingBinding.inflate(inflater)
         if (getTitleResId() != 0) {
-            binding.toolbar.setTitle(getTitleResId())
+            binding.baseLandingToolbar.setTitle(getTitleResId())
         } else {
-            binding.toolbar.setTitle("")
+            binding.baseLandingToolbar.setTitle("")
         }
         val contentView = onCreateLandingView(inflater, container, bundle)
-        binding.coordinatorLayout.addView(contentView)
-        (contentView.layoutParams as CoordinatorLayout.LayoutParams).behavior = AppBarLayout.ScrollingViewBehavior()
+        binding.baseLandingCoordinatorLayout.addView(contentView)
+        (contentView.layoutParams as CoordinatorLayout.LayoutParams).behavior =
+            AppBarLayout.ScrollingViewBehavior()
         return binding.root
     }
 

@@ -20,13 +20,11 @@ class DividerMainFragment : BaseLandingFragment() {
     val binding get() = _binding
 
     override fun getTitleResId(): Int {
-        return R.string.cat_divider_demo_title
+        return R.string.divider_demo_title
     }
 
     override fun onCreateLandingView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        bundle: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?
     ): View {
         return FragmentDividerMainBinding.inflate(inflater).root
     }
