@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/listing_item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="@dimen/cat_list_horizontal_padding"
+        android:paddingVertical="@dimen/cat_list_vertical_padding">
+
+        <ImageView
+            android:id="@+id/listing_item_icon"
+            android:layout_width="@dimen/cat_list_icon_size"
+            android:layout_height="@dimen/cat_list_icon_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/cat_divider_demo_title"
+            app:srcCompat="@drawable/ic_demo_play_circle_outline_vd_theme_24px" />
+
+        <TextView
+            android:id="@+id/listing_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceBody2"
+            tools:text="Demo" />
+
+        <TextView
+            android:id="@+id/listing_item_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceCaption"
+            tools:text="MainDemoFragment" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/cat_demo_landing_row_titles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/cat_list_text_margin_from_icon"
+            android:layout_marginEnd="@dimen/cat_list_text_margin_from_button"
+            android:orientation="vertical"
+            app:constraint_referenced_ids="listing_item_title,listing_item_desc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/listing_item_icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

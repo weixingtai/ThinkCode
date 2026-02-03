@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="cat_toc_header_title" description="The title of the Catalog app. [CHAR LIMIT=NONE]">Material设计</string>
+  <string name="cat_toc_status_wip">WIP</string>
+    <string name="toolbar_navigation_close_description">关闭示例</string>
+    <string name="cat_choose_preferences_description">关闭设置对话框</string>
+    <string name="cat_search_description">打开搜索框</string>
+</resources>

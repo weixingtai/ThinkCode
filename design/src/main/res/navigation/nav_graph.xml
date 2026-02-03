@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.think.design.home.HomeFragment"
+        android:name="com.think.design.home.HomeMainFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_base_landing" />
 
     <fragment
         android:id="@+id/navigation_follow"
@@ -28,5 +28,17 @@
         android:name="com.think.design.user.UserFragment"
         android:label="@string/user"
         tools:layout="@layout/fragment_user" />
+
+    <fragment
+        android:id="@+id/navigation_divider_list"
+        android:name="com.think.design.divider.DividerListFragment"
+        android:label="@string/cat_divider_demo_title"
+        tools:layout="@layout/fragment_divider_list" />
+
+    <fragment
+        android:id="@+id/navigation_divider_main"
+        android:name="com.think.design.divider.DividerMainFragment"
+        android:label="@string/cat_divider_demo_title"
+        tools:layout="@layout/fragment_divider_main" />
 
 </navigation>
