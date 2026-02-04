@@ -18,14 +18,16 @@ import com.think.design.R
 class HomeMainAdapter(val activity: FragmentActivity, val featureList: MutableList<HomeFeature>) :
     RecyclerView.Adapter<HomeViewHolder>(), Filterable {
 
+        private val featureAll = featureList.toList()
+
     private val featureFilter: Filter = object : Filter() {
 
         override fun performFiltering(constraint: CharSequence): FilterResults {
             val filteredList = mutableListOf<HomeFeature>()
             if (constraint.isEmpty()) {
-                filteredList.addAll(featureList)
+                filteredList.addAll(featureAll)
             } else {
-                for (homeFeature in featureList) {
+                for (homeFeature in featureAll) {
                     if (activity.getString(homeFeature.titleResId).lowercase()
                             .contains(constraint.toString().lowercase())
                     ) {
@@ -39,9 +41,13 @@ class HomeMainAdapter(val activity: FragmentActivity, val featureList: MutableLi
         }
 
         override fun publishResults(constraint: CharSequence, filterResults: FilterResults) {
-            featureList.clear()
-            featureList.addAll(filterResults.values as MutableList<HomeFeature>)
-            notifyDataSetChanged()
+            if (filterResults.values is MutableList<*>) {
+                featureList.clear()
+                val filteredList = filterResults.values as MutableList<HomeFeature>
+                featureList.addAll(filteredList)
+                notifyDataSetChanged()
+            }
+
         }
 
     }

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.think.design.databinding.FragmentBaseListingBinding
 import com.think.design.databinding.FragmentBaseListingItemBinding
-import com.think.design.base.Example
 
 /**
  * author : Samuel

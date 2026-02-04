@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.math.MathUtils
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.transition.TransitionManager
+import com.google.android.material.transition.MaterialSharedAxis
 import com.think.base.BaseFragment
 import com.think.design.R
-import com.think.design.databinding.FragmentHomeBinding
+import com.think.design.databinding.FragmentHomeMainBinding
 import kotlin.math.abs
 
 /**
@@ -20,25 +23,35 @@ import kotlin.math.abs
  * time   : 2025/12/22 18:20
  * desc   :
  */
-class HomeMainFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>() {
+
+    private var adapter : HomeMainAdapter? = null
 
     override fun initViewBinding(
         inflater: LayoutInflater, container: ViewGroup?
-    ): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(inflater)
+    ): FragmentHomeMainBinding {
+        return FragmentHomeMainBinding.inflate(inflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initHeader()
         initTopDividerVisibility()
         initRecyclerView()
+        initPreferencesButton()
+        initSearchButton()
+        initSearchView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.homeSearchView.setQuery("", true)
+    }
+
+
+
     fun initHeader() {
-        View.inflate(context, R.layout.fragment_home_header, binding.homeContent)
-        View.inflate(context, R.layout.fragment_home_logo, binding.homeContent)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _: View?, insetsCompat: WindowInsetsCompat? ->
-            binding.homeAppBarLayout.setPadding(0, insetsCompat!!.systemWindowInsetTop, 0, 0)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _: View, insetsCompat: WindowInsetsCompat ->
+            binding.homeAppBarLayout.setPadding(0, insetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).top, 0, 0)
             insetsCompat
         }
     }
@@ -71,8 +84,62 @@ class HomeMainFragment : BaseFragment<FragmentHomeBinding>() {
             )
         )
 
-        val adapter = HomeMainAdapter(requireActivity(), HomeUtil.featureList)
+        adapter = HomeMainAdapter(requireActivity(), HomeUtil.featureList)
         binding.homeRecyclerView.adapter = adapter
+    }
+
+    fun initPreferencesButton() {
+        binding.homePreferencesButton.setOnClickListener {
+
+        }
+    }
+
+    fun initSearchButton() {
+        binding.homeSearchButton.setOnClickListener {
+            openSearchView()
+        }
+    }
+
+    fun initSearchView() {
+        binding.homeSearchView.setOnClickListener {
+            closeSearchView()
+        }
+        binding.homeSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter?.filter?.filter(newText)
+                return false
+            }
+
+        })
+    }
+
+    private fun openSearchView() {
+        val openSearchViewTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+        openSearchViewTransition.addTarget(binding.homeHeader)
+        openSearchViewTransition.addTarget(binding.homeSearchView)
+        TransitionManager.beginDelayedTransition(binding.homeHeader, openSearchViewTransition)
+
+        binding.homeHeader.visibility = View.GONE
+        binding.homeLogo.visibility = View.GONE
+        binding.homeSearchView.visibility = View.VISIBLE
+        binding.homeSearchView.requestFocus()
+    }
+
+    private fun closeSearchView() {
+        val closeSearchViewTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+        closeSearchViewTransition.addTarget(binding.homeHeader)
+        closeSearchViewTransition.addTarget(binding.homeSearchView)
+        TransitionManager.beginDelayedTransition(binding.homeHeader, closeSearchViewTransition)
+
+        binding.homeHeader.visibility = View.VISIBLE
+        binding.homeLogo.visibility = View.VISIBLE
+        binding.homeSearchView.visibility = View.GONE
+        binding.homeSearchView.setQuery("", true)
     }
 
     companion object {
