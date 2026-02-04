@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkbox_title">Checkbox</string>
+    <string name="checkbox_description">The CheckBox provides a selectable element, usually part of a list,that toggles between two states.</string>
+    <string name="checkbox_intro">Below are Material checkboxes.</string>
+    <string name="checkbox_disabled_guide">CheckBox elements that are disabled cannot be interacted with and will appear faded.</string>
+    <string name="checkbox_enabled">Enabled</string>
+    <string name="checkbox_disabled">Disabled</string>
+    <string name="checkbox_enable_description">Check this checkbox to control the enabled state of the boxes below.</string>
+    <string name="checkbox_toggle">Controlled by a checkbox</string>
+    <string name="checkbox_indeterminate_description">The checkboxes below have a parent/child relationship. The parent\'s state depends on the state of the children.</string>
+    <string name="checkbox_indeterminate">Parent checkbox</string>
+    <string name="checkbox_indeterminate_child">Child checkbox</string>
+    <string name="checkbox_no_text">Below is a checkbox with no text.</string>
+    <string name="checkbox_toggle_error">Check this checkbox to control the error state of all checkboxes in this page.</string>
+</resources>

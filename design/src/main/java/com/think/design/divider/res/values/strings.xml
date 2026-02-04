@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="divider_demo_title">Divider</string>
+    <string name="divider_title">Divider</string>
     <string name="divider_description">Demo displaying the Material divider.</string>
-    <string name="divider_title">Full-bleed divider</string>
+    <string name="divider_full_title">Full-bleed divider</string>
     <string name="divider_subtitle">The full-bleed divider is displayed below.</string>
     <string name="divider_inset_title">Inset divider</string>
     <string name="divider_inset_subtitle">The inset divider is displayed below.</string>

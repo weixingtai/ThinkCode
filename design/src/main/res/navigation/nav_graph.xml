@@ -14,13 +14,34 @@
     <fragment
         android:id="@+id/navigation_divider_list"
         android:name="com.think.design.divider.DividerListFragment"
-        android:label="@string/divider_demo_title"
-        tools:layout="@layout/fragment_divider_list" />
+        android:label="@string/divider_title" />
 
     <fragment
         android:id="@+id/navigation_divider_main"
         android:name="com.think.design.divider.DividerMainFragment"
-        android:label="@string/divider_demo_title"
-        tools:layout="@layout/fragment_divider_main" />
+        android:label="@string/divider_title"
+        tools:layout="@layout/fragment_checkbox_main" />
+
+    <fragment
+        android:id="@+id/navigation_checkbox_list"
+        android:name="com.think.design.checkbox.CheckBoxListFragment"
+        android:label="@string/checkbox_title" />
+
+    <fragment
+        android:id="@+id/navigation_checkbox_main"
+        android:name="com.think.design.checkbox.CheckBoxMainFragment"
+        android:label="@string/checkbox_title"
+        tools:layout="@layout/fragment_checkbox_main" />
+
+    <fragment
+        android:id="@+id/navigation_radiobutton_list"
+        android:name="com.think.design.radiobutton.RadioButtonListFragment"
+        android:label="@string/checkbox_title" />
+
+    <fragment
+        android:id="@+id/navigation_radiobutton_main"
+        android:name="com.think.design.radiobutton.RadioButtonMainFragment"
+        android:label="@string/radiobutton_title"
+        tools:layout="@layout/fragment_radiobutton_main" />
 
 </navigation>

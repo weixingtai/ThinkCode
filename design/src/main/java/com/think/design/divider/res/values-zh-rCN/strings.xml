@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="divider_demo_title">分隔线</string>
+    <string name="divider_title">分隔线</string>
     <string name="divider_description">展示 Material 风格分隔线的演示示例。</string>
-    <string name="divider_title">通栏分隔线</string>
+    <string name="divider_full_title">通栏分隔线</string>
     <string name="divider_subtitle">下方展示的是通栏分隔线。</string>
     <string name="divider_inset_title">内缩分隔线</string>
     <string name="divider_inset_subtitle">下方展示的是内缩分隔线。</string>

@@ -11,7 +11,9 @@ import com.think.design.R
 object HomeUtil {
 
     val featureList = mutableListOf<HomeFeature>().apply {
-        add(HomeFeature(R.string.divider_demo_title, R.drawable.ic_feature_divider, R.id.navigation_divider_list))
+        add(HomeFeature(R.string.divider_title, R.drawable.ic_feature_divider, R.id.navigation_divider_list))
+        add(HomeFeature(R.string.checkbox_title, R.drawable.ic_feature_checkbox, R.id.navigation_checkbox_list))
+        add(HomeFeature(R.string.radiobutton_title, R.drawable.ic_feature_radiobutton, R.id.navigation_radiobutton_list))
     }
 
 

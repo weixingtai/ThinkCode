@@ -1,4 +1,4 @@
-package com.think.design.divider
+package com.think.design.radiobutton
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.think.design.R
 import com.think.design.base.BaseLandingFragment
-import com.think.design.databinding.FragmentDividerMainBinding
+import com.think.design.databinding.FragmentRadiobuttonMainBinding
 
 /**
  * author : Samuel
@@ -14,19 +14,16 @@ import com.think.design.databinding.FragmentDividerMainBinding
  * time   : 2026/2/2 16:37
  * desc   :
  */
-class DividerMainFragment : BaseLandingFragment() {
-
-    private lateinit var _binding: FragmentDividerMainBinding
-    val binding get() = _binding
+class RadioButtonMainFragment : BaseLandingFragment() {
 
     override fun getTitleResId(): Int {
-        return R.string.divider_title
+        return R.string.radiobutton_title
     }
 
     override fun onCreateLandingView(
         inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?
     ): View {
-        return FragmentDividerMainBinding.inflate(inflater).root
+        return FragmentRadiobuttonMainBinding.inflate(inflater).root
     }
 
 }

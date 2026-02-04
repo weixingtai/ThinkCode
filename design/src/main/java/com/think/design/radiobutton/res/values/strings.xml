@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="radiobutton_title">Radio Button</string>
+    <string name="radiobutton_description">The RadioButton provides a clickable element, usually part of a RadioButtonGroup. Within a single RadioGroup, only 1 RadioButton can be selected.</string>
+    <string name="radiobutton_color_guide">RadioButton elements respond to changes in colorSecondary.They cannot be deselected by a direct click.</string>
+    <string name="radiobutton_disabled_guide">RadioButton elements that are disabled cannot be interacted with and will appear faded.</string>
+    <string name="radiobutton_enabled">Enabled</string>
+    <string name="radiobutton_disabled">Disabled</string>
+</resources>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/main_viewGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/md_sys_margin_small">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:text="@string/checkbox_intro" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:checked="true"
+                android:enabled="true"
+                android:text="@string/checkbox_enabled" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:checked="false"
+                android:enabled="true"
+                android:text="@string/checkbox_enabled" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:enabled="true"
+                android:text="@string/checkbox_enabled"
+                app:checkedState="indeterminate" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:text="@string/checkbox_disabled_guide" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:checked="true"
+                android:enabled="false"
+                android:text="@string/checkbox_disabled" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:checked="false"
+                android:enabled="false"
+                android:text="@string/checkbox_disabled" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/md_sys_margin_small"
+                android:enabled="false"
+                android:text="@string/checkbox_disabled"
+                app:checkedState="indeterminate" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/md_sys_margin_small"
+                android:layout_marginBottom="@dimen/md_sys_margin_small" />
+
+            <CheckBox
+                android:id="@+id/checkbox_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:checked="false"
+                android:enabled="true"
+                android:text="@string/checkbox_enable_description" />
+
+            <LinearLayout
+                android:id="@+id/checkbox_toggle_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/md_sys_margin_small"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:enabled="false"
+                    android:text="@string/checkbox_toggle" />
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:checked="false"
+                    android:enabled="false"
+                    android:text="@string/checkbox_toggle" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/md_sys_margin_small"
+                android:layout_marginBottom="@dimen/md_sys_margin_small" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/checkbox_indeterminate_description" />
+
+            <CheckBox
+                android:id="@+id/checkbox_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/checkbox_indeterminate"
+                app:checkedState="indeterminate" />
+
+            <LinearLayout
+                android:id="@+id/checkbox_indeterminate_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/md_sys_margin_small"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/checkbox_child_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:text="@string/checkbox_indeterminate_child" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_child_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:checked="false"
+                    android:text="@string/checkbox_indeterminate_child" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_child_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:checked="false"
+                    android:text="@string/checkbox_indeterminate_child" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/md_sys_margin_small"
+                android:layout_marginBottom="@dimen/md_sys_margin_small" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/checkbox_no_text" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/md_sys_margin_small"
+                android:layout_marginBottom="@dimen/md_sys_margin_small" />
+
+            <CheckBox
+                android:id="@+id/checkbox_toggle_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/checkbox_toggle_error" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>
