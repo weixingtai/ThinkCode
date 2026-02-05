@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 import com.google.android.material.appbar.AppBarLayout
 import com.think.design.databinding.FragmentBaseLandingBinding
 
@@ -16,7 +17,10 @@ import com.think.design.databinding.FragmentBaseLandingBinding
  * time   : 2026/2/2 17:04
  * desc   :
  */
-abstract class BaseLandingFragment : Fragment() {
+abstract class BaseLandingFragment<T : ViewBinding> : Fragment() {
+
+    private lateinit var _binding: T
+    protected val binding get() = _binding
 
     @StringRes
     open fun getTitleResId(): Int {
@@ -27,24 +31,23 @@ abstract class BaseLandingFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         bundle: Bundle?
-    ): View
+    ): T
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         bundle: Bundle?
     ): View? {
-        val binding = FragmentBaseLandingBinding.inflate(inflater)
+        val baseBinding = FragmentBaseLandingBinding.inflate(inflater)
         if (getTitleResId() != 0) {
-            binding.baseLandingToolbar.setTitle(getTitleResId())
+            baseBinding.baseLandingToolbar.setTitle(getTitleResId())
         } else {
-            binding.baseLandingToolbar.setTitle("")
+            baseBinding.baseLandingToolbar.setTitle("")
         }
-        val contentView = onCreateLandingView(inflater, container, bundle)
-        binding.baseLandingCoordinatorLayout.addView(contentView)
-        (contentView.layoutParams as CoordinatorLayout.LayoutParams).behavior =
-            AppBarLayout.ScrollingViewBehavior()
-        return binding.root
+        _binding = onCreateLandingView(inflater, container, bundle)
+        baseBinding.baseLandingCoordinatorLayout.addView(binding.root)
+        (binding.root.layoutParams as CoordinatorLayout.LayoutParams).behavior = AppBarLayout.ScrollingViewBehavior()
+        return baseBinding.root
     }
 
 }

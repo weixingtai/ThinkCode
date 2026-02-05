@@ -39,9 +39,11 @@ class DividerListFragment : BaseListingFragment() {
             override fun buildTitleResId(): Int {
                 return R.string.divider_item_decoration_demo_title
             }
-
+            override fun buildDestinationId(): Int {
+                return R.id.navigation_divider_decoration
+            }
             override fun buildFragment(): Fragment {
-                return DividerMainFragment()
+                return DividerDecorationFragment()
             }
         })
         return extrasList

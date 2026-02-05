@@ -29,9 +29,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>() {
 
     override fun initViewBinding(
         inflater: LayoutInflater, container: ViewGroup?
-    ): FragmentHomeMainBinding {
-        return FragmentHomeMainBinding.inflate(inflater)
-    }
+    ) = FragmentHomeMainBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initHeader()

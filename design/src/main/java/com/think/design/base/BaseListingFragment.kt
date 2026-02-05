@@ -71,7 +71,7 @@ abstract class BaseListingFragment : Fragment() {
         for (extrasExample in extrasExampleList) {
             val extraBinding = FragmentBaseListingItemBinding.inflate(inflater)
             extraBinding.baseListingItemContainer.setOnClickListener {
-
+                findNavController().navigate(extrasExample.buildDestinationId())
             }
             extraBinding.baseListingItemTitle.setText(extrasExample.buildTitleResId())
             extraBinding.baseListingItemDesc.text = extrasExample.buildClassName()

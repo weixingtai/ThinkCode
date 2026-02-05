@@ -9,11 +9,12 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/main_viewGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/md_sys_margin_medium"
+            android:layout_marginEnd="@dimen/md_sys_margin_medium"
             android:orientation="vertical"
-            android:padding="@dimen/md_sys_margin_small">
+            android:paddingBottom="@dimen/md_sys_margin_bottom_max">
 
             <TextView
                 android:layout_width="match_parent"
@@ -21,7 +22,7 @@
                 android:layout_marginBottom="@dimen/md_sys_margin_small"
                 android:text="@string/checkbox_intro" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/md_sys_margin_small"
@@ -29,7 +30,7 @@
                 android:enabled="true"
                 android:text="@string/checkbox_enabled" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/md_sys_margin_small"
@@ -37,7 +38,7 @@
                 android:enabled="true"
                 android:text="@string/checkbox_enabled" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/md_sys_margin_small"
@@ -51,7 +52,7 @@
                 android:layout_marginBottom="@dimen/md_sys_margin_small"
                 android:text="@string/checkbox_disabled_guide" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/md_sys_margin_small"
@@ -59,7 +60,7 @@
                 android:enabled="false"
                 android:text="@string/checkbox_disabled" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/md_sys_margin_small"
@@ -67,7 +68,7 @@
                 android:enabled="false"
                 android:text="@string/checkbox_disabled" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/md_sys_margin_small"
@@ -81,31 +82,32 @@
                 android:layout_marginTop="@dimen/md_sys_margin_small"
                 android:layout_marginBottom="@dimen/md_sys_margin_small" />
 
-            <CheckBox
-                android:id="@+id/checkbox_toggle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_control_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:checked="false"
                 android:enabled="true"
                 android:text="@string/checkbox_enable_description" />
 
             <LinearLayout
-                android:id="@+id/checkbox_toggle_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/md_sys_margin_small"
+                android:layout_marginStart="@dimen/md_sys_margin_large"
                 android:orientation="vertical">
 
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkbox_control_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:checked="true"
                     android:enabled="false"
                     android:text="@string/checkbox_toggle" />
 
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkbox_control_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:checked="false"
                     android:enabled="false"
                     android:text="@string/checkbox_toggle" />
@@ -122,10 +124,10 @@
                 android:layout_height="match_parent"
                 android:text="@string/checkbox_indeterminate_description" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/checkbox_parent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/checkbox_indeterminate"
                 app:checkedState="indeterminate" />
 
@@ -133,27 +135,27 @@
                 android:id="@+id/checkbox_indeterminate_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/md_sys_margin_small"
+                android:layout_marginStart="@dimen/md_sys_margin_large"
                 android:orientation="vertical">
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkbox_child_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="@string/checkbox_indeterminate_child" />
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkbox_child_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="@string/checkbox_indeterminate_child" />
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkbox_child_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="@string/checkbox_indeterminate_child" />
             </LinearLayout>
@@ -169,9 +171,17 @@
                 android:layout_height="wrap_content"
                 android:text="@string/checkbox_no_text" />
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkbox_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -179,10 +189,10 @@
                 android:layout_marginTop="@dimen/md_sys_margin_small"
                 android:layout_marginBottom="@dimen/md_sys_margin_small" />
 
-            <CheckBox
-                android:id="@+id/checkbox_toggle_error"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_err"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/checkbox_toggle_error" />
         </LinearLayout>
 
