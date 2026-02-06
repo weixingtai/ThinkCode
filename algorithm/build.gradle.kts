@@ -1,0 +1,44 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android {
+    namespace = "com.think.algorithm"
+    compileSdk = properties["compileSdk"].toString().toInt()
+
+    defaultConfig {
+        applicationId = "com.think.algorithm"
+        minSdk = properties["minSdk"].toString().toInt()
+        targetSdk = properties["compileSdk"].toString().toInt()
+        versionCode = properties["versionCode"].toString().toInt()
+        versionName = properties["versionName"].toString()
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    buildFeatures {
+        buildConfig = true
+    }
+    dataBinding {
+        enable = true
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+}
+
+dependencies {
+    implementation(project(":base"))
+    implementation(project(":common"))
+    implementation(project(":theme"))
+}
