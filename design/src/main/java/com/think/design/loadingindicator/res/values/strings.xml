@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loading_indicator_title">Loading Indicator</string>
+    <string name="loading_indicator_description">LoadingIndicator shows an indeterminate undergoing process.</string>
+    <string name="loading_indicator_default">Loading indicator</string>
+    <string name="loading_indicator_with_container">Loading indicator with container</string>
+    <string name="loading_indicator_with_multiple_colors">Loading indicator with multiple colors</string>
+    <string name="loading_indicator_in_a_button">Loading indicator in a button</string>
+</resources>

@@ -61,4 +61,15 @@
         android:label="@string/switch_title"
         tools:layout="@layout/fragment_switch_main" />
 
+    <fragment
+        android:id="@+id/navigation_loading_indicator_list"
+        android:name="com.think.design.loadingindicator.LoadingIndicatorListFragment"
+        android:label="@string/loading_indicator_title" />
+
+    <fragment
+        android:id="@+id/navigation_loading_indicator_main"
+        android:name="com.think.design.loadingindicator.LoadingIndicatorMainFragment"
+        android:label="@string/loading_indicator_title"
+        tools:layout="@layout/fragment_loading_indicator_main" />
+
 </navigation>

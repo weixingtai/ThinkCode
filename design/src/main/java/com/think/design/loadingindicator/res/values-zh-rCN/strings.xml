@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loading_indicator_title">加载指示器</string>
+    <string name="loading_indicator_description">加载指示器用于展示一个未确定进度的执行过程。</string>
+    <string name="loading_indicator_default">加载指示器</string>
+    <string name="loading_indicator_with_container">带容器的加载指示器</string>
+    <string name="loading_indicator_with_multiple_colors">多色加载指示器</string>
+    <string name="loading_indicator_in_a_button">按钮内置加载指示器</string>
+</resources>
