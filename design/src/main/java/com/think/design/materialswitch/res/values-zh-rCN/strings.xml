@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="switch_title">开关</string>
+    <string name="switch_description">开关组件是一种单一元素，可在两种状态间切换。</string>
+    <string name="switch_color_guide">开关组件的样式会随 colorSecondary 颜色值变化而调整</string>
+    <string name="switch_disabled_guide">处于禁用状态的开关组件无法交互，且视觉上会呈现褪色效果。</string>
+    <string name="switch_icon_guide">带图标的开关组件，包含默认尺寸（16dp）和 24dp 两种规格。</string>
+    <string name="switch_enabled">已启用</string>
+    <string name="switch_disabled">已禁用</string>
+    <string name="switch_toggleable_description">打开此开关可控制下方示例开关的启用状态。</string>
+    <string name="switch_toggle">由开关控制</string>
+</resources>

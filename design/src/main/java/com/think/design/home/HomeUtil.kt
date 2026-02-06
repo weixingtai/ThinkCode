@@ -14,6 +14,7 @@ object HomeUtil {
         add(HomeFeature(R.string.divider_title, R.drawable.ic_feature_divider, R.id.navigation_divider_list))
         add(HomeFeature(R.string.checkbox_title, R.drawable.ic_feature_checkbox, R.id.navigation_checkbox_list))
         add(HomeFeature(R.string.radiobutton_title, R.drawable.ic_feature_radiobutton, R.id.navigation_radiobutton_list))
+        add(HomeFeature(R.string.switch_title, R.drawable.ic_feature_switch, R.id.navigation_switch_list))
     }
 
 

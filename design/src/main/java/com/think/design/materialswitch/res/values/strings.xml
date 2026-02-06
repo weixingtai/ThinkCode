@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="switch_title">Switch</string>
+    <string name="switch_description">The Switch provides a single element that toggles between two states.</string>
+    <string name="switch_color_guide">Switch elements respond to changes in colorSecondary</string>
+    <string name="switch_disabled_guide">Switch elements that are disabled cannot be interacted with and will appear faded.</string>
+    <string name="switch_icon_guide">Switch elements with an icon, default size (16dp) and 24dp.</string>
+    <string name="switch_enabled">Enabled</string>
+    <string name="switch_disabled">Disabled</string>
+    <string name="switch_toggleable_description">Turn this switch On to control the enabled state of the switches below.</string>
+    <string name="switch_toggle">Controlled by a switch</string>
+</resources>

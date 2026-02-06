@@ -50,4 +50,15 @@
         android:label="@string/radiobutton_title"
         tools:layout="@layout/fragment_radiobutton_main" />
 
+    <fragment
+        android:id="@+id/navigation_switch_list"
+        android:name="com.think.design.materialswitch.SwitchListFragment"
+        android:label="@string/switch_title" />
+
+    <fragment
+        android:id="@+id/navigation_switch_main"
+        android:name="com.think.design.materialswitch.SwitchMainFragment"
+        android:label="@string/switch_title"
+        tools:layout="@layout/fragment_switch_main" />
+
 </navigation>
