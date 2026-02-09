@@ -72,4 +72,15 @@
         android:label="@string/loading_indicator_title"
         tools:layout="@layout/fragment_loading_indicator_main" />
 
+    <fragment
+        android:id="@+id/navigation_image_view_list"
+        android:name="com.think.design.imageview.ImageViewListFragment"
+        android:label="@string/imageview_title" />
+
+    <fragment
+        android:id="@+id/navigation_image_view_main"
+        android:name="com.think.design.imageview.ImageViewMainFragment"
+        android:label="@string/imageview_title"
+        tools:layout="@layout/fragment_image_view_main" />
+
 </navigation>

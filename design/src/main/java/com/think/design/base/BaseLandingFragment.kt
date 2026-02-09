@@ -45,7 +45,7 @@ abstract class BaseLandingFragment<T : ViewBinding> : Fragment() {
             baseBinding.baseLandingToolbar.setTitle("")
         }
         _binding = onCreateLandingView(inflater, container, bundle)
-        baseBinding.baseLandingCoordinatorLayout.addView(binding.root)
+        baseBinding.baseLandingCoordinatorLayout.addView(binding.root, CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT)
         (binding.root.layoutParams as CoordinatorLayout.LayoutParams).behavior = AppBarLayout.ScrollingViewBehavior()
         return baseBinding.root
     }

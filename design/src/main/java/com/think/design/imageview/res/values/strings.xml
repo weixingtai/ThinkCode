@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="imageview_title">Image View</string>
+    <string name="imageview_square">Square</string>
+    <string name="imageview_diamond">Diamond</string>
+    <string name="imageview_circle">Circle</string>
+    <string name="imageview_description">The ShapeableImageViewComponent provides the ability to set a Shape on your images.</string>
+</resources>

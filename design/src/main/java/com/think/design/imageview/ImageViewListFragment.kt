@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment
 import com.think.design.R
 import com.think.design.base.BaseListingFragment
 import com.think.design.base.Example
-import com.think.design.checkbox.CheckBoxMainFragment
 
 /**
  * author : Samuel
@@ -15,21 +14,21 @@ import com.think.design.checkbox.CheckBoxMainFragment
 class ImageViewListFragment : BaseListingFragment() {
 
     override fun getTitleResId(): Int {
-        return R.string.checkbox_title
+        return R.string.imageview_title
     }
 
     override fun getDescResId(): Int {
-        return R.string.checkbox_description
+        return R.string.imageview_description
     }
 
     override fun onCreateMainExample(): Example {
         return object : Example() {
             override fun buildDestinationId(): Int {
-                return R.id.navigation_checkbox_main
+                return R.id.navigation_image_view_main
             }
 
             override fun buildFragment(): Fragment {
-                return CheckBoxMainFragment()
+                return ImageViewMainFragment()
             }
         }
     }

@@ -16,6 +16,7 @@ object HomeUtil {
         add(HomeFeature(R.string.radiobutton_title, R.drawable.ic_feature_radiobutton, R.id.navigation_radiobutton_list))
         add(HomeFeature(R.string.switch_title, R.drawable.ic_feature_switch, R.id.navigation_switch_list))
         add(HomeFeature(R.string.loading_indicator_title, R.drawable.ic_feature_loading_indicator, R.id.navigation_loading_indicator_list))
+        add(HomeFeature(R.string.imageview_title, R.drawable.ic_feature_divider, R.id.navigation_image_view_list))
     }
 
 
