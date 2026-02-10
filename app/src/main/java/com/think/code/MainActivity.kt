@@ -6,7 +6,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.think.base.BaseActivity
 import com.think.base.logger.Logger
@@ -33,7 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         enableEdgeToEdge()
 
-        val navHostFragment = (supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment?)!!
+        val navHostFragment = (supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment)
         val navController = navHostFragment.navController
 
         appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_home, R.id.navigation_follow, R.id.navigation_message, R.id.navigation_user))
